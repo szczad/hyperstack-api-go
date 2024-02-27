@@ -1,0 +1,9 @@
+inputSpec: /local/openapi/api.json
+outputDir: /local/
+gitHost: github.com
+gitUserId: szczad
+gitRepoId: hyperstack-api-go
+generatorName: go
+additionalProperties:
+  packageName: hyperstack
+  packageVersion: 1.0.0
