@@ -7959,6 +7959,7 @@ components:
         version:
           type: string
         size:
+          format: int64
           type: integer
         display_size:
           type: string
@@ -8260,6 +8261,7 @@ components:
         volume_type:
           type: string
         size:
+          format: int64
           type: integer
         status:
           type: string

@@ -10448,7 +10448,8 @@
             "type": "string"
           },
           "size": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           },
           "display_size": {
             "type": "string"
@@ -10728,7 +10729,8 @@
             "type": "string"
           },
           "size": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           },
           "status": {
             "type": "string"

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RegionName** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
+**Size** | Pointer to **int64** |  | [optional] 
 **DisplaySize** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Labels** | Pointer to [**[]LableResonse**](LableResonse.md) |  | [optional] 
@@ -161,20 +161,20 @@ HasVersion returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *ImageFields) GetSize() int32`
+`func (o *ImageFields) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *ImageFields) GetSizeOk() (*int32, bool)`
+`func (o *ImageFields) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *ImageFields) SetSize(v int32)`
+`func (o *ImageFields) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 

@@ -25,7 +25,7 @@ type VolumeFields struct {
 	Environment *EnvironmentFieldsforVolume `json:"environment,omitempty"`
 	Description *string `json:"description,omitempty"`
 	VolumeType *string `json:"volume_type,omitempty"`
-	Size *int32 `json:"size,omitempty"`
+	Size *int64 `json:"size,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Bootable *bool `json:"bootable,omitempty"`
 	ImageId *int32 `json:"image_id,omitempty"`
@@ -212,9 +212,9 @@ func (o *VolumeFields) SetVolumeType(v string) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *VolumeFields) GetSize() int32 {
+func (o *VolumeFields) GetSize() int64 {
 	if o == nil || IsNil(o.Size) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -222,7 +222,7 @@ func (o *VolumeFields) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VolumeFields) GetSizeOk() (*int32, bool) {
+func (o *VolumeFields) GetSizeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *VolumeFields) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *VolumeFields) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *VolumeFields) SetSize(v int64) {
 	o.Size = &v
 }
 

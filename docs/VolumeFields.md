@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Environment** | Pointer to [**EnvironmentFieldsforVolume**](EnvironmentFieldsforVolume.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **VolumeType** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
+**Size** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Bootable** | Pointer to **bool** |  | [optional] 
 **ImageId** | Pointer to **int32** |  | [optional] 
@@ -163,20 +163,20 @@ HasVolumeType returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *VolumeFields) GetSize() int32`
+`func (o *VolumeFields) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *VolumeFields) GetSizeOk() (*int32, bool)`
+`func (o *VolumeFields) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *VolumeFields) SetSize(v int32)`
+`func (o *VolumeFields) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 

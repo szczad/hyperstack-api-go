@@ -24,7 +24,7 @@ type ImageFields struct {
 	RegionName *string `json:"region_name,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Version *string `json:"version,omitempty"`
-	Size *int32 `json:"size,omitempty"`
+	Size *int64 `json:"size,omitempty"`
 	DisplaySize *string `json:"display_size,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Labels []LableResonse `json:"labels,omitempty"`
@@ -209,9 +209,9 @@ func (o *ImageFields) SetVersion(v string) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *ImageFields) GetSize() int32 {
+func (o *ImageFields) GetSize() int64 {
 	if o == nil || IsNil(o.Size) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -219,7 +219,7 @@ func (o *ImageFields) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageFields) GetSizeOk() (*int32, bool) {
+func (o *ImageFields) GetSizeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
@@ -235,8 +235,8 @@ func (o *ImageFields) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *ImageFields) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *ImageFields) SetSize(v int64) {
 	o.Size = &v
 }
 
