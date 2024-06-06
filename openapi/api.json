@@ -218,7 +218,9 @@
   "paths": {
     "/api-key": {
       "get": {
-        "tags": ["api key"],
+        "tags": [
+          "api key"
+        ],
         "summary": "Get API Key",
         "operationId": "Get API Key",
         "responses": {
@@ -269,7 +271,9 @@
     },
     "/api-key/generate": {
       "post": {
-        "tags": ["api key"],
+        "tags": [
+          "api key"
+        ],
         "summary": "Generate API Key",
         "operationId": "Generate API Key",
         "responses": {
@@ -331,7 +335,9 @@
     "/auth/admin/vm-status-mail": {},
     "/auth/invites": {
       "get": {
-        "tags": ["invite"],
+        "tags": [
+          "invite"
+        ],
         "summary": "List Invites",
         "operationId": "List Invites",
         "responses": {
@@ -380,7 +386,9 @@
         ]
       },
       "post": {
-        "tags": ["invite"],
+        "tags": [
+          "invite"
+        ],
         "summary": "Invite an user to organization",
         "operationId": "Invite an user to organization",
         "requestBody": {
@@ -452,7 +460,9 @@
     },
     "/auth/invites/{id}": {
       "delete": {
-        "tags": ["invite"],
+        "tags": [
+          "invite"
+        ],
         "summary": "Delete Invite",
         "operationId": "Delete Invite",
         "parameters": [
@@ -524,7 +534,9 @@
     "/auth/logout": {},
     "/auth/me": {
       "get": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Get me information",
         "operationId": "Auth user information",
         "responses": {
@@ -575,7 +587,9 @@
     },
     "/auth/organizations": {
       "get": {
-        "tags": ["organization"],
+        "tags": [
+          "organization"
+        ],
         "summary": "Organization Info",
         "operationId": "Get organization info",
         "responses": {
@@ -626,7 +640,9 @@
     },
     "/auth/organizations/remove-member": {
       "post": {
-        "tags": ["organization"],
+        "tags": [
+          "organization"
+        ],
         "summary": "Remove a member from organization",
         "operationId": "Remove a member from organization",
         "requestBody": {
@@ -688,7 +704,9 @@
     },
     "/auth/organizations/update": {
       "put": {
-        "tags": ["organization"],
+        "tags": [
+          "organization"
+        ],
         "summary": "Update organization info",
         "operationId": "Update organization info",
         "requestBody": {
@@ -750,7 +768,9 @@
     },
     "/auth/permissions": {
       "get": {
-        "tags": ["permission"],
+        "tags": [
+          "permission"
+        ],
         "summary": "List Permissions",
         "operationId": "List Permissions",
         "responses": {
@@ -802,7 +822,9 @@
     "/auth/permissions/{id}": {},
     "/auth/policies": {
       "get": {
-        "tags": ["policy"],
+        "tags": [
+          "policy"
+        ],
         "summary": "List Policies",
         "operationId": "List Policies",
         "responses": {
@@ -856,7 +878,9 @@
     "/auth/request-login": {},
     "/auth/roles": {
       "get": {
-        "tags": ["rbac role"],
+        "tags": [
+          "rbac role"
+        ],
         "summary": "List RBAC Roles",
         "operationId": "List RBAC Roles",
         "responses": {
@@ -905,7 +929,9 @@
         ]
       },
       "post": {
-        "tags": ["rbac role"],
+        "tags": [
+          "rbac role"
+        ],
         "summary": "Create RBAC Role",
         "operationId": "Create RBAC Role",
         "requestBody": {
@@ -977,7 +1003,9 @@
     },
     "/auth/roles/{id}": {
       "get": {
-        "tags": ["rbac role"],
+        "tags": [
+          "rbac role"
+        ],
         "summary": "Get a RBAC Role Detail",
         "operationId": "Get a RBAC Role Detail",
         "parameters": [
@@ -1046,7 +1074,9 @@
         ]
       },
       "put": {
-        "tags": ["rbac role"],
+        "tags": [
+          "rbac role"
+        ],
         "summary": "Update a RBAC Role",
         "operationId": "Update a RBAC Role",
         "parameters": [
@@ -1126,7 +1156,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "delete": {
-        "tags": ["rbac role"],
+        "tags": [
+          "rbac role"
+        ],
         "summary": "Delete a RBAC Role",
         "operationId": "Delete a RBAC Role",
         "parameters": [
@@ -1200,7 +1232,9 @@
     "/auth/token": {},
     "/auth/users/me/permissions": {
       "get": {
-        "tags": ["user permission"],
+        "tags": [
+          "user permission"
+        ],
         "summary": "List Current User Permissions",
         "operationId": "List Current User Permissions",
         "responses": {
@@ -1251,7 +1285,9 @@
     },
     "/auth/users/{id}/permissions": {
       "get": {
-        "tags": ["user permission"],
+        "tags": [
+          "user permission"
+        ],
         "summary": "List User Permissions",
         "operationId": "List User Permissions",
         "parameters": [
@@ -1322,7 +1358,9 @@
     },
     "/auth/users/{user_id}/assign-roles": {
       "put": {
-        "tags": ["assigning member role"],
+        "tags": [
+          "assigning member role"
+        ],
         "summary": "Assign RBAC Roles",
         "operationId": "Assign RBAC Roles",
         "parameters": [
@@ -1404,7 +1442,9 @@
     },
     "/auth/users/{user_id}/roles": {
       "delete": {
-        "tags": ["assigning member role"],
+        "tags": [
+          "assigning member role"
+        ],
         "summary": "Remove role from a user",
         "operationId": "Remove role from a user",
         "parameters": [
@@ -1499,7 +1539,9 @@
     "/core/admin/virtual-machines/{virtual_machine_id}/hibernate-restore": {},
     "/core/compliance": {
       "get": {
-        "tags": ["compliance"],
+        "tags": [
+          "compliance"
+        ],
         "summary": "Retrieve GPU compliance",
         "description": "Returns a list of compliance objects each corresponding to available GPU models. These compliance objects contain minimum and maximum values for RAM in GB, number of vCPUs, and system disk capacity in GB. Use the optional `gpu` model parameter in the query string to filter responses by GPU model. For additional details on GPU compliance, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/flavors#adhering-to-gpu-compliance).",
         "operationId": "Retrieve compliance",
@@ -1577,7 +1619,9 @@
         ]
       },
       "put": {
-        "tags": ["compliance"],
+        "tags": [
+          "compliance"
+        ],
         "summary": "Update a compliance",
         "operationId": "Update a compliance",
         "requestBody": {
@@ -1657,7 +1701,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "post": {
-        "tags": ["compliance"],
+        "tags": [
+          "compliance"
+        ],
         "summary": "Create compliance",
         "operationId": "Create Compliance",
         "requestBody": {
@@ -1749,7 +1795,9 @@
     },
     "/core/compliance/{gpu_model}": {
       "delete": {
-        "tags": ["compliance"],
+        "tags": [
+          "compliance"
+        ],
         "summary": "Delete a compliance",
         "operationId": "Delete a compliance",
         "parameters": [
@@ -1820,7 +1868,9 @@
     },
     "/core/dashboard": {
       "get": {
-        "tags": ["dashboard"],
+        "tags": [
+          "dashboard"
+        ],
         "summary": "Retrieve Dashboard",
         "description": "Returns hardware and pricing overview for your active resources, including virtual machines, containers, and volumes. For additional information on the Dashboard feature, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/dashboard).",
         "operationId": "Retrieve Dashboard",
@@ -1872,7 +1922,9 @@
     },
     "/core/environments": {
       "get": {
-        "tags": ["environment"],
+        "tags": [
+          "environment"
+        ],
         "summary": "List environments",
         "description": "Returns a list of your existing environments, providing the following details for each; environment ID, name, [**region**](https://infrahub-doc.nexgencloud.com/docs/features/regions), and the date and time of creation. For more information on environments, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/environments-available-features).",
         "operationId": "List environments",
@@ -1922,7 +1974,9 @@
         ]
       },
       "post": {
-        "tags": ["environment"],
+        "tags": [
+          "environment"
+        ],
         "summary": "Create environment",
         "description": "Creates an environment—a container to organize your resources, including SSH key pairs, virtual machines, and volumes. To create your environment, provide your desired environment name, and [**region**](https://infrahub-doc.nexgencloud.com/docs/features/regions) in the request body.",
         "operationId": "Create environment",
@@ -2005,7 +2059,9 @@
     },
     "/core/environments/{id}": {
       "get": {
-        "tags": ["environment"],
+        "tags": [
+          "environment"
+        ],
         "summary": "Retrieve environment",
         "description": "Retrieves details about a specific environment. Provide the environment ID in the path and the new environment `name` in the request body to modify the specified environment.",
         "operationId": "Retrieve environment",
@@ -2075,7 +2131,9 @@
         ]
       },
       "put": {
-        "tags": ["environment"],
+        "tags": [
+          "environment"
+        ],
         "summary": "Update environment",
         "description": "Updates the name of an existing environment. Provide the environment ID in the path and the new environment `name` in the request body to modify the specified environment.",
         "operationId": "Update environment",
@@ -2156,7 +2214,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "delete": {
-        "tags": ["environment"],
+        "tags": [
+          "environment"
+        ],
         "summary": "Delete environment",
         "description": "Deletes an environment permanently. Provide the environment ID in the path to remove the specified environment.",
         "operationId": "Delete environment",
@@ -2228,7 +2288,9 @@
     },
     "/core/firewalls": {
       "get": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Retrieve Firewalls",
         "operationId": "Retrieve Firewalls",
         "responses": {
@@ -2287,7 +2349,9 @@
         ]
       },
       "post": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Create Firewall",
         "operationId": "Create Firewall",
         "requestBody": {
@@ -2379,7 +2443,9 @@
     },
     "/core/firewalls/{firewall_id}/firewall-rules": {
       "post": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Add Rules to Firewall",
         "operationId": "Add Rules to Firewall",
         "parameters": [
@@ -2461,7 +2527,9 @@
     },
     "/core/firewalls/{firewall_id}/firewall-rules/{firewall_rule_id}": {
       "delete": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Delete Firewall Rules from Firewall",
         "operationId": "Delete Firewall Rules from Firewall",
         "parameters": [
@@ -2560,7 +2628,9 @@
     },
     "/core/firewalls/{firewall_id}/update-attachments": {
       "post": {
-        "tags": ["firewall-attachment"],
+        "tags": [
+          "firewall-attachment"
+        ],
         "summary": "Attach Firewalls to VMs",
         "operationId": "Attach Firewall to VMs",
         "parameters": [
@@ -2662,7 +2732,9 @@
     },
     "/core/firewalls/{id}": {
       "get": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Details of Firewall by ID",
         "operationId": "Details of Firewall by ID",
         "parameters": [
@@ -2741,7 +2813,9 @@
         ]
       },
       "delete": {
-        "tags": ["firewalls"],
+        "tags": [
+          "firewalls"
+        ],
         "summary": "Delete Firewall",
         "operationId": "Delete Firewall",
         "parameters": [
@@ -2832,7 +2906,9 @@
     },
     "/core/flavors": {
       "get": {
-        "tags": ["flavor"],
+        "tags": [
+          "flavor"
+        ],
         "summary": "List flavors",
         "description": "Returns a list of available virtual machine specification configurations, referred to as **flavors**. Include a `region_name` in the query string of the request to return only the flavors available in the specified region; the default value will retrieve flavors available in all regions. For more details on flavors, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/flavors).",
         "operationId": "List flavors",
@@ -2902,7 +2978,9 @@
     },
     "/core/gpus": {
       "get": {
-        "tags": ["gpu"],
+        "tags": [
+          "gpu"
+        ],
         "summary": "List GPUs",
         "description": "Returns a list of all available GPUs that can be utilized in the creation of custom virtual machine configurations.",
         "operationId": "List GPUs",
@@ -2956,7 +3034,9 @@
     "/core/image-logos": {},
     "/core/images": {
       "get": {
-        "tags": ["image"],
+        "tags": [
+          "image"
+        ],
         "summary": "List images",
         "description": "Returns a list of all available operating system (OS) images, providing details about each image's corresponding virtual machine operating system. Include the optional `region` parameter in the query string of the request to specifically return OS images from the designated region. For more information on OS images, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/images).",
         "operationId": "List images",
@@ -3039,7 +3119,9 @@
     "/core/internal/volumes": {},
     "/core/keypair/{id}": {
       "put": {
-        "tags": ["keypair"],
+        "tags": [
+          "keypair"
+        ],
         "summary": "Update key pair name",
         "description": "Updates the name of a specified key pair. Include the key pair ID in the request path and the new `name` of the key pair in the request body.",
         "operationId": "Update key pair name",
@@ -3120,7 +3202,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "delete": {
-        "tags": ["keypair"],
+        "tags": [
+          "keypair"
+        ],
         "summary": "Delete key pair",
         "description": "Permanently deletes a specified key pair. Include the key pair ID in the request path to remove the designated key pair.",
         "operationId": "Delete key pair",
@@ -3192,7 +3276,9 @@
     },
     "/core/keypairs": {
       "get": {
-        "tags": ["keypair"],
+        "tags": [
+          "keypair"
+        ],
         "summary": "List key pairs",
         "description": "Retrieves a list of your existing SSH key pairs, providing details for each. For additional information on SSH key pairs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/keypairs-available-features).",
         "operationId": "List key pairs",
@@ -3242,7 +3328,9 @@
         ]
       },
       "post": {
-        "tags": ["keypair"],
+        "tags": [
+          "keypair"
+        ],
         "summary": "Import key pair",
         "description": "Imports a new key pair for secure shell (SSH) access to your resources. To import a new key pair, include the key name, environment name, and public key in the request body. For additional information on importing SSH key pairs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/getting-started/create-keypair#importing-an-ssh-key).",
         "operationId": "Import key pair",
@@ -3325,7 +3413,9 @@
     },
     "/core/marketplace/deployments": {
       "get": {
-        "tags": ["deployment"],
+        "tags": [
+          "deployment"
+        ],
         "summary": "List Deployments",
         "operationId": "List Deployments",
         "responses": {
@@ -3374,7 +3464,9 @@
         ]
       },
       "post": {
-        "tags": ["deployment"],
+        "tags": [
+          "deployment"
+        ],
         "summary": "Start Deployment",
         "operationId": "Start Deployment",
         "requestBody": {
@@ -3456,7 +3548,9 @@
     },
     "/core/marketplace/deployments/{id}": {
       "get": {
-        "tags": ["deployment"],
+        "tags": [
+          "deployment"
+        ],
         "summary": "Details of Deployment by ID",
         "operationId": "Details of Deployment by ID",
         "parameters": [
@@ -3525,7 +3619,9 @@
         ]
       },
       "delete": {
-        "tags": ["deployment"],
+        "tags": [
+          "deployment"
+        ],
         "summary": "Delete Deployment",
         "operationId": "Delete Deployment",
         "parameters": [
@@ -3596,7 +3692,9 @@
     },
     "/core/marketplace/templates": {
       "get": {
-        "tags": ["template"],
+        "tags": [
+          "template"
+        ],
         "summary": "List templates",
         "description": "Returns a comprehensive list of templates, providing resource configuration details for each. Optionally, specify the `visibility` as `public` or `private` to retrieve templates with the desired visibility status. To learn more about the templates feature, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/templates#view-a-list-of-templates).",
         "operationId": "List templates",
@@ -3664,7 +3762,9 @@
         ]
       },
       "post": {
-        "tags": ["template"],
+        "tags": [
+          "template"
+        ],
         "summary": "Create template",
         "description": "Creates a resource template for deployment.",
         "operationId": "Create template",
@@ -3672,7 +3772,12 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": ["content", "description", "is_public", "name"],
+                "required": [
+                  "content",
+                  "description",
+                  "is_public",
+                  "name"
+                ],
                 "type": "object",
                 "properties": {
                   "name": {
@@ -3746,7 +3851,9 @@
     },
     "/core/marketplace/templates/{id}": {
       "get": {
-        "tags": ["template"],
+        "tags": [
+          "template"
+        ],
         "summary": "Retrieve template details",
         "description": "Retrieves the resource configuration details for a specified template. Provide the template ID in the path to retrieve details for the specified template. For additional information on template configuration details, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/templates#retrieve-the-details-for-a-template).",
         "operationId": "Retrieve template details",
@@ -3816,7 +3923,9 @@
         ]
       },
       "put": {
-        "tags": ["template"],
+        "tags": [
+          "template"
+        ],
         "summary": "Update template",
         "description": "Updates the details of a template. Modify the template name, description and/or `is_public` status to change the public/private visibility of the template.",
         "operationId": "Update template",
@@ -3897,7 +4006,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "delete": {
-        "tags": ["template"],
+        "tags": [
+          "template"
+        ],
         "summary": "Delete template",
         "description": "Permanently deletes a template. Supply the template ID in the path to delete the specified template.",
         "operationId": "Delete template",
@@ -3969,7 +4080,9 @@
     },
     "/core/profiles": {
       "get": {
-        "tags": ["profile"],
+        "tags": [
+          "profile"
+        ],
         "summary": "List profiles",
         "description": "Returns a list of your existing provisioning profiles, providing virtual machine configuration details for each. For additional information about profiles, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/provisioning-profiles#retrieve-a-list-of-profiles).",
         "operationId": "List profiles",
@@ -4019,7 +4132,9 @@
         ]
       },
       "post": {
-        "tags": ["profile"],
+        "tags": [
+          "profile"
+        ],
         "summary": "Create profile",
         "description": "Creates a provisioning profile to save the configuration of a virtual machine for future use. Include the profile name, description, and virtual machine configuration details in the request body. For more information about virtual machine profiles, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/provisioning-profiles).",
         "operationId": "Create profile",
@@ -4092,7 +4207,9 @@
     },
     "/core/profiles/{id}": {
       "get": {
-        "tags": ["profile"],
+        "tags": [
+          "profile"
+        ],
         "summary": "Retrieve profile details",
         "description": "Retrieves details for an existing provisioning profile by supplying the profile ID in the request path. For more information about profiles, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/provisioning-profiles).",
         "operationId": "Retrieve profile details",
@@ -4162,7 +4279,9 @@
         ]
       },
       "delete": {
-        "tags": ["profile"],
+        "tags": [
+          "profile"
+        ],
         "summary": "Delete profile",
         "description": "Permanently deletes a provisioning profile. Supply the profile ID in the path to delete the specified profile.",
         "operationId": "Delete profile",
@@ -4234,7 +4353,9 @@
     },
     "/core/regions": {
       "get": {
-        "tags": ["region"],
+        "tags": [
+          "region"
+        ],
         "summary": "List regions",
         "description": "Lists the currently available regions, each representing a distinct geographic location housing a data center. For additional information on regions, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/regions).",
         "operationId": "List regions",
@@ -4287,7 +4408,9 @@
     "/core/regions/{id}": {},
     "/core/sg-rules-protocols": {
       "get": {
-        "tags": ["security-rules"],
+        "tags": [
+          "security-rules"
+        ],
         "summary": "List firewall rule protocols",
         "description": "Returns a list of all available protocols that can be used in the creation of firewall rules for your virtual machines.",
         "operationId": "List firewall rule protocols",
@@ -4339,7 +4462,9 @@
     },
     "/core/stocks": {
       "get": {
-        "tags": ["stock"],
+        "tags": [
+          "stock"
+        ],
         "description": "Returns information on current and upcoming GPU availability, organized by region and GPU model. For additional information on GPU stocks, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/gpu-stock-information).",
         "operationId": "Retrieve GPU stocks",
         "responses": {
@@ -4392,7 +4517,9 @@
     "/core/stocks/visibility/remove-users": {},
     "/core/user/resources/defaults": {
       "get": {
-        "tags": ["user detail choice"],
+        "tags": [
+          "user detail choice"
+        ],
         "summary": "Retrieve default flavors and images for user",
         "operationId": "Retrieve default flavors and images for user",
         "responses": {
@@ -4453,7 +4580,9 @@
     },
     "/core/virtual-machines": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "List all virtual machines",
         "description": "Returns a list of your existing virtual machines, providing configuration details for each. The list is sorted by creation date, with the oldest virtual machines displayed first.",
         "operationId": "List virtual machines",
@@ -4503,7 +4632,9 @@
         ]
       },
       "post": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Create virtual machine",
         "description": "Creates one or more virtual machines with the specified custom configuration and features provided in the request body. For more information about the virtual machine features offered by Infrahub, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/virtual-machine-features#create-a-virtual-machine-with-custom-features).",
         "operationId": "Create virtual machine",
@@ -4596,7 +4727,9 @@
     },
     "/core/virtual-machines/contract/{contract_id}/virtual-machines": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Retrieve virtual machines associated with a contract",
         "operationId": "Retrieve virtual machines associated with a contract",
         "parameters": [
@@ -4657,7 +4790,9 @@
     },
     "/core/virtual-machines/{id}": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Retrieve virtual machine details",
         "description": "Retrieves the details of an existing virtual machine. Supply the virtual machine ID in the path, and Infrahub will return the corresponding Virtual Machine object.",
         "operationId": "Retrieve virtual machine details",
@@ -4727,7 +4862,9 @@
         ]
       },
       "delete": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Delete virtual machine",
         "description": "Permanently deletes a virtual machine. Supply the virtual machine ID in the path to delete the specified virtual machine.",
         "operationId": "Delete virtual machine",
@@ -4809,7 +4946,9 @@
     },
     "/core/virtual-machines/{id}/attach-callback": {
       "post": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Attach callback to virtual machine",
         "description": "Creates a callback URL for a specified virtual machine, enabling the posting of action events executed on the virtual machine to the specified URL. Provide the callback URL in the request body and the ID of the virtual machine to which it is being attached in the path. For more details on virtual machine callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks#attach-a-callback-url-to-an-existing-virtual-machine).",
         "operationId": "Attach callback to virtual machine",
@@ -4892,7 +5031,9 @@
     },
     "/core/virtual-machines/{id}/attach-floatingip": {
       "post": {
-        "tags": ["floating ip"],
+        "tags": [
+          "floating ip"
+        ],
         "summary": "Attach public IP to virtual machine",
         "description": "Initiates the creation of a public IP address and attaches it to an existing virtual machine, making it accessible through the internet. Include the virtual machine ID in the path to attach a public IP to the specified VM. For more information on public IP addresses, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/public-ip).",
         "operationId": "Attach public IP to virtual machine",
@@ -4964,7 +5105,9 @@
     },
     "/core/virtual-machines/{id}/delete-callback": {
       "delete": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Delete virtual machine callback",
         "description": "Permanently deletes the callback URL associated with a specified virtual machine by providing the virtual machine ID in the request path. For additional information on virtual machine callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks).",
         "operationId": "Delete virtual machine callback",
@@ -5036,7 +5179,9 @@
     },
     "/core/virtual-machines/{id}/detach-floatingip": {
       "post": {
-        "tags": ["floating ip"],
+        "tags": [
+          "floating ip"
+        ],
         "summary": "Detach public IP from virtual machine",
         "description": "Removes a public IP address from an existing virtual machine, disabling internet accessibility to the VM. Include the virtual machine ID in the path to detach the public IP from the specified VM. For more information on public IP addresses, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/public-ip).",
         "operationId": "Detach public IP from virtual machine",
@@ -5108,7 +5253,9 @@
     },
     "/core/virtual-machines/{id}/hard-reboot": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Hard reboot virtual machine",
         "description": "Initiates a hard reboot for a virtual machine, simulating the process of unplugging and rebooting a physical machine. Provide the virtual machine ID in the path to execute a hard reboot for the specified virtual machine.",
         "operationId": "Hard reboot virtual machine",
@@ -5180,7 +5327,9 @@
     },
     "/core/virtual-machines/{id}/request-console": {
       "get": {
-        "tags": ["vnc url"],
+        "tags": [
+          "vnc url"
+        ],
         "summary": "Request Instance Console",
         "operationId": "Request Console",
         "parameters": [
@@ -5251,7 +5400,9 @@
     },
     "/core/virtual-machines/{id}/sg-rules": {
       "post": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Add firewall rule to virtual machine",
         "description": "Creates a firewall rule and associates it with a virtual machine. Include the virtual machine ID in the path, and provide the firewall rule configuration in the request body, as detailed below. For additional information on firewall rules, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/security-rules).",
         "operationId": "Add firewall rule to virtual machine",
@@ -5344,7 +5495,9 @@
     },
     "/core/virtual-machines/{id}/start": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Start virtual machine",
         "description": "Initiates the startup of a virtual machine. Supply the virtual machine ID in the path to initiate the starting of the specified virtual machine.",
         "operationId": "Start virtual machine",
@@ -5416,7 +5569,9 @@
     },
     "/core/virtual-machines/{id}/stop": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Stop virtual machine",
         "description": "Shuts down a virtual machine. Provide the virtual machine ID in the path to initiate the shutdown process for the specified virtual machine.",
         "operationId": "Stop virtual machine",
@@ -5488,7 +5643,9 @@
     },
     "/core/virtual-machines/{id}/update-callback": {
       "put": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Update virtual machine callback",
         "description": "Updates the callback URL for a specified virtual machine. Provide the new callback URL in the request body, along with the ID of the associated virtual machine in the path. For additional information on virtual machine callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks).",
         "operationId": "Update virtual machine callback",
@@ -5571,7 +5728,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/attach-volumes": {
       "post": {
-        "tags": ["volume attachment"],
+        "tags": [
+          "volume attachment"
+        ],
         "summary": "Attach volumes to virtual machine",
         "description": "Attaches one or more volumes to an existing virtual machine, expanding its storage capacity by 2PB per attached volume. Include the virtual machine ID in the path and the volume IDs in the request body to attach the specified volumes to the designated virtual machine. For additional details on volume attachment, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/volumes-available-features#attach-a-volume-to-a-virtual-machine-1).",
         "operationId": "Attach volumes to virtual machine",
@@ -5664,7 +5823,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/console/{job_id}": {
       "get": {
-        "tags": ["vnc url"],
+        "tags": [
+          "vnc url"
+        ],
         "summary": "Get VNC Console Link",
         "operationId": "Get VNC Console Link",
         "parameters": [
@@ -5743,7 +5904,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/detach-volumes": {
       "post": {
-        "tags": ["volume attachment"],
+        "tags": [
+          "volume attachment"
+        ],
         "summary": "Detach volumes from virtual machine",
         "description": "Detaches one or more volumes currently attached to an existing virtual machine. Include the virtual machine ID in the path and the volume IDs in the request body to detach the specified volumes from the designated virtual machine.",
         "operationId": "Detach volumes from virtual machine",
@@ -5836,7 +5999,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/events": {
       "get": {
-        "tags": ["virtual machine events"],
+        "tags": [
+          "virtual machine events"
+        ],
         "summary": "List virtual machine events",
         "description": "Retrieves a list of all events in a virtual machine's history, which records actions performed on the specified virtual machine. Include the virtual machine ID in the path to retrieve the history of events. For more details on virtual machine events history, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/vm-performance-metrics-and-events-history#events-history).",
         "operationId": "List virtual machine events",
@@ -5908,7 +6073,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/hibernate": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Hibernate virtual machine",
         "description": "Initiates the hibernation of a virtual machine, saving its current state to disk before powering off. Provide the virtual machine ID in the path to specify the virtual machine to be hibernated.",
         "operationId": "Hibernate virtual machine",
@@ -5980,7 +6147,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/hibernate-restore": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Restore virtual machine from hibernation",
         "description": "Resumes a virtual machine from hibernation, bringing it back to an active state. Provide the virtual machine ID in the path to specify the virtual machine to be restored from hibernation.",
         "operationId": "Restore virtual machine from hibernation",
@@ -6052,7 +6221,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/label": {
       "put": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Edit labels of an existing VM",
         "operationId": "Edit labels of an existing VM",
         "parameters": [
@@ -6144,7 +6315,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/metrics": {
       "get": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Retrieve virtual machine performance metrics",
         "description": "Retrieves performance metrics data for a virtual machine. Provide the virtual machine ID in the path to retrieve the following data for the specified virtual machine: CPU usage, memory usage (RAM), `network.in`, `network.out`, `disk.read`, and `disk.write`. The optional `duration` parameter can be used to specify the period for retrieving performance metrics; the default value will retrieve all available data. To learn more about virtual machine performance metrics, [**click here**](https://infrahub-doc.nexgencloud.com/docs/virtual-machines/vm-performance-metrics-and-events-history#performance-metrics).",
         "operationId": "Retrieve virtual machine performance metrics",
@@ -6245,7 +6418,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/resize": {
       "post": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Resize virtual machine",
         "description": "Updates the configuration specifications for an existing virtual machine. Include the virtual machine ID in the path and provide the new configuration, referred to as a `flavor`, in the body of the request. For additional information resizing, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/flavors#modify-the-flavor-of-an-existing-virtual-machine).",
         "operationId": "Resize virtual machine",
@@ -6338,7 +6513,9 @@
     },
     "/core/virtual-machines/{virtual_machine_id}/sg-rules/{sg_rule_id}": {
       "delete": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Delete firewall rule from virtual machine",
         "description": "Deletes a firewall rule associated with a virtual machine. Provide the virtual machine ID and the firewall rule ID in the path to remove the specified rule from the specified virtual machine.",
         "operationId": "Delete firewall rule from virtual machine",
@@ -6418,7 +6595,9 @@
     },
     "/core/virtual-machines/{vm_id}/attach-firewalls": {
       "post": {
-        "tags": ["virtual machine"],
+        "tags": [
+          "virtual machine"
+        ],
         "summary": "Attach Firewalls to a VM",
         "description": "Attach Firewalls to a VM",
         "operationId": "Attach Firewalls to a VM",
@@ -6501,7 +6680,9 @@
     },
     "/core/volume-types": {
       "get": {
-        "tags": ["volume"],
+        "tags": [
+          "volume"
+        ],
         "summary": "List volume types",
         "description": "Retrieves a list of available volume types that can be used in the creation of a new volume.",
         "operationId": "List volume types",
@@ -6553,7 +6734,9 @@
     },
     "/core/volumes": {
       "get": {
-        "tags": ["volume"],
+        "tags": [
+          "volume"
+        ],
         "summary": "List volumes",
         "description": "Returns a list of your existing volumes, providing details for each. For more information on volumes, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/volumes-available-features).",
         "operationId": "List volumes",
@@ -6603,7 +6786,9 @@
         ]
       },
       "post": {
-        "tags": ["volume"],
+        "tags": [
+          "volume"
+        ],
         "summary": "Create volume",
         "description": "Creates a volume that can be attached to a virtual machine, expanding its storage capacity. Specify the volume type and custom configuration in the request body. For additional details on volumes, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/volumes-available-features).",
         "operationId": "Create volume",
@@ -6696,7 +6881,9 @@
     },
     "/core/volumes/{id}": {
       "delete": {
-        "tags": ["volume"],
+        "tags": [
+          "volume"
+        ],
         "summary": "Delete volume",
         "description": "Deletes a volume permanently. Provide the volume ID in the path to specify the volume to be deleted.",
         "operationId": "Delete volume",
@@ -6768,7 +6955,9 @@
     },
     "/core/volumes/{id}/attach-callback": {
       "post": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Attach callback to volume",
         "description": "Creates a callback URL for a specified volume, enabling the posting of action events executed on the volume to the specified URL. Provide the callback URL in the request body and the ID of the volume to which it is being attached in the path. For more details on volume callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks).",
         "operationId": "Attach callback to volume",
@@ -6851,7 +7040,9 @@
     },
     "/core/volumes/{id}/delete-callback": {
       "delete": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Delete volume callback",
         "description": "Permanently deletes the callback URL associated with a specified volume by providing the volume ID in the request path. For additional information on volume callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks).",
         "operationId": "Delete volume callback",
@@ -6923,7 +7114,9 @@
     },
     "/core/volumes/{id}/update-callback": {
       "put": {
-        "tags": ["callbacks"],
+        "tags": [
+          "callbacks"
+        ],
         "summary": "Update volume callback",
         "description": "Updates the callback URL for a specified volume. Provide the new callback URL in the request body, along with the ID of the associated volume in the path. For additional information on volume callback URLs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/webhooks-callbacks).",
         "operationId": "Update volume callback",
@@ -7006,7 +7199,9 @@
     },
     "/pricebook": {
       "get": {
-        "tags": ["Pricebook"],
+        "tags": [
+          "Pricebook"
+        ],
         "operationId": "Retrive Pricebook",
         "responses": {
           "200": {
@@ -7076,7 +7271,9 @@
     "/pricebook/calculate/{id}": {},
     "/pricebook/contracts": {
       "get": {
-        "tags": ["Customer Contract"],
+        "tags": [
+          "Customer Contract"
+        ],
         "summary": "List Contracts for Customer",
         "operationId": "List Contracts for Customer",
         "parameters": [
@@ -7153,7 +7350,9 @@
     },
     "/pricebook/contracts/{contract_id}": {
       "get": {
-        "tags": ["Customer Contract"],
+        "tags": [
+          "Customer Contract"
+        ],
         "summary": "Details of Contract by ID for Customer",
         "operationId": "Details of Contract by ID for Customer",
         "parameters": [
@@ -7248,7 +7447,9 @@
     "/billing/admin/version": {},
     "/billing/alive": {
       "get": {
-        "tags": ["alive"],
+        "tags": [
+          "alive"
+        ],
         "summary": "GET: Alive",
         "operationId": "get_alive",
         "responses": {
@@ -7261,7 +7462,9 @@
     },
     "/billing/billing/last-day-cost": {
       "get": {
-        "tags": ["billing"],
+        "tags": [
+          "billing"
+        ],
         "summary": "GET: Last Day Cost",
         "operationId": "get_last_day_cost",
         "responses": {
@@ -7332,7 +7535,9 @@
     },
     "/billing/billing/usage": {
       "get": {
-        "tags": ["billing"],
+        "tags": [
+          "billing"
+        ],
         "summary": "GET: Billing usage",
         "operationId": "get_usage",
         "responses": {
@@ -7403,7 +7608,9 @@
     },
     "/billing/payment/payment-details": {
       "get": {
-        "tags": ["payment"],
+        "tags": [
+          "payment"
+        ],
         "summary": "GET: View payment details",
         "operationId": "get_details",
         "responses": {
@@ -7474,7 +7681,9 @@
     },
     "/billing/payment/payment-initiate": {
       "post": {
-        "tags": ["payment"],
+        "tags": [
+          "payment"
+        ],
         "summary": "POST: Initiate payment",
         "operationId": "post_payment",
         "requestBody": {
@@ -7556,7 +7765,9 @@
     },
     "/billing/user-credit/credit": {
       "get": {
-        "tags": ["credit"],
+        "tags": [
+          "credit"
+        ],
         "summary": "GET: View credit and threshold",
         "operationId": "Check balance as an organization",
         "responses": {
@@ -7627,7 +7838,9 @@
     },
     "/billing/user/info": {
       "get": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "GET: Fetch User Info",
         "operationId": "get_user",
         "responses": {
@@ -7696,7 +7909,9 @@
         ]
       },
       "put": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "PUT: Update user info",
         "operationId": "Update user info",
         "requestBody": {
@@ -7776,7 +7991,9 @@
         "x-codegen-request-body-name": "payload"
       },
       "post": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "summary": "POST: Insert user info",
         "operationId": "post_user",
         "requestBody": {
@@ -7900,7 +8117,10 @@
         }
       },
       "GetTokenPayload": {
-        "required": ["callback_code", "session_id"],
+        "required": [
+          "callback_code",
+          "session_id"
+        ],
         "type": "object",
         "properties": {
           "session_id": {
@@ -7943,7 +8163,10 @@
         }
       },
       "RefreshTokenPayload": {
-        "required": ["id_token", "refresh_token"],
+        "required": [
+          "id_token",
+          "refresh_token"
+        ],
         "type": "object",
         "properties": {
           "id_token": {
@@ -7955,7 +8178,9 @@
         }
       },
       "LogoutPayload": {
-        "required": ["refresh_token"],
+        "required": [
+          "refresh_token"
+        ],
         "type": "object",
         "properties": {
           "refresh_token": {
@@ -8021,7 +8246,10 @@
         }
       },
       "OrganizationFields": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -8106,7 +8334,9 @@
         }
       },
       "UpdateOrganizationPayload": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -8126,7 +8356,9 @@
         }
       },
       "RemoveMemberPayload": {
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -8221,7 +8453,9 @@
         }
       },
       "InviteUserPayload": {
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -8279,7 +8513,12 @@
         }
       },
       "CreateUpdatePermissionPayload": {
-        "required": ["endpoint", "method", "permission", "resource"],
+        "required": [
+          "endpoint",
+          "method",
+          "permission",
+          "resource"
+        ],
         "type": "object",
         "properties": {
           "resource": {
@@ -8383,7 +8622,12 @@
         }
       },
       "CreateUpdatePolicyPayload": {
-        "required": ["description", "is_public", "name", "permissions"],
+        "required": [
+          "description",
+          "is_public",
+          "name",
+          "permissions"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -8473,7 +8717,10 @@
         }
       },
       "CreateUpdateRbacRolePayload": {
-        "required": ["description", "name"],
+        "required": [
+          "description",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -8586,7 +8833,9 @@
         }
       },
       "AssignRbacRolePayload": {
-        "required": ["role_id"],
+        "required": [
+          "role_id"
+        ],
         "type": "object",
         "properties": {
           "role_id": {
@@ -8632,7 +8881,10 @@
         }
       },
       "AdminOrganizationSummaryFields": {
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -8676,7 +8928,12 @@
         }
       },
       "AdminHibernationRestorationPayloadModel": {
-        "required": ["org_id", "status", "vm_id", "vm_name"],
+        "required": [
+          "org_id",
+          "status",
+          "vm_id",
+          "vm_name"
+        ],
         "type": "object",
         "properties": {
           "org_id": {
@@ -8694,7 +8951,10 @@
         }
       },
       "UserTransferPayload": {
-        "required": ["org_id", "role"],
+        "required": [
+          "org_id",
+          "role"
+        ],
         "type": "object",
         "properties": {
           "org_id": {
@@ -8723,7 +8983,13 @@
         }
       },
       "AdminUserFields": {
-        "required": ["email", "id", "org_id", "org_name", "username"],
+        "required": [
+          "email",
+          "id",
+          "org_id",
+          "org_name",
+          "username"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -8936,7 +9202,11 @@
         }
       },
       "SingleVisibilityUserResponse": {
-        "required": ["id", "stock_visible", "user_id"],
+        "required": [
+          "id",
+          "stock_visible",
+          "user_id"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -8951,7 +9221,9 @@
         }
       },
       "StockVisibilityUserPayload": {
-        "required": ["user_ids"],
+        "required": [
+          "user_ids"
+        ],
         "type": "object",
         "properties": {
           "user_ids": {
@@ -8999,7 +9271,9 @@
         }
       },
       "NodePowerUsageModel": {
-        "required": ["openstack_id"],
+        "required": [
+          "openstack_id"
+        ],
         "type": "object",
         "properties": {
           "openstack_id": {
@@ -9052,7 +9326,11 @@
         }
       },
       "NodeStocksPayload": {
-        "required": ["in_use", "total", "type"],
+        "required": [
+          "in_use",
+          "total",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -9070,7 +9348,10 @@
         }
       },
       "PowerUsageModel": {
-        "required": ["unit", "value"],
+        "required": [
+          "unit",
+          "value"
+        ],
         "type": "object",
         "properties": {
           "value": {
@@ -9107,7 +9388,9 @@
         }
       },
       "NodeModel": {
-        "required": ["openstack_id"],
+        "required": [
+          "openstack_id"
+        ],
         "type": "object",
         "properties": {
           "openstack_id": {
@@ -9182,7 +9465,9 @@
         }
       },
       "FutureNodeModel": {
-        "required": ["expected_provision_date"],
+        "required": [
+          "expected_provision_date"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -9209,7 +9494,9 @@
         }
       },
       "FutureNodeStockModel": {
-        "required": ["expected_amount"],
+        "required": [
+          "expected_amount"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -9263,7 +9550,10 @@
         }
       },
       "CreateEnvironment": {
-        "required": ["name", "region"],
+        "required": [
+          "name",
+          "region"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -9327,7 +9617,9 @@
         }
       },
       "UpdateEnvironment": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -9481,7 +9773,12 @@
         }
       },
       "CreateSecurityRulePayload": {
-        "required": ["direction", "ethertype", "protocol", "remote_ip_prefix"],
+        "required": [
+          "direction",
+          "ethertype",
+          "protocol",
+          "remote_ip_prefix"
+        ],
         "type": "object",
         "properties": {
           "direction": {
@@ -9532,7 +9829,9 @@
         }
       },
       "ProfileObjectFields": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -9857,7 +10156,11 @@
           },
           "columns": {
             "type": "array",
-            "example": ["time", "granularity", "value"],
+            "example": [
+              "time",
+              "granularity",
+              "value"
+            ],
             "items": {
               "type": "string"
             }
@@ -9865,8 +10168,16 @@
           "data": {
             "type": "array",
             "example": [
-              ["2023-09-01T01:19:00+00:00", 60, 1041433070000000],
-              ["2023-09-01T01:24:00+00:00", 60, 1041441320000000]
+              [
+                "2023-09-01T01:19:00+00:00",
+                60,
+                1041433070000000
+              ],
+              [
+                "2023-09-01T01:24:00+00:00",
+                60,
+                1041441320000000
+              ]
             ],
             "items": {
               "type": "array",
@@ -9942,7 +10253,9 @@
         }
       },
       "AttachFirewallsToVMPayload": {
-        "required": ["firewalls"],
+        "required": [
+          "firewalls"
+        ],
         "type": "object",
         "properties": {
           "firewalls": {
@@ -10197,7 +10510,11 @@
         }
       },
       "ImportKeypairPayload": {
-        "required": ["environment_name", "name", "public_key"],
+        "required": [
+          "environment_name",
+          "name",
+          "public_key"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -10271,7 +10588,9 @@
         }
       },
       "UpdateKeypairName": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -10553,7 +10872,9 @@
         }
       },
       "CreateGPU": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -10662,7 +10983,9 @@
         }
       },
       "AttachCallbackPayload": {
-        "required": ["url"],
+        "required": [
+          "url"
+        ],
         "type": "object",
         "properties": {
           "url": {
@@ -10954,7 +11277,9 @@
         }
       },
       "RegionPayload": {
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -11080,7 +11405,11 @@
         }
       },
       "StartDeploymentPayload": {
-        "required": ["description", "name", "template_id"],
+        "required": [
+          "description",
+          "name",
+          "template_id"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -11200,7 +11529,10 @@
         }
       },
       "CreateProfilePayload": {
-        "required": ["data", "name"],
+        "required": [
+          "data",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -11942,7 +12274,10 @@
         }
       },
       "CreateFirewallPayload": {
-        "required": ["environment_id", "name"],
+        "required": [
+          "environment_id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -12104,7 +12439,12 @@
         }
       },
       "CreateFirewallRulePayload": {
-        "required": ["direction", "ethertype", "protocol", "remote_ip_prefix"],
+        "required": [
+          "direction",
+          "ethertype",
+          "protocol",
+          "remote_ip_prefix"
+        ],
         "type": "object",
         "properties": {
           "direction": {
@@ -12156,7 +12496,9 @@
         }
       },
       "AttachFirewallWithVM": {
-        "required": ["vms"],
+        "required": [
+          "vms"
+        ],
         "type": "object",
         "properties": {
           "vms": {
@@ -12168,7 +12510,10 @@
         }
       },
       "SetDefaultsPayload": {
-        "required": ["flavors", "images"],
+        "required": [
+          "flavors",
+          "images"
+        ],
         "type": "object",
         "properties": {
           "flavors": {
@@ -12322,7 +12667,9 @@
         }
       },
       "AdminImageAdminResponseImage": {
-        "required": ["organizations"],
+        "required": [
+          "organizations"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -12506,7 +12853,9 @@
         }
       },
       "FlavorAdminResponseFlavors": {
-        "required": ["organizations"],
+        "required": [
+          "organizations"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -12759,7 +13108,9 @@
         }
       },
       "AdminBootstrapEnvironmentPayload": {
-        "required": ["org_id"],
+        "required": [
+          "org_id"
+        ],
         "type": "object",
         "properties": {
           "org_id": {
@@ -12796,7 +13147,11 @@
         }
       },
       "CreateDiscountsPayload": {
-        "required": ["customers", "discount_resources", "discount_status"],
+        "required": [
+          "customers",
+          "discount_resources",
+          "discount_status"
+        ],
         "type": "object",
         "properties": {
           "customers": {
@@ -12825,7 +13180,10 @@
         }
       },
       "CustomerPayload": {
-        "required": ["id", "plan_type"],
+        "required": [
+          "id",
+          "plan_type"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -12837,7 +13195,10 @@
         }
       },
       "ResourcePayload": {
-        "required": ["discount_type", "resource_id"],
+        "required": [
+          "discount_type",
+          "resource_id"
+        ],
         "type": "object",
         "properties": {
           "resource_id": {
@@ -12967,7 +13328,10 @@
         }
       },
       "UpdateDiscountsPayload": {
-        "required": ["discount_resources", "discount_status"],
+        "required": [
+          "discount_resources",
+          "discount_status"
+        ],
         "type": "object",
         "properties": {
           "discount_resources": {
@@ -13057,7 +13421,9 @@
         }
       },
       "UpdateDiscountsStatusPayload": {
-        "required": ["discount_status"],
+        "required": [
+          "discount_status"
+        ],
         "type": "object",
         "properties": {
           "discount_status": {
@@ -13262,7 +13628,11 @@
         }
       },
       "CreateContractPayload": {
-        "required": ["discount_resources", "expiration_policy", "org_id"],
+        "required": [
+          "discount_resources",
+          "expiration_policy",
+          "org_id"
+        ],
         "type": "object",
         "properties": {
           "org_id": {
@@ -13407,7 +13777,10 @@
         }
       },
       "UpdateContractPayload": {
-        "required": ["discount_resources", "expiration_policy"],
+        "required": [
+          "discount_resources",
+          "expiration_policy"
+        ],
         "type": "object",
         "properties": {
           "description": {
@@ -13605,7 +13978,9 @@
         }
       },
       "Adminaddorganizationpayload": {
-        "required": ["organization_id"],
+        "required": [
+          "organization_id"
+        ],
         "type": "object",
         "properties": {
           "organization_id": {
@@ -13756,7 +14131,10 @@
         }
       },
       "Excludebillingpostpayload": {
-        "required": ["exclude", "resource_id"],
+        "required": [
+          "exclude",
+          "resource_id"
+        ],
         "type": "object",
         "properties": {
           "resource_id": {
@@ -14023,7 +14401,11 @@
         }
       },
       "Userinfopostpayload": {
-        "required": ["business", "country", "zip_code"],
+        "required": [
+          "business",
+          "country",
+          "zip_code"
+        ],
         "type": "object",
         "properties": {
           "business": {

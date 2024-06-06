@@ -1,3 +1,6 @@
+# Fix server address
+.servers[0].url = "https://infrahub-api.nexgencloud.com/v1" |
+
 # Fix schema definitions for certain components
 .components.schemas."Instance Flavor Fields".properties.ram.type = "number" |
 .components.schemas."Flavor Fields".properties.ram.type = "number" |
