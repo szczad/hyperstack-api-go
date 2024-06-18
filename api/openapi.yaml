@@ -104,13 +104,15 @@ tags:
 paths:
   /api-key:
     get:
-      operationId: Get API Key
+      description: "Retrieves your API keys, granting access to the Infrahub APIs.\
+        \ For further details on API keys, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/api-key/retrieve-api-key)."
+      operationId: Retrieve API Key
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetApiKeyResponseModel'
+                $ref: '#/components/schemas/GetApiKeysResponseModel'
           description: Success
         "400":
           content:
@@ -130,18 +132,26 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Get API Key
+      summary: Retrieve API Keys
       tags:
       - api key
   /api-key/generate:
     post:
+      description: "Generates your API key, providing access to the Infrahub APIs.\
+        \ For further details on API keys, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/api-key/generate-api-key)."
       operationId: Generate API Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateUpdateApiKeyPayload'
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenerateApiKeyResponseModel'
+                $ref: '#/components/schemas/GenerateUpdateApiKeyResponseModel'
           description: Success
         "400":
           content:
@@ -155,6 +165,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseModel'
           description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Conflict
         "500":
           content: {}
           description: Internal Server Error
@@ -163,7 +185,109 @@ paths:
       summary: Generate API Key
       tags:
       - api key
+      x-codegen-request-body-name: payload
   /api-key/verify: {}
+  /api-key/{api_key_id}:
+    delete:
+      description: Delete a specified API key by including the ID of the API key in
+        the path.
+      operationId: Delete API Key
+      parameters:
+      - explode: false
+        in: path
+        name: api_key_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponseModel'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        "500":
+          content: {}
+          description: Internal Server Error
+      security:
+      - accessToken: []
+      - apiKey: []
+      summary: Delete API Key
+      tags:
+      - api key
+    put:
+      description: Updates the name and optionally the description of a specified
+        API key. Include the ID of the API key in the path and the new name and optional
+        description in the body of the request.
+      operationId: Update API Key
+      parameters:
+      - explode: false
+        in: path
+        name: api_key_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateUpdateApiKeyPayload'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateUpdateApiKeyResponseModel'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        "500":
+          content: {}
+          description: Internal Server Error
+      security:
+      - accessToken: []
+      - apiKey: []
+      summary: Update API Key
+      tags:
+      - api key
+      x-codegen-request-body-name: payload
   /auth/admin/credit-warning-mail/{org_id}: {}
   /auth/admin/data-usages-warning-mail/{org_id}: {}
   /auth/admin/hibernation-restoration-mail: {}
@@ -179,6 +303,8 @@ paths:
   /auth/admin/vm-status-mail: {}
   /auth/invites:
     get:
+      description: "Retrieve a list of email invitations from your organization. For\
+        \ additional information on listing invited users, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/list-invites)."
       operationId: List Invites
       responses:
         "200":
@@ -209,7 +335,9 @@ paths:
       tags:
       - invite
     post:
-      operationId: Invite an user to organization
+      description: "Invites a user to join your organization. For additional information\
+        \ on inviting users to the organization, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/invite-member)."
+      operationId: Invite User to Organization
       requestBody:
         content:
           application/json:
@@ -247,12 +375,14 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Invite an user to organization
+      summary: Invite User to Organization
       tags:
       - invite
       x-codegen-request-body-name: payload
   /auth/invites/{id}:
     delete:
+      description: "Deletes an invitation for a user to join your organization. For\
+        \ additional information on deleting an invitation, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/delete-invite)."
       operationId: Delete Invite
       parameters:
       - explode: false
@@ -299,7 +429,9 @@ paths:
   /auth/logout: {}
   /auth/me:
     get:
-      operationId: Auth user information
+      description: "Retrieves detailed information about the currently authenticated\
+        \ user. For additional information, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/auth)."
+      operationId: Retrieve Authenticated User Details
       responses:
         "200":
           content:
@@ -325,12 +457,15 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Get me information
+      summary: Retrieve Authenticated User Details
       tags:
       - auth
   /auth/organizations:
     get:
-      operationId: Get organization info
+      description: "Retrieves detailed information about your organization, including\
+        \ current credit, threshold, number of instances, and number of volumes. For\
+        \ additional information on organizations, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/retrieve-org-details)."
+      operationId: Retrieve Organization Information
       responses:
         "200":
           content:
@@ -356,12 +491,14 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Organization Info
+      summary: Retrieve Organization Information
       tags:
       - organization
   /auth/organizations/remove-member:
     post:
-      operationId: Remove a member from organization
+      description: "Removes a member from your organization. For additional information,\
+        \ [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/remove-member)."
+      operationId: Remove Organization Member
       requestBody:
         content:
           application/json:
@@ -393,13 +530,15 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Remove a member from organization
+      summary: Remove Organization Member
       tags:
       - organization
       x-codegen-request-body-name: payload
   /auth/organizations/update:
     put:
-      operationId: Update organization info
+      description: "Updates the name of the organization. For additional information,\
+        \ [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/update-org-name)."
+      operationId: Update Organization Information
       requestBody:
         content:
           application/json:
@@ -431,12 +570,15 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Update organization info
+      summary: Update Organization Information
       tags:
       - organization
       x-codegen-request-body-name: payload
   /auth/permissions:
     get:
+      description: "Retrieves a list of permissions that users can be granted to access\
+        \ a particular resource action. For additional information on permissions,\
+        \ [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/permissions)."
       operationId: List Permissions
       responses:
         "200":
@@ -469,6 +611,8 @@ paths:
   /auth/permissions/{id}: {}
   /auth/policies:
     get:
+      description: "Retrieves a list of policies available for addition to RBAC roles.\
+        \ For additional information on policies, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/policies)."
       operationId: List Policies
       responses:
         "200":
@@ -503,6 +647,9 @@ paths:
   /auth/request-login: {}
   /auth/roles:
     get:
+      description: "Retrieves a list of RBAC roles that can be assigned to the users\
+        \ within an organization. For additional information on RBAC roles, [click\
+        \ here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/list-rbac-roles)."
       operationId: List RBAC Roles
       responses:
         "200":
@@ -533,6 +680,11 @@ paths:
       tags:
       - rbac role
     post:
+      description: "Creates an RBAC role that can be assigned to users, granting them\
+        \ access to specific resource actions. Provide the configuration of the RBAC\
+        \ role, including its name, description, and list of permissions and policy\
+        \ IDs in the request body. For additional information on creating RBAC roles,\
+        \ [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/create-rbac-role)."
       operationId: Create RBAC Role
       requestBody:
         content:
@@ -577,7 +729,9 @@ paths:
       x-codegen-request-body-name: payload
   /auth/roles/{id}:
     delete:
-      operationId: Delete a RBAC Role
+      description: "Deletes an RBAC role by providing its ID in the path. For additional\
+        \ information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/delete-rbac-role)."
+      operationId: Delete RBAC Role
       parameters:
       - explode: false
         in: path
@@ -617,11 +771,13 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Delete a RBAC Role
+      summary: Delete RBAC Role
       tags:
       - rbac role
     get:
-      operationId: Get a RBAC Role Detail
+      description: "Retrieves the details of a specified RBAC role by providing the\
+        \ RBAC role ID in the path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/retrieve-rbac-details)."
+      operationId: Retrieve RBAC Role Details
       parameters:
       - explode: false
         in: path
@@ -661,11 +817,15 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Get a RBAC Role Detail
+      summary: Retrieve RBAC Role Details
       tags:
       - rbac role
     put:
-      operationId: Update a RBAC Role
+      description: "Updates an RBAC role by providing the role ID in the path and\
+        \ the modified role configuration in the request body, including its name,\
+        \ description, and list of permissions and policy IDs. For additional information,\
+        \ [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/update-rbac-role)."
+      operationId: Update RBAC Role
       parameters:
       - explode: false
         in: path
@@ -711,7 +871,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Update a RBAC Role
+      summary: Update RBAC Role
       tags:
       - rbac role
       x-codegen-request-body-name: payload
@@ -720,7 +880,9 @@ paths:
   /auth/token: {}
   /auth/users/me/permissions:
     get:
-      operationId: List Current User Permissions
+      description: "Retrieves a list of permissions granted to your account. For additional\
+        \ information on your permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-my-permissions)."
+      operationId: List My User Permissions
       responses:
         "200":
           content:
@@ -746,11 +908,14 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: List Current User Permissions
+      summary: List My User Permissions
       tags:
       - user permission
   /auth/users/{id}/permissions:
     get:
+      description: "Retrieves a list of permissions granted to a specific user within\
+        \ your organization. Provide the ID of the user in the path. For additional\
+        \ information on user permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-user-permissions)."
       operationId: List User Permissions
       parameters:
       - explode: false
@@ -796,7 +961,11 @@ paths:
       - user permission
   /auth/users/{user_id}/assign-roles:
     put:
-      operationId: Assign RBAC Roles
+      description: "Assigns a specific RBAC role to a user within your organization,\
+        \ granting them access to the resource actions permitted by the role. Provide\
+        \ the user ID in the path and the role ID in the request body. For additional\
+        \ information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/assign-rbac-role)."
+      operationId: Assign RBAC Role to User
       parameters:
       - explode: false
         in: path
@@ -842,13 +1011,16 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Assign RBAC Roles
+      summary: Assign RBAC Role
       tags:
       - assigning member role
       x-codegen-request-body-name: payload
   /auth/users/{user_id}/roles:
     delete:
-      operationId: Remove role from a user
+      description: "Removes an RBAC role from a user within your organization, revoking\
+        \ the resource permissions they had access to. Provide the user ID in the\
+        \ path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/revoke-rbac-role)."
+      operationId: Remove RBAC Role From User
       parameters:
       - explode: false
         in: path
@@ -888,7 +1060,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Remove role from a user
+      summary: Remove RBAC Role From User
       tags:
       - assigning member role
   /internal/users/{id}/permissions: {}
@@ -900,6 +1072,8 @@ paths:
   /core/admin/images/{image_id}: {}
   /core/admin/keypairs: {}
   /core/admin/organizations/{id}/hibernate: {}
+  /core/admin/organizations/{id}/historical/virtual-machines: {}
+  /core/admin/resource/{resource_id}: {}
   /core/admin/resources: {}
   /core/admin/resources/count: {}
   /core/admin/resources/defaults: {}
@@ -1161,6 +1335,28 @@ paths:
         \ and the date and time of creation. For more information on environments,\
         \ [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/environments-available-features)."
       operationId: List environments
+      parameters:
+      - description: Page Number
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema: {}
+        style: form
+      - description: Data Per Page
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema: {}
+        style: form
+      - description: Search By ID or Name or Region
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema: {}
+        style: form
       responses:
         "200":
           content:
@@ -1393,6 +1589,28 @@ paths:
   /core/firewalls:
     get:
       operationId: Retrieve Firewalls
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1424,7 +1642,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Retrieve Firewalls
+      summary: List firewalls
       tags:
       - firewalls
     post:
@@ -2018,6 +2236,28 @@ paths:
       description: "Retrieves a list of your existing SSH key pairs, providing details\
         \ for each. For additional information on SSH key pairs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/keypairs-available-features)."
       operationId: List key pairs
+      parameters:
+      - description: Page Number
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema: {}
+        style: form
+      - description: Data Per Page
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema: {}
+        style: form
+      - explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2775,6 +3015,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
+      summary: Retrieve GPU stocks
       tags:
       - stock
   /core/stocks/details: {}
@@ -2787,7 +3028,9 @@ paths:
   /core/stocks/visibility/remove-users: {}
   /core/user/resources/defaults:
     get:
-      operationId: Retrieve default flavors and images for user
+      description: "Retrieve the default choices for virtual machine deployment, including\
+        \ the default region, environment, keypair, flavor, and image."
+      operationId: Retrieve Default Flavors and Images
       responses:
         "200":
           content:
@@ -2819,7 +3062,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Retrieve default flavors and images for user
+      summary: Retrieve Default Flavors and Images
       tags:
       - user detail choice
   /core/virtual-machines:
@@ -2828,13 +3071,35 @@ paths:
         \ details for each. The list is sorted by creation date, with the oldest virtual\
         \ machines displayed first."
       operationId: List virtual machines
+      parameters:
+      - description: Page Number
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema: {}
+        style: form
+      - description: Data Per Page
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema: {}
+        style: form
+      - explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Instances'
-          description: Successful retrieval of virtual machine list.
+          description: Success
         "400":
           content:
             application/json:
@@ -2853,7 +3118,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: List all virtual machines
+      summary: List virtual machines
       tags:
       - virtual machine
     post:
@@ -2872,7 +3137,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Instances'
+                $ref: '#/components/schemas/CreateInstancesResponse'
           description: Virtual machine(s) created successfully.
         "400":
           content:
@@ -4233,13 +4498,35 @@ paths:
       description: "Returns a list of your existing volumes, providing details for\
         \ each. For more information on volumes, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/volumes-available-features)."
       operationId: List volumes
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Volumes'
-          description: Successful retrieval of volumes list.
+          description: Success
         "400":
           content:
             application/json:
@@ -4568,14 +4855,73 @@ paths:
       - Pricebook
   /pricebook/admin/contracts: {}
   /pricebook/admin/contracts/check-expire-delete-vms: {}
+  /pricebook/admin/contracts/summary: {}
   /pricebook/admin/contracts/{contract_id}: {}
   /pricebook/admin/contracts/{contract_id}/events: {}
   /pricebook/admin/version: {}
   /pricebook/calculate: {}
+  /pricebook/calculate/resource/{resource_type}/{id}:
+    get:
+      description: Calculate the hourly billing rate of a specified resource by including
+        the resource ID in the path.
+      operationId: get_calculate
+      parameters:
+      - explode: false
+        in: path
+        name: resource_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceBillingResponseForCustomer'
+          description: Successfully retrieved billing rate.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+          description: Not Found
+        "500":
+          content: {}
+          description: Internal Server Error
+      security:
+      - accessToken: []
+      - apiKey: []
+      summary: Retrieve Billing Rate for Resource
+      tags:
+      - Calculate
   /pricebook/calculate/{id}: {}
   /pricebook/contracts:
     get:
-      operationId: List Contracts for Customer
+      description: "Retrieves a list of contracts and their details, including the\
+        \ terms of each contract and the discounts applied to all resources under\
+        \ each contract. Pagination can be controlled using the `page` and `per_page`\
+        \ query parameters. For additional information about contracts, click [**here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/contracts)."
+      operationId: get_customer_contract
       parameters:
       - explode: true
         in: query
@@ -4622,7 +4968,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: List Contracts for Customer
+      summary: List Contracts
       tags:
       - Customer Contract
   /pricebook/contracts/{contract_id}:
@@ -4673,7 +5019,7 @@ paths:
       security:
       - accessToken: []
       - apiKey: []
-      summary: Details of Contract by ID for Customer
+      summary: Retrieve Contract Details
       tags:
       - Customer Contract
   /pricebook/discounts/entities: {}
@@ -4684,6 +5030,7 @@ paths:
   /billing/admin/add_organization: {}
   /billing/admin/billing/info/{organization_id}: {}
   /billing/admin/credit/{organization_id}: {}
+  /billing/admin/credit_request/{organization_id}: {}
   /billing/admin/exclude: {}
   /billing/admin/payment_history/{organization_id}: {}
   /billing/admin/recharge_history/{organization_id}: {}
@@ -4745,7 +5092,22 @@ paths:
       - billing
   /billing/billing/usage:
     get:
+      description: "Retrieve active billing metrics for the organization's resources,\
+        \ including pricing, uptime, and total cost. Returns usage details for each\
+        \ active resource by defualt(`deleted=false` will return active resources).\
+        \ Additionally, adding `deleted=true` in query parameter will return inactive\
+        \ resources. For additional information on view usage costs for all resources,\
+        \ [**click here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/billing-features#view-usage-costs-for-all-resources)"
       operationId: get_usage
+      parameters:
+      - description: '`true` will return inactive resources and `false` will return
+          active resources. By defualt(`deleted=false`)'
+        explode: true
+        in: query
+        name: deleted
+        required: false
+        schema: {}
+        style: form
       responses:
         "200":
           content:
@@ -5349,6 +5711,9 @@ components:
         name: name
       properties:
         name:
+          description: The new name for the organition
+          maxLength: 50
+          minLength: 3
           type: string
       required:
       - name
@@ -5368,6 +5733,8 @@ components:
         email: email
       properties:
         email:
+          description: The email of the user to be removed.
+          maxLength: 64
           type: string
       required:
       - email
@@ -5382,9 +5749,70 @@ components:
         message:
           type: string
       type: object
-    GetApiKeyResponseModel:
+    GetApiKeysResponseModel:
+      example:
+        message: message
+        api_keys:
+        - name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          key: key
+        - name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          key: key
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        api_keys:
+          items:
+            $ref: '#/components/schemas/ApiKeyFields'
+          type: array
+      type: object
+    ApiKeyFields:
+      example:
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        key: key
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        key:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    GenerateUpdateApiKeyPayload:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+      - name
+      type: object
+    GenerateUpdateApiKeyResponseModel:
       example:
         api_key:
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
           key: key
         message: message
         status: true
@@ -5396,30 +5824,13 @@ components:
         api_key:
           $ref: '#/components/schemas/ApiKeyFields'
       type: object
-    ApiKeyFields:
-      example:
-        key: key
-      properties:
-        key:
-          type: string
-      type: object
-    GenerateApiKeyResponseModel:
-      example:
-        api_key: api_key
-        message: message
-        status: true
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        api_key:
-          type: string
-      type: object
     VerifyApiKeyPayload:
       properties:
         api_key:
+          description: The direction of traffic that the firewall rule applies to.
           type: string
+      required:
+      - api_key
       type: object
     VerifyApiKeyResponseModel:
       properties:
@@ -5446,6 +5857,8 @@ components:
         email: email
       properties:
         email:
+          description: The email for sending invitation.
+          maxLength: 100
           type: string
       required:
       - email
@@ -5733,15 +6146,20 @@ components:
         description: description
       properties:
         name:
+          description: Name of the RBAC role.
+          maxLength: 200
           type: string
         description:
+          description: Description of the role.
           type: string
         policies:
           items:
+            description: List of policy IDs.
             type: integer
           type: array
         permissions:
           items:
+            description: List of permission IDs.
             type: integer
           type: array
       required:
@@ -6541,22 +6959,37 @@ components:
       - name
       - region
       type: object
-    Environment:
+    Environments:
       example:
-        environment:
-          name: name
+        environments:
+        - name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           region: region
+        - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          region: region
+        count: 5
+        page: 6
         message: message
         status: true
+        page_size: 1
       properties:
         status:
           type: boolean
         message:
           type: string
-        environment:
-          $ref: '#/components/schemas/EnvironmentFields'
+        environments:
+          items:
+            $ref: '#/components/schemas/EnvironmentFields'
+          type: array
+        page:
+          type: integer
+        page_size:
+          type: integer
+        count:
+          type: integer
       type: object
     EnvironmentFields:
       example:
@@ -6575,14 +7008,10 @@ components:
           format: date-time
           type: string
       type: object
-    Environments:
+    Environment:
       example:
-        environments:
-        - name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          region: region
-        - name: name
+        environment:
+          name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           region: region
@@ -6593,10 +7022,8 @@ components:
           type: boolean
         message:
           type: string
-        environments:
-          items:
-            $ref: '#/components/schemas/EnvironmentFields'
-          type: array
+        environment:
+          $ref: '#/components/schemas/EnvironmentFields'
       type: object
     UpdateEnvironment:
       example:
@@ -6876,40 +7303,40 @@ components:
           - labels
           - labels
           flavor:
-            disk: 7
-            gpu_count: 3
+            disk: 2
+            gpu_count: 7
             name: name
-            cpu: 5
-            ephemeral: 9
-            id: 5
+            cpu: 9
+            ephemeral: 4
+            id: 7
             gpu: gpu
-            ram: 2.3021358869347655
+            ram: 3.616076749251911
           vm_state: vm_state
           environment:
-            org_id: 1
+            org_id: 2
             name: name
-            id: 6
+            id: 5
             region: region
           floating_ip: floating_ip
           name: name
-          id: 0
+          id: 5
           fixed_ip: fixed_ip
           volume_attachments:
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
@@ -6917,21 +7344,21 @@ components:
           security_rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           status: status
         - image:
@@ -6947,40 +7374,40 @@ components:
           - labels
           - labels
           flavor:
-            disk: 7
-            gpu_count: 3
+            disk: 2
+            gpu_count: 7
             name: name
-            cpu: 5
-            ephemeral: 9
-            id: 5
+            cpu: 9
+            ephemeral: 4
+            id: 7
             gpu: gpu
-            ram: 2.3021358869347655
+            ram: 3.616076749251911
           vm_state: vm_state
           environment:
-            org_id: 1
+            org_id: 2
             name: name
-            id: 6
+            id: 5
             region: region
           floating_ip: floating_ip
           name: name
-          id: 0
+          id: 5
           fixed_ip: fixed_ip
           volume_attachments:
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
@@ -6988,30 +7415,39 @@ components:
           security_rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           status: status
+        count: 1
+        page: 0
         message: message
         status: true
+        page_size: 6
       properties:
         status:
           type: boolean
         message:
           type: string
+        page:
+          type: integer
+        page_size:
+          type: integer
+        count:
+          type: integer
         instances:
           items:
             $ref: '#/components/schemas/InstanceFields'
@@ -7032,40 +7468,40 @@ components:
         - labels
         - labels
         flavor:
-          disk: 7
-          gpu_count: 3
+          disk: 2
+          gpu_count: 7
           name: name
-          cpu: 5
-          ephemeral: 9
-          id: 5
+          cpu: 9
+          ephemeral: 4
+          id: 7
           gpu: gpu
-          ram: 2.3021358869347655
+          ram: 3.616076749251911
         vm_state: vm_state
         environment:
-          org_id: 1
+          org_id: 2
           name: name
-          id: 6
+          id: 5
           region: region
         floating_ip: floating_ip
         name: name
-        id: 0
+        id: 5
         fixed_ip: fixed_ip
         volume_attachments:
         - volume:
             volume_type: volume_type
-            size: 4
+            size: 1
             name: name
             description: description
-            id: 2
+            id: 1
           created_at: 2000-01-23T04:56:07.000+00:00
           device: device
           status: status
         - volume:
             volume_type: volume_type
-            size: 4
+            size: 1
             name: name
             description: description
-            id: 2
+            id: 1
           created_at: 2000-01-23T04:56:07.000+00:00
           device: device
           status: status
@@ -7073,21 +7509,21 @@ components:
         security_rules:
         - protocol: protocol
           ethertype: ethertype
-          port_range_max: 1
+          port_range_max: 7
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 7
+          id: 1
           direction: direction
-          port_range_min: 1
+          port_range_min: 6
           status: status
         - protocol: protocol
           ethertype: ethertype
-          port_range_max: 1
+          port_range_max: 7
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 7
+          id: 1
           direction: direction
-          port_range_min: 1
+          port_range_min: 6
           status: status
         status: status
       properties:
@@ -7139,9 +7575,9 @@ components:
       type: object
     InstanceEnvironmentFields:
       example:
-        org_id: 1
+        org_id: 2
         name: name
-        id: 6
+        id: 5
         region: region
       properties:
         id:
@@ -7162,14 +7598,14 @@ components:
       type: object
     InstanceFlavorFields:
       example:
-        disk: 7
-        gpu_count: 3
+        disk: 2
+        gpu_count: 7
         name: name
-        cpu: 5
-        ephemeral: 9
-        id: 5
+        cpu: 9
+        ephemeral: 4
+        id: 7
         gpu: gpu
-        ram: 2.3021358869347655
+        ram: 3.616076749251911
       properties:
         id:
           type: integer
@@ -7199,10 +7635,10 @@ components:
       example:
         volume:
           volume_type: volume_type
-          size: 4
+          size: 1
           name: name
           description: description
-          id: 2
+          id: 1
         created_at: 2000-01-23T04:56:07.000+00:00
         device: device
         status: status
@@ -7220,10 +7656,10 @@ components:
     VolumeFieldsforInstance:
       example:
         volume_type: volume_type
-        size: 4
+        size: 1
         name: name
         description: description
-        id: 2
+        id: 1
       properties:
         id:
           type: integer
@@ -7240,12 +7676,12 @@ components:
       example:
         protocol: protocol
         ethertype: ethertype
-        port_range_max: 1
+        port_range_max: 7
         remote_ip_prefix: remote_ip_prefix
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 7
+        id: 1
         direction: direction
-        port_range_min: 1
+        port_range_min: 6
         status: status
       properties:
         id:
@@ -7268,6 +7704,163 @@ components:
           format: date-time
           type: string
       type: object
+    CreateInstancesResponse:
+      example:
+        instances:
+        - image:
+            name: name
+          os: os
+          contract_id: 1
+          floating_ip_status: floating_ip_status
+          keypair:
+            name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          power_state: power_state
+          labels:
+          - labels
+          - labels
+          flavor:
+            disk: 2
+            gpu_count: 7
+            name: name
+            cpu: 9
+            ephemeral: 4
+            id: 7
+            gpu: gpu
+            ram: 3.616076749251911
+          vm_state: vm_state
+          environment:
+            org_id: 2
+            name: name
+            id: 5
+            region: region
+          floating_ip: floating_ip
+          name: name
+          id: 5
+          fixed_ip: fixed_ip
+          volume_attachments:
+          - volume:
+              volume_type: volume_type
+              size: 1
+              name: name
+              description: description
+              id: 1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            device: device
+            status: status
+          - volume:
+              volume_type: volume_type
+              size: 1
+              name: name
+              description: description
+              id: 1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            device: device
+            status: status
+          locked: true
+          security_rules:
+          - protocol: protocol
+            ethertype: ethertype
+            port_range_max: 7
+            remote_ip_prefix: remote_ip_prefix
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            direction: direction
+            port_range_min: 6
+            status: status
+          - protocol: protocol
+            ethertype: ethertype
+            port_range_max: 7
+            remote_ip_prefix: remote_ip_prefix
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            direction: direction
+            port_range_min: 6
+            status: status
+          status: status
+        - image:
+            name: name
+          os: os
+          contract_id: 1
+          floating_ip_status: floating_ip_status
+          keypair:
+            name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          power_state: power_state
+          labels:
+          - labels
+          - labels
+          flavor:
+            disk: 2
+            gpu_count: 7
+            name: name
+            cpu: 9
+            ephemeral: 4
+            id: 7
+            gpu: gpu
+            ram: 3.616076749251911
+          vm_state: vm_state
+          environment:
+            org_id: 2
+            name: name
+            id: 5
+            region: region
+          floating_ip: floating_ip
+          name: name
+          id: 5
+          fixed_ip: fixed_ip
+          volume_attachments:
+          - volume:
+              volume_type: volume_type
+              size: 1
+              name: name
+              description: description
+              id: 1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            device: device
+            status: status
+          - volume:
+              volume_type: volume_type
+              size: 1
+              name: name
+              description: description
+              id: 1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            device: device
+            status: status
+          locked: true
+          security_rules:
+          - protocol: protocol
+            ethertype: ethertype
+            port_range_max: 7
+            remote_ip_prefix: remote_ip_prefix
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            direction: direction
+            port_range_min: 6
+            status: status
+          - protocol: protocol
+            ethertype: ethertype
+            port_range_max: 7
+            remote_ip_prefix: remote_ip_prefix
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            direction: direction
+            port_range_min: 6
+            status: status
+          status: status
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        instances:
+          items:
+            $ref: '#/components/schemas/InstanceFields'
+          type: array
+      type: object
     Instance:
       example:
         instance:
@@ -7284,40 +7877,40 @@ components:
           - labels
           - labels
           flavor:
-            disk: 7
-            gpu_count: 3
+            disk: 2
+            gpu_count: 7
             name: name
-            cpu: 5
-            ephemeral: 9
-            id: 5
+            cpu: 9
+            ephemeral: 4
+            id: 7
             gpu: gpu
-            ram: 2.3021358869347655
+            ram: 3.616076749251911
           vm_state: vm_state
           environment:
-            org_id: 1
+            org_id: 2
             name: name
-            id: 6
+            id: 5
             region: region
           floating_ip: floating_ip
           name: name
-          id: 0
+          id: 5
           fixed_ip: fixed_ip
           volume_attachments:
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
           - volume:
               volume_type: volume_type
-              size: 4
+              size: 1
               name: name
               description: description
-              id: 2
+              id: 1
             created_at: 2000-01-23T04:56:07.000+00:00
             device: device
             status: status
@@ -7325,21 +7918,21 @@ components:
           security_rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 1
+            port_range_max: 7
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 1
             direction: direction
-            port_range_min: 1
+            port_range_min: 6
             status: status
           status: status
         message: message
@@ -7358,12 +7951,12 @@ components:
         security_rule:
           protocol: protocol
           ethertype: ethertype
-          port_range_max: 5
+          port_range_max: 9
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 2
           direction: direction
-          port_range_min: 5
+          port_range_min: 7
           status: status
         status: true
       properties:
@@ -7378,12 +7971,12 @@ components:
       example:
         protocol: protocol
         ethertype: ethertype
-        port_range_max: 5
+        port_range_max: 9
         remote_ip_prefix: remote_ip_prefix
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 1
+        id: 2
         direction: direction
-        port_range_min: 5
+        port_range_min: 7
         status: status
       properties:
         id:
@@ -7657,53 +8250,6 @@ components:
       - ram
       - region_name
       type: object
-    FlavorResponse:
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        flavor:
-          $ref: '#/components/schemas/FlavorFields'
-      type: object
-    FlavorFields:
-      example:
-        disk: 5
-        gpu_count: 2
-        name: name
-        cpu: 6
-        ephemeral: 5
-        created_at: 2000-01-23T04:56:07.000+00:00
-        region_name: region_name
-        id: 0
-        stock_available: true
-        gpu: gpu
-        ram: 1.4658129805029452
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        region_name:
-          type: string
-        cpu:
-          type: integer
-        ram:
-          type: number
-        disk:
-          type: integer
-        ephemeral:
-          type: integer
-        gpu:
-          type: string
-        gpu_count:
-          type: integer
-        stock_available:
-          type: boolean
-        created_at:
-          format: date-time
-          type: string
-      type: object
     FlavorListResponse:
       example:
         data:
@@ -7716,6 +8262,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             region_name: region_name
             id: 0
+            display_name: display_name
             stock_available: true
             gpu: gpu
             ram: 1.4658129805029452
@@ -7727,6 +8274,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             region_name: region_name
             id: 0
+            display_name: display_name
             stock_available: true
             gpu: gpu
             ram: 1.4658129805029452
@@ -7741,6 +8289,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             region_name: region_name
             id: 0
+            display_name: display_name
             stock_available: true
             gpu: gpu
             ram: 1.4658129805029452
@@ -7752,6 +8301,7 @@ components:
             created_at: 2000-01-23T04:56:07.000+00:00
             region_name: region_name
             id: 0
+            display_name: display_name
             stock_available: true
             gpu: gpu
             ram: 1.4658129805029452
@@ -7780,6 +8330,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           region_name: region_name
           id: 0
+          display_name: display_name
           stock_available: true
           gpu: gpu
           ram: 1.4658129805029452
@@ -7791,6 +8342,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           region_name: region_name
           id: 0
+          display_name: display_name
           stock_available: true
           gpu: gpu
           ram: 1.4658129805029452
@@ -7805,6 +8357,56 @@ components:
           items:
             $ref: '#/components/schemas/FlavorFields'
           type: array
+      type: object
+    FlavorFields:
+      example:
+        disk: 5
+        gpu_count: 2
+        name: name
+        cpu: 6
+        ephemeral: 5
+        created_at: 2000-01-23T04:56:07.000+00:00
+        region_name: region_name
+        id: 0
+        display_name: display_name
+        stock_available: true
+        gpu: gpu
+        ram: 1.4658129805029452
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        display_name:
+          type: string
+        region_name:
+          type: string
+        cpu:
+          type: integer
+        ram:
+          type: number
+        disk:
+          type: integer
+        ephemeral:
+          type: integer
+        gpu:
+          type: string
+        gpu_count:
+          type: integer
+        stock_available:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    FlavorResponse:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        flavor:
+          $ref: '#/components/schemas/FlavorFields'
       type: object
     Images:
       example:
@@ -8023,24 +8625,41 @@ components:
       - name
       - public_key
       type: object
-    ImportKeypairResponse:
+    Keypairs:
       example:
-        keypair:
-          public_key: public_key
+        count: 1
+        page: 0
+        message: message
+        status: true
+        keypairs:
+        - public_key: public_key
           environment: environment
           name: name
           fingerprint: fingerprint
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
-        message: message
-        status: true
+        - public_key: public_key
+          environment: environment
+          name: name
+          fingerprint: fingerprint
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+        page_size: 6
       properties:
         status:
           type: boolean
         message:
           type: string
-        keypair:
-          $ref: '#/components/schemas/KeypairFields'
+        keypairs:
+          items:
+            $ref: '#/components/schemas/KeypairFields'
+          type: array
+        page:
+          type: integer
+        page_size:
+          type: integer
+        count:
+          type: integer
       type: object
     KeypairFields:
       example:
@@ -8065,16 +8684,10 @@ components:
           format: date-time
           type: string
       type: object
-    Keypairs:
+    ImportKeypairResponse:
       example:
-        Keypairs:
-        - public_key: public_key
-          environment: environment
-          name: name
-          fingerprint: fingerprint
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-        - public_key: public_key
+        keypair:
+          public_key: public_key
           environment: environment
           name: name
           fingerprint: fingerprint
@@ -8087,10 +8700,8 @@ components:
           type: boolean
         message:
           type: string
-        Keypairs:
-          items:
-            $ref: '#/components/schemas/KeypairFields'
-          type: array
+        keypair:
+          $ref: '#/components/schemas/KeypairFields'
       type: object
     UpdateKeypairName:
       example:
@@ -8208,31 +8819,55 @@ components:
       - size
       - volume_type
       type: object
-    Volume:
+    Volumes:
       example:
-        volume:
-          callback_url: callback_url
+        count: 1
+        volumes:
+        - callback_url: callback_url
           environment:
             name: name
           volume_type: volume_type
-          size: 6
+          size: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
           name: name
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          image_id: 1
+          id: 5
+          image_id: 2
           bootable: true
           status: status
+        - callback_url: callback_url
+          environment:
+            name: name
+          volume_type: volume_type
+          size: 5
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 5
+          image_id: 2
+          bootable: true
+          status: status
+        page: 0
         message: message
         status: true
+        page_size: 6
       properties:
         status:
           type: boolean
         message:
           type: string
-        volume:
-          $ref: '#/components/schemas/VolumeFields'
+        page:
+          type: integer
+        page_size:
+          type: integer
+        count:
+          type: integer
+        volumes:
+          items:
+            $ref: '#/components/schemas/VolumeFields'
+          type: array
       type: object
     VolumeFields:
       example:
@@ -8240,13 +8875,13 @@ components:
         environment:
           name: name
         volume_type: volume_type
-        size: 6
+        size: 5
         updated_at: 2000-01-23T04:56:07.000+00:00
         name: name
         description: description
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 0
-        image_id: 1
+        id: 5
+        image_id: 2
         bootable: true
         status: status
       properties:
@@ -8285,33 +8920,20 @@ components:
         name:
           type: string
       type: object
-    Volumes:
+    Volume:
       example:
-        volumes:
-        - callback_url: callback_url
+        volume:
+          callback_url: callback_url
           environment:
             name: name
           volume_type: volume_type
-          size: 6
+          size: 5
           updated_at: 2000-01-23T04:56:07.000+00:00
           name: name
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          image_id: 1
-          bootable: true
-          status: status
-        - callback_url: callback_url
-          environment:
-            name: name
-          volume_type: volume_type
-          size: 6
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          image_id: 1
+          id: 5
+          image_id: 2
           bootable: true
           status: status
         message: message
@@ -8321,10 +8943,8 @@ components:
           type: boolean
         message:
           type: string
-        volumes:
-          items:
-            $ref: '#/components/schemas/VolumeFields'
-          type: array
+        volume:
+          $ref: '#/components/schemas/VolumeFields'
       type: object
     VolumeTypes:
       example:
@@ -8450,14 +9070,40 @@ components:
       required:
       - name
       type: object
-    GPU:
+    GPUList:
+      example:
+        gpu_list:
+        - regions:
+          - name: name
+            id: 6
+          - name: name
+            id: 6
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          example_metadata: example_metadata
+        - regions:
+          - name: name
+            id: 6
+          - name: name
+            id: 6
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          example_metadata: example_metadata
+        message: message
+        status: true
       properties:
         status:
           type: boolean
         message:
           type: string
-        gpu:
-          $ref: '#/components/schemas/GPUFields'
+        gpu_list:
+          items:
+            $ref: '#/components/schemas/GPUFields'
+          type: array
       type: object
     GPUFields:
       example:
@@ -8499,40 +9145,14 @@ components:
         name:
           type: string
       type: object
-    GPUList:
-      example:
-        gpu_list:
-        - regions:
-          - name: name
-            id: 6
-          - name: name
-            id: 6
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          example_metadata: example_metadata
-        - regions:
-          - name: name
-            id: 6
-          - name: name
-            id: 6
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          example_metadata: example_metadata
-        message: message
-        status: true
+    GPU:
       properties:
         status:
           type: boolean
         message:
           type: string
-        gpu_list:
-          items:
-            $ref: '#/components/schemas/GPUFields'
-          type: array
+        gpu:
+          $ref: '#/components/schemas/GPUFields'
       type: object
     UpdateGPU:
       properties:
@@ -8712,7 +9332,7 @@ components:
         volume_type:
           type: string
         size:
-          type: string
+          type: integer
       type: object
     InternalSecurityRulesFieldsForInstance:
       properties:
@@ -8756,28 +9376,6 @@ components:
       required:
       - name
       type: object
-    RegionResponse:
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        region:
-          $ref: '#/components/schemas/RegionFields'
-      type: object
-    RegionFields:
-      example:
-        name: name
-        description: description
-        id: 0
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-      type: object
     Regions:
       example:
         regions:
@@ -8799,33 +9397,11 @@ components:
             $ref: '#/components/schemas/RegionFields'
           type: array
       type: object
-    Template:
-      example:
-        template:
-          name: name
-          is_public: true
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          content: content
-        message: message
-        status: true
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        template:
-          $ref: '#/components/schemas/TemplateFields'
-      type: object
-    TemplateFields:
+    RegionFields:
       example:
         name: name
-        is_public: true
         description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
-        content: content
       properties:
         id:
           type: integer
@@ -8833,13 +9409,15 @@ components:
           type: string
         description:
           type: string
-        content:
-          type: string
-        is_public:
+      type: object
+    RegionResponse:
+      properties:
+        status:
           type: boolean
-        created_at:
-          format: date-time
+        message:
           type: string
+        region:
+          $ref: '#/components/schemas/RegionFields'
       type: object
     Templates:
       example:
@@ -8867,6 +9445,48 @@ components:
           items:
             $ref: '#/components/schemas/TemplateFields'
           type: array
+      type: object
+    TemplateFields:
+      example:
+        name: name
+        is_public: true
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        content: content
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        is_public:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    Template:
+      example:
+        template:
+          name: name
+          is_public: true
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          content: content
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        template:
+          $ref: '#/components/schemas/TemplateFields'
       type: object
     UpdateTemplate:
       example:
@@ -8903,52 +9523,6 @@ components:
       - description
       - name
       - template_id
-      type: object
-    StartDeployment:
-      example:
-        message: message
-        status: true
-        deployment:
-          template: template
-          variables: variables
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          status: status
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        deployment:
-          $ref: '#/components/schemas/DeploymentFieldsforstartdeployments'
-      type: object
-    DeploymentFieldsforstartdeployments:
-      example:
-        template: template
-        variables: variables
-        name: name
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 0
-        status: status
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        template:
-          type: string
-        status:
-          type: string
-        variables:
-          type: string
-        created_at:
-          format: date-time
-          type: string
       type: object
     Deployments:
       example:
@@ -9000,6 +9574,52 @@ components:
           format: date-time
           type: string
       type: object
+    StartDeployment:
+      example:
+        message: message
+        status: true
+        deployment:
+          template: template
+          variables: variables
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          status: status
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        deployment:
+          $ref: '#/components/schemas/DeploymentFieldsforstartdeployments'
+      type: object
+    DeploymentFieldsforstartdeployments:
+      example:
+        template: template
+        variables: variables
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        status: status
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        template:
+          type: string
+        status:
+          type: string
+        variables:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
     SecurityRulesProtocolFields:
       example:
         message: message
@@ -9042,44 +9662,6 @@ components:
       - data
       - name
       type: object
-    CreateProfileResponse:
-      example:
-        profile:
-          data: data
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-        message: message
-        status: true
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        profile:
-          $ref: '#/components/schemas/ProfileFields'
-      type: object
-    ProfileFields:
-      example:
-        data: data
-        name: name
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 0
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        data:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-      type: object
     ProfileListResponse:
       example:
         profiles:
@@ -9104,6 +9686,44 @@ components:
           items:
             $ref: '#/components/schemas/ProfileFields'
           type: array
+      type: object
+    ProfileFields:
+      example:
+        data: data
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        data:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    CreateProfileResponse:
+      example:
+        profile:
+          data: data
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        profile:
+          $ref: '#/components/schemas/ProfileFields'
       type: object
     InstanceAdmin:
       properties:
@@ -9241,6 +9861,8 @@ components:
           type: string
         flavor:
           $ref: '#/components/schemas/AdminFlavorResource'
+        locked:
+          type: boolean
         image_id:
           type: integer
         volume_id:
@@ -9394,6 +10016,28 @@ components:
         organization:
           $ref: '#/components/schemas/AdminOrganizationResources'
       type: object
+    AdminResourceResponseFromResourceID:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        organization_id:
+          type: integer
+        resources:
+          $ref: '#/components/schemas/AdminResource'
+      type: object
+    AdminResource:
+      properties:
+        instance:
+          $ref: '#/components/schemas/AdminInstanceResources'
+        volume:
+          $ref: '#/components/schemas/AdminVolumeResource'
+        container:
+          $ref: '#/components/schemas/AdminContainerResource'
+        cluster:
+          $ref: '#/components/schemas/AdminClusterResource'
+      type: object
     AdminGetVersionResponse:
       properties:
         status:
@@ -9473,6 +10117,48 @@ components:
           format: date-time
           type: string
       type: object
+    HistoricalInstance:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        instances:
+          items:
+            $ref: '#/components/schemas/HistoricalInstancesFields'
+          type: array
+        instance_count:
+          type: integer
+      type: object
+    HistoricalInstancesFields:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        environment:
+          type: string
+        environment_id:
+          type: integer
+        flavor:
+          type: string
+        flavor_id:
+          type: integer
+        openstack_id:
+          type: string
+        floating_ip:
+          type: string
+        host:
+          type: string
+        status:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
     CompliancePayload:
       example:
         gpu_model: gpu_model
@@ -9501,51 +10187,6 @@ components:
       - variation_max
       - variation_min
       - variation_unit
-      type: object
-    CreateUpdateComplianceResponse:
-      example:
-        compliance:
-          gpu_model: gpu_model
-          base_value: 6
-          variation_min: 1
-          variation_unit: 5
-          resource_type: resource_type
-          id: 0
-          variation_max: 5
-        message: message
-        status: true
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        compliance:
-          $ref: '#/components/schemas/ComplianceModelFields'
-      type: object
-    ComplianceModelFields:
-      example:
-        gpu_model: gpu_model
-        base_value: 6
-        variation_min: 1
-        variation_unit: 5
-        resource_type: resource_type
-        id: 0
-        variation_max: 5
-      properties:
-        id:
-          type: integer
-        gpu_model:
-          type: string
-        resource_type:
-          type: string
-        base_value:
-          type: integer
-        variation_min:
-          type: integer
-        variation_max:
-          type: integer
-        variation_unit:
-          type: integer
       type: object
     ComplianceResponse:
       example:
@@ -9598,6 +10239,51 @@ components:
             type: integer
           type: array
       type: object
+    CreateUpdateComplianceResponse:
+      example:
+        compliance:
+          gpu_model: gpu_model
+          base_value: 6
+          variation_min: 1
+          variation_unit: 5
+          resource_type: resource_type
+          id: 0
+          variation_max: 5
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        compliance:
+          $ref: '#/components/schemas/ComplianceModelFields'
+      type: object
+    ComplianceModelFields:
+      example:
+        gpu_model: gpu_model
+        base_value: 6
+        variation_min: 1
+        variation_unit: 5
+        resource_type: resource_type
+        id: 0
+        variation_max: 5
+      properties:
+        id:
+          type: integer
+        gpu_model:
+          type: string
+        resource_type:
+          type: string
+        base_value:
+          type: integer
+        variation_min:
+          type: integer
+        variation_max:
+          type: integer
+        variation_unit:
+          type: integer
+      type: object
     CreateFirewallPayload:
       example:
         environment_id: 0
@@ -9614,73 +10300,13 @@ components:
       - environment_id
       - name
       type: object
-    FirewallResponse:
-      example:
-        firewall:
-          environment:
-            name: name
-            id: 6
-            region: region
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          status: status
-        message: message
-        status: true
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        firewall:
-          $ref: '#/components/schemas/FirewallFields'
-      type: object
-    FirewallFields:
-      example:
-        environment:
-          name: name
-          id: 6
-          region: region
-        name: name
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 0
-        status: status
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        environment:
-          $ref: '#/components/schemas/FirewallEnvironmentFields'
-        status:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-      type: object
-    FirewallEnvironmentFields:
-      example:
-        name: name
-        id: 6
-        region: region
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        region:
-          type: string
-      type: object
     FirewallsListResponse:
       example:
+        count: 1
         firewalls:
         - environment:
             name: name
-            id: 6
+            id: 5
             region: region
           attachments:
           - vm:
@@ -9688,20 +10314,20 @@ components:
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           - vm:
               flavor: flavor
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           name: name
           description: description
@@ -9709,27 +10335,27 @@ components:
           rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
-          id: 0
+          id: 5
           status: status
         - environment:
             name: name
-            id: 6
+            id: 5
             region: region
           attachments:
           - vm:
@@ -9737,20 +10363,20 @@ components:
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           - vm:
               flavor: flavor
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           name: name
           description: description
@@ -9758,31 +10384,39 @@ components:
           rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
-          id: 0
+          id: 5
           status: status
+        page: 0
         message: message
         status: true
+        page_size: 6
       properties:
         status:
           type: boolean
         message:
           type: string
+        page:
+          type: integer
+        page_size:
+          type: integer
+        count:
+          type: integer
         firewalls:
           items:
             $ref: '#/components/schemas/FirewallDetailFields'
@@ -9792,7 +10426,7 @@ components:
       example:
         environment:
           name: name
-          id: 6
+          id: 5
           region: region
         attachments:
         - vm:
@@ -9800,20 +10434,20 @@ components:
             environment: environment
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 2
             status: status
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 2
+          id: 3
           status: status
         - vm:
             flavor: flavor
             environment: environment
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 7
+            id: 2
             status: status
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 2
+          id: 3
           status: status
         name: name
         description: description
@@ -9821,23 +10455,23 @@ components:
         rules:
         - protocol: protocol
           ethertype: ethertype
-          port_range_max: 5
+          port_range_max: 9
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 2
           direction: direction
-          port_range_min: 5
+          port_range_min: 7
           status: status
         - protocol: protocol
           ethertype: ethertype
-          port_range_max: 5
+          port_range_max: 9
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 2
           direction: direction
-          port_range_min: 5
+          port_range_min: 7
           status: status
-        id: 0
+        id: 5
         status: status
       properties:
         id:
@@ -9862,6 +10496,19 @@ components:
             $ref: '#/components/schemas/FirewallAttachmentModel'
           type: array
       type: object
+    FirewallEnvironmentFields:
+      example:
+        name: name
+        id: 5
+        region: region
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        region:
+          type: string
+      type: object
     FirewallAttachmentModel:
       example:
         vm:
@@ -9869,10 +10516,10 @@ components:
           environment: environment
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 7
+          id: 2
           status: status
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 2
+        id: 3
         status: status
       properties:
         id:
@@ -9891,7 +10538,7 @@ components:
         environment: environment
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 7
+        id: 2
         status: status
       properties:
         id:
@@ -9902,6 +10549,54 @@ components:
           type: string
         environment:
           type: string
+        status:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    FirewallResponse:
+      example:
+        firewall:
+          environment:
+            name: name
+            id: 5
+            region: region
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          status: status
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        firewall:
+          $ref: '#/components/schemas/FirewallFields'
+      type: object
+    FirewallFields:
+      example:
+        environment:
+          name: name
+          id: 5
+          region: region
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        status: status
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        environment:
+          $ref: '#/components/schemas/FirewallEnvironmentFields'
         status:
           type: string
         created_at:
@@ -9940,12 +10635,12 @@ components:
         firewall_rule:
           protocol: protocol
           ethertype: ethertype
-          port_range_max: 5
+          port_range_max: 9
           remote_ip_prefix: remote_ip_prefix
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 2
           direction: direction
-          port_range_min: 5
+          port_range_min: 7
           status: status
         message: message
         status: true
@@ -9962,7 +10657,7 @@ components:
         firewall:
           environment:
             name: name
-            id: 6
+            id: 5
             region: region
           attachments:
           - vm:
@@ -9970,20 +10665,20 @@ components:
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           - vm:
               flavor: flavor
               environment: environment
               name: name
               created_at: 2000-01-23T04:56:07.000+00:00
-              id: 7
+              id: 2
               status: status
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 2
+            id: 3
             status: status
           name: name
           description: description
@@ -9991,23 +10686,23 @@ components:
           rules:
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
           - protocol: protocol
             ethertype: ethertype
-            port_range_max: 5
+            port_range_max: 9
             remote_ip_prefix: remote_ip_prefix
             created_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 2
             direction: direction
-            port_range_min: 5
+            port_range_min: 7
             status: status
-          id: 0
+          id: 5
           status: status
         message: message
         status: true
@@ -10148,6 +10843,47 @@ components:
       - type
       - version
       type: object
+    AdminImageListAdminResponse:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/AdminImageAdminFields'
+          type: array
+      type: object
+    AdminImageAdminFields:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        openstack_id:
+          type: string
+        region_id:
+          type: integer
+        region_name:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        size:
+          type: integer
+        is_public:
+          type: boolean
+        description:
+          type: string
+        labels:
+          items:
+            $ref: '#/components/schemas/LableResonse'
+          type: array
+        created_at:
+          format: date-time
+          type: string
+      type: object
     AdminImageAdminResponse:
       properties:
         status:
@@ -10193,47 +10929,6 @@ components:
       required:
       - organizations
       type: object
-    AdminImageListAdminResponse:
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        data:
-          items:
-            $ref: '#/components/schemas/AdminImageAdminFields'
-          type: array
-      type: object
-    AdminImageAdminFields:
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        openstack_id:
-          type: string
-        region_id:
-          type: integer
-        region_name:
-          type: string
-        type:
-          type: string
-        version:
-          type: string
-        size:
-          type: integer
-        is_public:
-          type: boolean
-        description:
-          type: string
-        labels:
-          items:
-            $ref: '#/components/schemas/LableResonse'
-          type: array
-        created_at:
-          format: date-time
-          type: string
-      type: object
     AddUpdateFlavorOrganizationPayload:
       properties:
         name:
@@ -10273,6 +10968,17 @@ components:
       - organizations
       - ram
       - region_id
+      type: object
+    AdminFlavorResourcesList:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        flavors:
+          items:
+            $ref: '#/components/schemas/AdminFlavorResource'
+          type: array
       type: object
     FlavorAdminResponse:
       properties:
@@ -10334,17 +11040,6 @@ components:
           type: string
       required:
       - organizations
-      type: object
-    AdminFlavorResourcesList:
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        flavors:
-          items:
-            $ref: '#/components/schemas/AdminFlavorResource'
-          type: array
       type: object
     FlavorDetailResponse:
       properties:
@@ -10741,6 +11436,9 @@ components:
           items:
             $ref: '#/components/schemas/OrganizationObjectResponse'
           type: array
+        calculation_time:
+          format: date-time
+          type: string
       type: object
     OrganizationObjectResponse:
       properties:
@@ -10763,6 +11461,8 @@ components:
           type: string
         host:
           type: string
+        contract_id:
+          type: integer
         resources:
           items:
             $ref: '#/components/schemas/PricebookResourceObjectResponse'
@@ -10805,6 +11505,144 @@ components:
         nexgen_original_price:
           type: number
       type: object
+    ResourceBillingResponseForCustomer:
+      example:
+        calculated_resource_bills:
+          resource:
+            actual_price: 3.616076749251911
+            price: 9.301444243932576
+            name: name
+            host: host
+            resources:
+            - amount: 1
+              rate: 5.962133916683182
+              actual_price: 7.061401241503109
+              price: 2.3021358869347655
+              name: name
+              type: type
+              discounted_rate: 5.637376656633329
+            - amount: 1
+              rate: 5.962133916683182
+              actual_price: 7.061401241503109
+              price: 2.3021358869347655
+              name: name
+              type: type
+              discounted_rate: 5.637376656633329
+            type: type
+            infrahub_id: 6
+            status: status
+          org_id: 0
+        message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        calculated_resource_bills:
+          $ref: '#/components/schemas/ResourceObjectResponseForCustomer'
+      type: object
+    ResourceObjectResponseForCustomer:
+      example:
+        resource:
+          actual_price: 3.616076749251911
+          price: 9.301444243932576
+          name: name
+          host: host
+          resources:
+          - amount: 1
+            rate: 5.962133916683182
+            actual_price: 7.061401241503109
+            price: 2.3021358869347655
+            name: name
+            type: type
+            discounted_rate: 5.637376656633329
+          - amount: 1
+            rate: 5.962133916683182
+            actual_price: 7.061401241503109
+            price: 2.3021358869347655
+            name: name
+            type: type
+            discounted_rate: 5.637376656633329
+          type: type
+          infrahub_id: 6
+          status: status
+        org_id: 0
+      properties:
+        org_id:
+          type: integer
+        resource:
+          $ref: '#/components/schemas/InfrahubResourceObjectResponseForCustomer'
+      type: object
+    InfrahubResourceObjectResponseForCustomer:
+      example:
+        actual_price: 3.616076749251911
+        price: 9.301444243932576
+        name: name
+        host: host
+        resources:
+        - amount: 1
+          rate: 5.962133916683182
+          actual_price: 7.061401241503109
+          price: 2.3021358869347655
+          name: name
+          type: type
+          discounted_rate: 5.637376656633329
+        - amount: 1
+          rate: 5.962133916683182
+          actual_price: 7.061401241503109
+          price: 2.3021358869347655
+          name: name
+          type: type
+          discounted_rate: 5.637376656633329
+        type: type
+        infrahub_id: 6
+        status: status
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        infrahub_id:
+          type: integer
+        status:
+          type: string
+        host:
+          type: string
+        resources:
+          items:
+            $ref: '#/components/schemas/PricebookResourceObjectResponseForCustomer'
+          type: array
+        price:
+          type: number
+        actual_price:
+          type: number
+      type: object
+    PricebookResourceObjectResponseForCustomer:
+      example:
+        amount: 1
+        rate: 5.962133916683182
+        actual_price: 7.061401241503109
+        price: 2.3021358869347655
+        name: name
+        type: type
+        discounted_rate: 5.637376656633329
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        amount:
+          type: integer
+        rate:
+          type: number
+        discounted_rate:
+          type: number
+        price:
+          type: number
+        actual_price:
+          type: number
+      type: object
     GetVersionResponse:
       properties:
         status:
@@ -10812,6 +11650,37 @@ components:
         message:
           type: string
         version:
+          type: string
+      type: object
+    GetAllContractsResponseModel:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        contracts:
+          items:
+            $ref: '#/components/schemas/GetAllContractFields'
+          type: array
+      type: object
+    GetAllContractFields:
+      properties:
+        id:
+          type: integer
+        org_id:
+          type: integer
+        description:
+          type: string
+        start_date:
+          format: date-time
+          type: string
+        end_date:
+          format: date-time
+          type: string
+        expiration_policy:
+          type: integer
+        created_at:
+          format: date-time
           type: string
       type: object
     CreateContractPayload:
@@ -10889,9 +11758,9 @@ components:
         message:
           type: string
         contract:
-          $ref: '#/components/schemas/CreateContarctFields'
+          $ref: '#/components/schemas/CreateContractFields'
       type: object
-    CreateContarctFields:
+    CreateContractFields:
       properties:
         id:
           type: integer
@@ -11171,6 +12040,7 @@ components:
     Adminaddorganizationpayload:
       properties:
         organization_id:
+          description: The ID of the organization.
           type: integer
       required:
       - organization_id
@@ -11178,7 +12048,11 @@ components:
     Admincreditpostpayload:
       properties:
         credit:
+          description: The credit value in dollars.
           type: number
+        reason:
+          description: Reason for the recharge.
+          type: string
       type: object
     Getcreditandthresholdinfoinresponse:
       example:
@@ -11212,6 +12086,7 @@ components:
     Adminthresholdpostpayload:
       properties:
         threshold:
+          description: The minimum credit balance required to maintain access to resources.
           type: number
       type: object
     Adminrechargehistoryresponse:
@@ -11320,21 +12195,15 @@ components:
     Excludebillingpostpayload:
       properties:
         resource_id:
+          description: The ID of the resource which is being excluded from billing.
           type: integer
         exclude:
+          description: '`true` excludes the resource from billing while `false` does
+            not.'
           type: boolean
       required:
       - exclude
       - resource_id
-      type: object
-    Excludebillingpostresponse:
-      properties:
-        status:
-          type: boolean
-        message:
-          type: string
-        data:
-          $ref: '#/components/schemas/Excludebillingpostpayload'
       type: object
     Billingimmuneresourcesresponse:
       properties:
@@ -11356,13 +12225,22 @@ components:
         organization_id:
           type: integer
       type: object
+    Excludebillingpostresponse:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Excludebillingpostpayload'
+      type: object
     Adminpaymenthistoryresponse:
       properties:
         message:
           type: string
         status:
           type: boolean
-        payments:
+        data:
           items:
             $ref: '#/components/schemas/Adminpaymenthistoryfields'
           type: array
@@ -11371,8 +12249,6 @@ components:
       properties:
         amount:
           type: number
-        medium:
-          type: string
         status:
           type: string
         transaction_id:
@@ -11454,6 +12330,31 @@ components:
         state:
           type: string
         created_at:
+          format: date-time
+          type: string
+      type: object
+    Creditrequestresponse:
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/Creditrequests'
+          type: array
+      type: object
+    Creditrequests:
+      properties:
+        admin_user_id:
+          type: integer
+        status:
+          type: string
+        amount:
+          type: number
+        reason:
+          type: string
+        updated_at:
           format: date-time
           type: string
       type: object

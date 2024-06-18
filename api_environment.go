@@ -372,6 +372,27 @@ func (a *EnvironmentAPIService) DeleteEnvironmentExecute(r ApiDeleteEnvironmentR
 type ApiListEnvironmentsRequest struct {
 	ctx context.Context
 	ApiService *EnvironmentAPIService
+	page *interface{}
+	pageSize *interface{}
+	search *interface{}
+}
+
+// Page Number
+func (r ApiListEnvironmentsRequest) Page(page interface{}) ApiListEnvironmentsRequest {
+	r.page = &page
+	return r
+}
+
+// Data Per Page
+func (r ApiListEnvironmentsRequest) PageSize(pageSize interface{}) ApiListEnvironmentsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Search By ID or Name or Region
+func (r ApiListEnvironmentsRequest) Search(search interface{}) ApiListEnvironmentsRequest {
+	r.search = &search
+	return r
 }
 
 func (r ApiListEnvironmentsRequest) Execute() (*Environments, *http.Response, error) {
@@ -414,6 +435,15 @@ func (a *EnvironmentAPIService) ListEnvironmentsExecute(r ApiListEnvironmentsReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

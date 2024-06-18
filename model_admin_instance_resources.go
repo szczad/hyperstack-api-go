@@ -26,6 +26,7 @@ type AdminInstanceResources struct {
 	Host *string `json:"host,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Flavor *AdminFlavorResource `json:"flavor,omitempty"`
+	Locked *bool `json:"locked,omitempty"`
 	ImageId *int32 `json:"image_id,omitempty"`
 	VolumeId *int32 `json:"volume_id,omitempty"`
 	KeypairName *string `json:"keypair_name,omitempty"`
@@ -243,6 +244,38 @@ func (o *AdminInstanceResources) HasFlavor() bool {
 // SetFlavor gets a reference to the given AdminFlavorResource and assigns it to the Flavor field.
 func (o *AdminInstanceResources) SetFlavor(v AdminFlavorResource) {
 	o.Flavor = &v
+}
+
+// GetLocked returns the Locked field value if set, zero value otherwise.
+func (o *AdminInstanceResources) GetLocked() bool {
+	if o == nil || IsNil(o.Locked) {
+		var ret bool
+		return ret
+	}
+	return *o.Locked
+}
+
+// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AdminInstanceResources) GetLockedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Locked) {
+		return nil, false
+	}
+	return o.Locked, true
+}
+
+// HasLocked returns a boolean if a field has been set.
+func (o *AdminInstanceResources) HasLocked() bool {
+	if o != nil && !IsNil(o.Locked) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocked gets a reference to the given bool and assigns it to the Locked field.
+func (o *AdminInstanceResources) SetLocked(v bool) {
+	o.Locked = &v
 }
 
 // GetImageId returns the ImageId field value if set, zero value otherwise.
@@ -528,6 +561,9 @@ func (o AdminInstanceResources) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Flavor) {
 		toSerialize["flavor"] = o.Flavor
+	}
+	if !IsNil(o.Locked) {
+		toSerialize["locked"] = o.Locked
 	}
 	if !IsNil(o.ImageId) {
 		toSerialize["image_id"] = o.ImageId

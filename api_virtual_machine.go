@@ -395,7 +395,7 @@ func (r ApiCreateVirtualMachineRequest) Payload(payload CreateInstancesPayload) 
 	return r
 }
 
-func (r ApiCreateVirtualMachineRequest) Execute() (*Instances, *http.Response, error) {
+func (r ApiCreateVirtualMachineRequest) Execute() (*CreateInstancesResponse, *http.Response, error) {
 	return r.ApiService.CreateVirtualMachineExecute(r)
 }
 
@@ -415,13 +415,13 @@ func (a *VirtualMachineAPIService) CreateVirtualMachine(ctx context.Context) Api
 }
 
 // Execute executes the request
-//  @return Instances
-func (a *VirtualMachineAPIService) CreateVirtualMachineExecute(r ApiCreateVirtualMachineRequest) (*Instances, *http.Response, error) {
+//  @return CreateInstancesResponse
+func (a *VirtualMachineAPIService) CreateVirtualMachineExecute(r ApiCreateVirtualMachineRequest) (*CreateInstancesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Instances
+		localVarReturnValue  *CreateInstancesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VirtualMachineAPIService.CreateVirtualMachine")
@@ -1435,6 +1435,26 @@ func (a *VirtualMachineAPIService) HibernateVirtualMachineExecute(r ApiHibernate
 type ApiListVirtualMachinesRequest struct {
 	ctx context.Context
 	ApiService *VirtualMachineAPIService
+	page *interface{}
+	pageSize *interface{}
+	search *string
+}
+
+// Page Number
+func (r ApiListVirtualMachinesRequest) Page(page interface{}) ApiListVirtualMachinesRequest {
+	r.page = &page
+	return r
+}
+
+// Data Per Page
+func (r ApiListVirtualMachinesRequest) PageSize(pageSize interface{}) ApiListVirtualMachinesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListVirtualMachinesRequest) Search(search string) ApiListVirtualMachinesRequest {
+	r.search = &search
+	return r
 }
 
 func (r ApiListVirtualMachinesRequest) Execute() (*Instances, *http.Response, error) {
@@ -1442,7 +1462,7 @@ func (r ApiListVirtualMachinesRequest) Execute() (*Instances, *http.Response, er
 }
 
 /*
-ListVirtualMachines List all virtual machines
+ListVirtualMachines List virtual machines
 
 Returns a list of your existing virtual machines, providing configuration details for each. The list is sorted by creation date, with the oldest virtual machines displayed first.
 
@@ -1477,6 +1497,15 @@ func (a *VirtualMachineAPIService) ListVirtualMachinesExecute(r ApiListVirtualMa
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ListEnvironments
 
-> Environments ListEnvironments(ctx).Execute()
+> Environments ListEnvironments(ctx).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List environments
 
@@ -169,10 +169,13 @@ import (
 )
 
 func main() {
+	page := TODO // interface{} | Page Number (optional)
+	pageSize := TODO // interface{} | Data Per Page (optional)
+	search := TODO // interface{} | Search By ID or Name or Region (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EnvironmentAPI.ListEnvironments(context.Background()).Execute()
+	resp, r, err := apiClient.EnvironmentAPI.ListEnvironments(context.Background()).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EnvironmentAPI.ListEnvironments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,12 +187,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListEnvironmentsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | [**interface{}**](interface{}.md) | Page Number | 
+ **pageSize** | [**interface{}**](interface{}.md) | Data Per Page | 
+ **search** | [**interface{}**](interface{}.md) | Search By ID or Name or Region | 
 
 ### Return type
 

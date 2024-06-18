@@ -4,8 +4,8 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DetailsOfContractByIDForCustomer**](CustomerContractAPI.md#DetailsOfContractByIDForCustomer) | **Get** /pricebook/contracts/{contract_id} | Details of Contract by ID for Customer
-[**ListContractsForCustomer**](CustomerContractAPI.md#ListContractsForCustomer) | **Get** /pricebook/contracts | List Contracts for Customer
+[**DetailsOfContractByIDForCustomer**](CustomerContractAPI.md#DetailsOfContractByIDForCustomer) | **Get** /pricebook/contracts/{contract_id} | Retrieve Contract Details
+[**GetCustomerContract**](CustomerContractAPI.md#GetCustomerContract) | **Get** /pricebook/contracts | List Contracts
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > CustomerContractDetailResponseModel DetailsOfContractByIDForCustomer(ctx, contractId).Execute()
 
-Details of Contract by ID for Customer
+Retrieve Contract Details
 
 ### Example
 
@@ -77,11 +77,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListContractsForCustomer
+## GetCustomerContract
 
-> GetCustomerContractsListResponseModel ListContractsForCustomer(ctx).Page(page).PerPage(perPage).Execute()
+> GetCustomerContractsListResponseModel GetCustomerContract(ctx).Page(page).PerPage(perPage).Execute()
 
-List Contracts for Customer
+List Contracts
+
+
 
 ### Example
 
@@ -101,13 +103,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomerContractAPI.ListContractsForCustomer(context.Background()).Page(page).PerPage(perPage).Execute()
+	resp, r, err := apiClient.CustomerContractAPI.GetCustomerContract(context.Background()).Page(page).PerPage(perPage).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomerContractAPI.ListContractsForCustomer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomerContractAPI.GetCustomerContract``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListContractsForCustomer`: GetCustomerContractsListResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `CustomerContractAPI.ListContractsForCustomer`: %v\n", resp)
+	// response from `GetCustomerContract`: GetCustomerContractsListResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `CustomerContractAPI.GetCustomerContract`: %v\n", resp)
 }
 ```
 
@@ -117,7 +119,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListContractsForCustomerRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCustomerContractRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

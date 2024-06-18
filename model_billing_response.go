@@ -12,6 +12,7 @@ package hyperstack
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the BillingResponse type satisfies the MappedNullable interface at compile time
@@ -21,6 +22,7 @@ var _ MappedNullable = &BillingResponse{}
 type BillingResponse struct {
 	Type *string `json:"type,omitempty"`
 	CalculatedBills []OrganizationObjectResponse `json:"calculated_bills,omitempty"`
+	CalculationTime *time.Time `json:"calculation_time,omitempty"`
 }
 
 // NewBillingResponse instantiates a new BillingResponse object
@@ -104,6 +106,38 @@ func (o *BillingResponse) SetCalculatedBills(v []OrganizationObjectResponse) {
 	o.CalculatedBills = v
 }
 
+// GetCalculationTime returns the CalculationTime field value if set, zero value otherwise.
+func (o *BillingResponse) GetCalculationTime() time.Time {
+	if o == nil || IsNil(o.CalculationTime) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CalculationTime
+}
+
+// GetCalculationTimeOk returns a tuple with the CalculationTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BillingResponse) GetCalculationTimeOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CalculationTime) {
+		return nil, false
+	}
+	return o.CalculationTime, true
+}
+
+// HasCalculationTime returns a boolean if a field has been set.
+func (o *BillingResponse) HasCalculationTime() bool {
+	if o != nil && !IsNil(o.CalculationTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetCalculationTime gets a reference to the given time.Time and assigns it to the CalculationTime field.
+func (o *BillingResponse) SetCalculationTime(v time.Time) {
+	o.CalculationTime = &v
+}
+
 func (o BillingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -119,6 +153,9 @@ func (o BillingResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CalculatedBills) {
 		toSerialize["calculated_bills"] = o.CalculatedBills
+	}
+	if !IsNil(o.CalculationTime) {
+		toSerialize["calculation_time"] = o.CalculationTime
 	}
 	return toSerialize, nil
 }

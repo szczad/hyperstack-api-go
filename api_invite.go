@@ -36,6 +36,8 @@ func (r ApiDeleteInviteRequest) Execute() (*CommonResponseModel, *http.Response,
 /*
 DeleteInvite Delete Invite
 
+Deletes an invitation for a user to join your organization. For additional information on deleting an invitation, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/delete-invite).
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiDeleteInviteRequest
@@ -185,29 +187,31 @@ func (a *InviteAPIService) DeleteInviteExecute(r ApiDeleteInviteRequest) (*Commo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInviteAnUserToOrganizationRequest struct {
+type ApiInviteUserToOrganizationRequest struct {
 	ctx context.Context
 	ApiService *InviteAPIService
 	payload *InviteUserPayload
 }
 
-func (r ApiInviteAnUserToOrganizationRequest) Payload(payload InviteUserPayload) ApiInviteAnUserToOrganizationRequest {
+func (r ApiInviteUserToOrganizationRequest) Payload(payload InviteUserPayload) ApiInviteUserToOrganizationRequest {
 	r.payload = &payload
 	return r
 }
 
-func (r ApiInviteAnUserToOrganizationRequest) Execute() (*InviteUserResponseModel, *http.Response, error) {
-	return r.ApiService.InviteAnUserToOrganizationExecute(r)
+func (r ApiInviteUserToOrganizationRequest) Execute() (*InviteUserResponseModel, *http.Response, error) {
+	return r.ApiService.InviteUserToOrganizationExecute(r)
 }
 
 /*
-InviteAnUserToOrganization Invite an user to organization
+InviteUserToOrganization Invite User to Organization
+
+Invites a user to join your organization. For additional information on inviting users to the organization, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/invite-member).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInviteAnUserToOrganizationRequest
+ @return ApiInviteUserToOrganizationRequest
 */
-func (a *InviteAPIService) InviteAnUserToOrganization(ctx context.Context) ApiInviteAnUserToOrganizationRequest {
-	return ApiInviteAnUserToOrganizationRequest{
+func (a *InviteAPIService) InviteUserToOrganization(ctx context.Context) ApiInviteUserToOrganizationRequest {
+	return ApiInviteUserToOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -215,7 +219,7 @@ func (a *InviteAPIService) InviteAnUserToOrganization(ctx context.Context) ApiIn
 
 // Execute executes the request
 //  @return InviteUserResponseModel
-func (a *InviteAPIService) InviteAnUserToOrganizationExecute(r ApiInviteAnUserToOrganizationRequest) (*InviteUserResponseModel, *http.Response, error) {
+func (a *InviteAPIService) InviteUserToOrganizationExecute(r ApiInviteUserToOrganizationRequest) (*InviteUserResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -223,7 +227,7 @@ func (a *InviteAPIService) InviteAnUserToOrganizationExecute(r ApiInviteAnUserTo
 		localVarReturnValue  *InviteUserResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InviteAPIService.InviteAnUserToOrganization")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InviteAPIService.InviteUserToOrganization")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -365,6 +369,8 @@ func (r ApiListInvitesRequest) Execute() (*GetInvitesResponseModel, *http.Respon
 
 /*
 ListInvites List Invites
+
+Retrieve a list of email invitations from your organization. For additional information on listing invited users, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/list-invites).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListInvitesRequest

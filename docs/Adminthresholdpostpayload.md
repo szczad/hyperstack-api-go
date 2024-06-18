@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Threshold** | Pointer to **float32** |  | [optional] 
+**Threshold** | Pointer to **float32** | The minimum credit balance required to maintain access to resources. | [optional] 
 
 ## Methods
 

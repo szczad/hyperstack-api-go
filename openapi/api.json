@@ -221,15 +221,16 @@
         "tags": [
           "api key"
         ],
-        "summary": "Get API Key",
-        "operationId": "Get API Key",
+        "summary": "Retrieve API Keys",
+        "description": "Retrieves your API keys, granting access to the Infrahub APIs. For further details on API keys, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/api-key/retrieve-api-key).",
+        "operationId": "Retrieve API Key",
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetApiKeyResponseModel"
+                  "$ref": "#/components/schemas/GetApiKeysResponseModel"
                 }
               }
             }
@@ -275,14 +276,25 @@
           "api key"
         ],
         "summary": "Generate API Key",
+        "description": "Generates your API key, providing access to the Infrahub APIs. For further details on API keys, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/api-key/generate-api-key).",
         "operationId": "Generate API Key",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateUpdateApiKeyPayload"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateApiKeyResponseModel"
+                  "$ref": "#/components/schemas/GenerateUpdateApiKeyResponseModel"
                 }
               }
             }
@@ -307,6 +319,26 @@
               }
             }
           },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "content": {}
@@ -316,10 +348,168 @@
           {
             "accessToken": []
           }
-        ]
+        ],
+        "x-codegen-request-body-name": "payload"
       }
     },
     "/api-key/verify": {},
+    "/api-key/{api_key_id}": {
+      "put": {
+        "tags": [
+          "api key"
+        ],
+        "summary": "Update API Key",
+        "description": "Updates the name and optionally the description of a specified API key. Include the ID of the API key in the path and the new name and optional description in the body of the request.",
+        "operationId": "Update API Key",
+        "parameters": [
+          {
+            "name": "api_key_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateUpdateApiKeyPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateUpdateApiKeyResponseModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "accessToken": []
+          },
+          {
+            "apiKey": []
+          }
+        ],
+        "x-codegen-request-body-name": "payload"
+      },
+      "delete": {
+        "tags": [
+          "api key"
+        ],
+        "summary": "Delete API Key",
+        "description": "Delete a specified API key by including the ID of the API key in the path.",
+        "operationId": "Delete API Key",
+        "parameters": [
+          {
+            "name": "api_key_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "accessToken": []
+          },
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
     "/auth/admin/credit-warning-mail/{org_id}": {},
     "/auth/admin/data-usages-warning-mail/{org_id}": {},
     "/auth/admin/hibernation-restoration-mail": {},
@@ -339,6 +529,7 @@
           "invite"
         ],
         "summary": "List Invites",
+        "description": "Retrieve a list of email invitations from your organization. For additional information on listing invited users, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/list-invites).",
         "operationId": "List Invites",
         "responses": {
           "200": {
@@ -389,8 +580,9 @@
         "tags": [
           "invite"
         ],
-        "summary": "Invite an user to organization",
-        "operationId": "Invite an user to organization",
+        "summary": "Invite User to Organization",
+        "description": "Invites a user to join your organization. For additional information on inviting users to the organization, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/invite-member).",
+        "operationId": "Invite User to Organization",
         "requestBody": {
           "content": {
             "application/json": {
@@ -464,6 +656,7 @@
           "invite"
         ],
         "summary": "Delete Invite",
+        "description": "Deletes an invitation for a user to join your organization. For additional information on deleting an invitation, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/invites/delete-invite).",
         "operationId": "Delete Invite",
         "parameters": [
           {
@@ -537,8 +730,9 @@
         "tags": [
           "auth"
         ],
-        "summary": "Get me information",
-        "operationId": "Auth user information",
+        "summary": "Retrieve Authenticated User Details",
+        "description": "Retrieves detailed information about the currently authenticated user. For additional information, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/auth).",
+        "operationId": "Retrieve Authenticated User Details",
         "responses": {
           "200": {
             "description": "User Information",
@@ -590,8 +784,9 @@
         "tags": [
           "organization"
         ],
-        "summary": "Organization Info",
-        "operationId": "Get organization info",
+        "summary": "Retrieve Organization Information",
+        "description": "Retrieves detailed information about your organization, including current credit, threshold, number of instances, and number of volumes. For additional information on organizations, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/retrieve-org-details).",
+        "operationId": "Retrieve Organization Information",
         "responses": {
           "200": {
             "description": "Success",
@@ -643,8 +838,9 @@
         "tags": [
           "organization"
         ],
-        "summary": "Remove a member from organization",
-        "operationId": "Remove a member from organization",
+        "summary": "Remove Organization Member",
+        "description": "Removes a member from your organization. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/remove-member).",
+        "operationId": "Remove Organization Member",
         "requestBody": {
           "content": {
             "application/json": {
@@ -707,8 +903,9 @@
         "tags": [
           "organization"
         ],
-        "summary": "Update organization info",
-        "operationId": "Update organization info",
+        "summary": "Update Organization Information",
+        "description": "Updates the name of the organization. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/organization/update-org-name).",
+        "operationId": "Update Organization Information",
         "requestBody": {
           "content": {
             "application/json": {
@@ -772,6 +969,7 @@
           "permission"
         ],
         "summary": "List Permissions",
+        "description": "Retrieves a list of permissions that users can be granted to access a particular resource action. For additional information on permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/permissions).",
         "operationId": "List Permissions",
         "responses": {
           "200": {
@@ -826,6 +1024,7 @@
           "policy"
         ],
         "summary": "List Policies",
+        "description": "Retrieves a list of policies available for addition to RBAC roles. For additional information on policies, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/policies).",
         "operationId": "List Policies",
         "responses": {
           "200": {
@@ -882,6 +1081,7 @@
           "rbac role"
         ],
         "summary": "List RBAC Roles",
+        "description": "Retrieves a list of RBAC roles that can be assigned to the users within an organization. For additional information on RBAC roles, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/list-rbac-roles).",
         "operationId": "List RBAC Roles",
         "responses": {
           "200": {
@@ -933,6 +1133,7 @@
           "rbac role"
         ],
         "summary": "Create RBAC Role",
+        "description": "Creates an RBAC role that can be assigned to users, granting them access to specific resource actions. Provide the configuration of the RBAC role, including its name, description, and list of permissions and policy IDs in the request body. For additional information on creating RBAC roles, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/create-rbac-role).",
         "operationId": "Create RBAC Role",
         "requestBody": {
           "content": {
@@ -1006,8 +1207,9 @@
         "tags": [
           "rbac role"
         ],
-        "summary": "Get a RBAC Role Detail",
-        "operationId": "Get a RBAC Role Detail",
+        "summary": "Retrieve RBAC Role Details",
+        "description": "Retrieves the details of a specified RBAC role by providing the RBAC role ID in the path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/retrieve-rbac-details).",
+        "operationId": "Retrieve RBAC Role Details",
         "parameters": [
           {
             "name": "id",
@@ -1077,8 +1279,9 @@
         "tags": [
           "rbac role"
         ],
-        "summary": "Update a RBAC Role",
-        "operationId": "Update a RBAC Role",
+        "summary": "Update RBAC Role",
+        "description": "Updates an RBAC role by providing the role ID in the path and the modified role configuration in the request body, including its name, description, and list of permissions and policy IDs. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/update-rbac-role).",
+        "operationId": "Update RBAC Role",
         "parameters": [
           {
             "name": "id",
@@ -1159,8 +1362,9 @@
         "tags": [
           "rbac role"
         ],
-        "summary": "Delete a RBAC Role",
-        "operationId": "Delete a RBAC Role",
+        "summary": "Delete RBAC Role",
+        "description": "Deletes an RBAC role by providing its ID in the path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/delete-rbac-role).",
+        "operationId": "Delete RBAC Role",
         "parameters": [
           {
             "name": "id",
@@ -1235,8 +1439,9 @@
         "tags": [
           "user permission"
         ],
-        "summary": "List Current User Permissions",
-        "operationId": "List Current User Permissions",
+        "summary": "List My User Permissions",
+        "description": "Retrieves a list of permissions granted to your account. For additional information on your permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-my-permissions).",
+        "operationId": "List My User Permissions",
         "responses": {
           "200": {
             "description": "Success",
@@ -1289,6 +1494,7 @@
           "user permission"
         ],
         "summary": "List User Permissions",
+        "description": "Retrieves a list of permissions granted to a specific user within your organization. Provide the ID of the user in the path. For additional information on user permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-user-permissions).",
         "operationId": "List User Permissions",
         "parameters": [
           {
@@ -1361,8 +1567,9 @@
         "tags": [
           "assigning member role"
         ],
-        "summary": "Assign RBAC Roles",
-        "operationId": "Assign RBAC Roles",
+        "summary": "Assign RBAC Role",
+        "description": "Assigns a specific RBAC role to a user within your organization, granting them access to the resource actions permitted by the role. Provide the user ID in the path and the role ID in the request body. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/assign-rbac-role).",
+        "operationId": "Assign RBAC Role to User",
         "parameters": [
           {
             "name": "user_id",
@@ -1445,8 +1652,9 @@
         "tags": [
           "assigning member role"
         ],
-        "summary": "Remove role from a user",
-        "operationId": "Remove role from a user",
+        "summary": "Remove RBAC Role From User",
+        "description": "Removes an RBAC role from a user within your organization, revoking the resource permissions they had access to. Provide the user ID in the path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/revoke-rbac-role).",
+        "operationId": "Remove RBAC Role From User",
         "parameters": [
           {
             "name": "user_id",
@@ -1522,6 +1730,8 @@
     "/core/admin/images/{image_id}": {},
     "/core/admin/keypairs": {},
     "/core/admin/organizations/{id}/hibernate": {},
+    "/core/admin/organizations/{id}/historical/virtual-machines": {},
+    "/core/admin/resource/{resource_id}": {},
     "/core/admin/resources": {},
     "/core/admin/resources/count": {},
     "/core/admin/resources/defaults": {},
@@ -1928,6 +2138,26 @@
         "summary": "List environments",
         "description": "Returns a list of your existing environments, providing the following details for each; environment ID, name, [**region**](https://infrahub-doc.nexgencloud.com/docs/features/regions), and the date and time of creation. For more information on environments, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/environments-available-features).",
         "operationId": "List environments",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page Number",
+            "schema": {}
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Data Per Page",
+            "schema": {}
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search By ID or Name or Region",
+            "schema": {}
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful retrieval of environments list.",
@@ -2291,8 +2521,31 @@
         "tags": [
           "firewalls"
         ],
-        "summary": "Retrieve Firewalls",
+        "summary": "List firewalls",
         "operationId": "Retrieve Firewalls",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -3282,6 +3535,27 @@
         "summary": "List key pairs",
         "description": "Retrieves a list of your existing SSH key pairs, providing details for each. For additional information on SSH key pairs, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/keypairs-available-features).",
         "operationId": "List key pairs",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page Number",
+            "schema": {}
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Data Per Page",
+            "schema": {}
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Retrieval of key pairs list successful.",
@@ -4465,6 +4739,7 @@
         "tags": [
           "stock"
         ],
+        "summary": "Retrieve GPU stocks",
         "description": "Returns information on current and upcoming GPU availability, organized by region and GPU model. For additional information on GPU stocks, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/gpu-stock-information).",
         "operationId": "Retrieve GPU stocks",
         "responses": {
@@ -4520,8 +4795,9 @@
         "tags": [
           "user detail choice"
         ],
-        "summary": "Retrieve default flavors and images for user",
-        "operationId": "Retrieve default flavors and images for user",
+        "summary": "Retrieve Default Flavors and Images",
+        "description": "Retrieve the default choices for virtual machine deployment, including the default region, environment, keypair, flavor, and image.",
+        "operationId": "Retrieve Default Flavors and Images",
         "responses": {
           "200": {
             "description": "Success",
@@ -4583,12 +4859,33 @@
         "tags": [
           "virtual machine"
         ],
-        "summary": "List all virtual machines",
+        "summary": "List virtual machines",
         "description": "Returns a list of your existing virtual machines, providing configuration details for each. The list is sorted by creation date, with the oldest virtual machines displayed first.",
         "operationId": "List virtual machines",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page Number",
+            "schema": {}
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Data Per Page",
+            "schema": {}
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful retrieval of virtual machine list.",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -4654,7 +4951,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Instances"
+                  "$ref": "#/components/schemas/CreateInstancesResponse"
                 }
               }
             }
@@ -6740,9 +7037,32 @@
         "summary": "List volumes",
         "description": "Returns a list of your existing volumes, providing details for each. For more information on volumes, [**click here**](https://infrahub-doc.nexgencloud.com/docs/features/volumes-available-features).",
         "operationId": "List volumes",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful retrieval of volumes list.",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -7264,18 +7584,102 @@
     },
     "/pricebook/admin/contracts": {},
     "/pricebook/admin/contracts/check-expire-delete-vms": {},
+    "/pricebook/admin/contracts/summary": {},
     "/pricebook/admin/contracts/{contract_id}": {},
     "/pricebook/admin/contracts/{contract_id}/events": {},
     "/pricebook/admin/version": {},
     "/pricebook/calculate": {},
+    "/pricebook/calculate/resource/{resource_type}/{id}": {
+      "get": {
+        "tags": [
+          "Calculate"
+        ],
+        "summary": "Retrieve Billing Rate for Resource",
+        "description": "Calculate the hourly billing rate of a specified resource by including the resource ID in the path.",
+        "operationId": "get_calculate",
+        "parameters": [
+          {
+            "name": "resource_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved billing rate.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceBillingResponseForCustomer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "accessToken": []
+          },
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
     "/pricebook/calculate/{id}": {},
     "/pricebook/contracts": {
       "get": {
         "tags": [
           "Customer Contract"
         ],
-        "summary": "List Contracts for Customer",
-        "operationId": "List Contracts for Customer",
+        "summary": "List Contracts",
+        "description": "Retrieves a list of contracts and their details, including the terms of each contract and the discounts applied to all resources under each contract. Pagination can be controlled using the `page` and `per_page` query parameters. For additional information about contracts, click [**here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/contracts).",
+        "operationId": "get_customer_contract",
         "parameters": [
           {
             "name": "page",
@@ -7353,7 +7757,7 @@
         "tags": [
           "Customer Contract"
         ],
-        "summary": "Details of Contract by ID for Customer",
+        "summary": "Retrieve Contract Details",
         "operationId": "Details of Contract by ID for Customer",
         "parameters": [
           {
@@ -7439,6 +7843,7 @@
     "/billing/admin/add_organization": {},
     "/billing/admin/billing/info/{organization_id}": {},
     "/billing/admin/credit/{organization_id}": {},
+    "/billing/admin/credit_request/{organization_id}": {},
     "/billing/admin/exclude": {},
     "/billing/admin/payment_history/{organization_id}": {},
     "/billing/admin/recharge_history/{organization_id}": {},
@@ -7539,7 +7944,16 @@
           "billing"
         ],
         "summary": "GET: Billing usage",
+        "description": "Retrieve active billing metrics for the organization's resources, including pricing, uptime, and total cost. Returns usage details for each active resource by defualt(`deleted=false` will return active resources). Additionally, adding `deleted=true` in query parameter will return inactive resources. For additional information on view usage costs for all resources, [**click here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/billing-features#view-usage-costs-for-all-resources)",
         "operationId": "get_usage",
+        "parameters": [
+          {
+            "name": "deleted",
+            "in": "query",
+            "description": "`true` will return inactive resources and `false` will return active resources. By defualt(`deleted=false`)",
+            "schema": {}
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -8340,7 +8754,10 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string",
+            "description": "The new name for the organition"
           }
         }
       },
@@ -8362,7 +8779,9 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "maxLength": 64,
+            "type": "string",
+            "description": "The email of the user to be removed."
           }
         }
       },
@@ -8377,7 +8796,59 @@
           }
         }
       },
-      "GetApiKeyResponseModel": {
+      "GetApiKeysResponseModel": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "api_keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiKeyFields"
+            }
+          }
+        }
+      },
+      "ApiKeyFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GenerateUpdateApiKeyPayload": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "GenerateUpdateApiKeyResponseModel": {
         "type": "object",
         "properties": {
           "status": {
@@ -8391,33 +8862,15 @@
           }
         }
       },
-      "ApiKeyFields": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string"
-          }
-        }
-      },
-      "GenerateApiKeyResponseModel": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "api_key": {
-            "type": "string"
-          }
-        }
-      },
       "VerifyApiKeyPayload": {
+        "required": [
+          "api_key"
+        ],
         "type": "object",
         "properties": {
           "api_key": {
-            "type": "string"
+            "type": "string",
+            "description": "The direction of traffic that the firewall rule applies to."
           }
         }
       },
@@ -8459,7 +8912,9 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "maxLength": 100,
+            "type": "string",
+            "description": "The email for sending invitation."
           }
         }
       },
@@ -8724,21 +9179,26 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "maxLength": 200,
+            "type": "string",
+            "description": "Name of the RBAC role."
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of the role."
           },
           "policies": {
             "type": "array",
             "items": {
-              "type": "integer"
+              "type": "integer",
+              "description": "List of policy IDs."
             }
           },
           "permissions": {
             "type": "array",
             "items": {
-              "type": "integer"
+              "type": "integer",
+              "description": "List of permission IDs."
             }
           }
         }
@@ -9567,7 +10027,7 @@
           }
         }
       },
-      "Environment": {
+      "Environments": {
         "type": "object",
         "properties": {
           "status": {
@@ -9576,8 +10036,20 @@
           "message": {
             "type": "string"
           },
-          "environment": {
-            "$ref": "#/components/schemas/EnvironmentFields"
+          "environments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentFields"
+            }
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
           }
         }
       },
@@ -9599,7 +10071,7 @@
           }
         }
       },
-      "Environments": {
+      "Environment": {
         "type": "object",
         "properties": {
           "status": {
@@ -9608,11 +10080,8 @@
           "message": {
             "type": "string"
           },
-          "environments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnvironmentFields"
-            }
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentFields"
           }
         }
       },
@@ -9851,6 +10320,15 @@
           "message": {
             "type": "string"
           },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
+          },
           "instances": {
             "type": "array",
             "items": {
@@ -10061,6 +10539,23 @@
           "created_at": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "CreateInstancesResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstanceFields"
+            }
           }
         }
       },
@@ -10305,7 +10800,7 @@
           }
         }
       },
-      "FlavorResponse": {
+      "FlavorListResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -10314,8 +10809,28 @@
           "message": {
             "type": "string"
           },
-          "flavor": {
-            "$ref": "#/components/schemas/FlavorFields"
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlavorItemGetResponse"
+            }
+          }
+        }
+      },
+      "FlavorItemGetResponse": {
+        "type": "object",
+        "properties": {
+          "gpu": {
+            "type": "string"
+          },
+          "region_name": {
+            "type": "string"
+          },
+          "flavors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlavorFields"
+            }
           }
         }
       },
@@ -10326,6 +10841,9 @@
             "type": "integer"
           },
           "name": {
+            "type": "string"
+          },
+          "display_name": {
             "type": "string"
           },
           "region_name": {
@@ -10358,7 +10876,7 @@
           }
         }
       },
-      "FlavorListResponse": {
+      "FlavorResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -10367,28 +10885,8 @@
           "message": {
             "type": "string"
           },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FlavorItemGetResponse"
-            }
-          }
-        }
-      },
-      "FlavorItemGetResponse": {
-        "type": "object",
-        "properties": {
-          "gpu": {
-            "type": "string"
-          },
-          "region_name": {
-            "type": "string"
-          },
-          "flavors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FlavorFields"
-            }
+          "flavor": {
+            "$ref": "#/components/schemas/FlavorFields"
           }
         }
       },
@@ -10533,7 +11031,7 @@
           }
         }
       },
-      "ImportKeypairResponse": {
+      "Keypairs": {
         "type": "object",
         "properties": {
           "status": {
@@ -10542,8 +11040,20 @@
           "message": {
             "type": "string"
           },
-          "keypair": {
-            "$ref": "#/components/schemas/KeypairFields"
+          "keypairs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeypairFields"
+            }
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
           }
         }
       },
@@ -10571,7 +11081,7 @@
           }
         }
       },
-      "Keypairs": {
+      "ImportKeypairResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -10580,11 +11090,8 @@
           "message": {
             "type": "string"
           },
-          "Keypairs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/KeypairFields"
-            }
+          "keypair": {
+            "$ref": "#/components/schemas/KeypairFields"
           }
         }
       },
@@ -10696,7 +11203,7 @@
           }
         }
       },
-      "Volume": {
+      "Volumes": {
         "type": "object",
         "properties": {
           "status": {
@@ -10705,8 +11212,20 @@
           "message": {
             "type": "string"
           },
-          "volume": {
-            "$ref": "#/components/schemas/VolumeFields"
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "volumes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VolumeFields"
+            }
           }
         }
       },
@@ -10762,7 +11281,7 @@
           }
         }
       },
-      "Volumes": {
+      "Volume": {
         "type": "object",
         "properties": {
           "status": {
@@ -10771,11 +11290,8 @@
           "message": {
             "type": "string"
           },
-          "volumes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VolumeFields"
-            }
+          "volume": {
+            "$ref": "#/components/schemas/VolumeFields"
           }
         }
       },
@@ -10895,7 +11411,7 @@
           }
         }
       },
-      "GPU": {
+      "GPUList": {
         "type": "object",
         "properties": {
           "status": {
@@ -10904,8 +11420,11 @@
           "message": {
             "type": "string"
           },
-          "gpu": {
-            "$ref": "#/components/schemas/GPUFields"
+          "gpu_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GPUFields"
+            }
           }
         }
       },
@@ -10948,7 +11467,7 @@
           }
         }
       },
-      "GPUList": {
+      "GPU": {
         "type": "object",
         "properties": {
           "status": {
@@ -10957,11 +11476,8 @@
           "message": {
             "type": "string"
           },
-          "gpu_list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GPUFields"
-            }
+          "gpu": {
+            "$ref": "#/components/schemas/GPUFields"
           }
         }
       },
@@ -11224,7 +11740,7 @@
             "type": "string"
           },
           "size": {
-            "type": "string"
+            "type": "integer"
           }
         }
       },
@@ -11292,34 +11808,6 @@
           }
         }
       },
-      "RegionResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "region": {
-            "$ref": "#/components/schemas/RegionFields"
-          }
-        }
-      },
-      "RegionFields": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      },
       "Regions": {
         "type": "object",
         "properties": {
@@ -11337,7 +11825,21 @@
           }
         }
       },
-      "Template": {
+      "RegionFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "RegionResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -11346,8 +11848,25 @@
           "message": {
             "type": "string"
           },
-          "template": {
-            "$ref": "#/components/schemas/TemplateFields"
+          "region": {
+            "$ref": "#/components/schemas/RegionFields"
+          }
+        }
+      },
+      "Templates": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "templates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TemplateFields"
+            }
           }
         }
       },
@@ -11375,7 +11894,7 @@
           }
         }
       },
-      "Templates": {
+      "Template": {
         "type": "object",
         "properties": {
           "status": {
@@ -11384,11 +11903,8 @@
           "message": {
             "type": "string"
           },
-          "templates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TemplateFields"
-            }
+          "template": {
+            "$ref": "#/components/schemas/TemplateFields"
           }
         }
       },
@@ -11431,47 +11947,6 @@
           }
         }
       },
-      "StartDeployment": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "deployment": {
-            "$ref": "#/components/schemas/DeploymentFieldsforstartdeployments"
-          }
-        }
-      },
-      "DeploymentFieldsforstartdeployments": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "template": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "variables": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
       "Deployments": {
         "type": "object",
         "properties": {
@@ -11505,6 +11980,47 @@
             "type": "string"
           },
           "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "StartDeployment": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "deployment": {
+            "$ref": "#/components/schemas/DeploymentFieldsforstartdeployments"
+          }
+        }
+      },
+      "DeploymentFieldsforstartdeployments": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "template": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "variables": {
             "type": "string"
           },
           "created_at": {
@@ -11556,7 +12072,7 @@
           }
         }
       },
-      "CreateProfileResponse": {
+      "ProfileListResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -11565,8 +12081,11 @@
           "message": {
             "type": "string"
           },
-          "profile": {
-            "$ref": "#/components/schemas/ProfileFields"
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileFields"
+            }
           }
         }
       },
@@ -11591,7 +12110,7 @@
           }
         }
       },
-      "ProfileListResponse": {
+      "CreateProfileResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -11600,11 +12119,8 @@
           "message": {
             "type": "string"
           },
-          "profiles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProfileFields"
-            }
+          "profile": {
+            "$ref": "#/components/schemas/ProfileFields"
           }
         }
       },
@@ -11813,6 +12329,9 @@
           },
           "flavor": {
             "$ref": "#/components/schemas/AdminFlavorResource"
+          },
+          "locked": {
+            "type": "boolean"
           },
           "image_id": {
             "type": "integer"
@@ -12044,6 +12563,40 @@
           }
         }
       },
+      "AdminResourceResponseFromResourceID": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "organization_id": {
+            "type": "integer"
+          },
+          "resources": {
+            "$ref": "#/components/schemas/AdminResource"
+          }
+        }
+      },
+      "AdminResource": {
+        "type": "object",
+        "properties": {
+          "instance": {
+            "$ref": "#/components/schemas/AdminInstanceResources"
+          },
+          "volume": {
+            "$ref": "#/components/schemas/AdminVolumeResource"
+          },
+          "container": {
+            "$ref": "#/components/schemas/AdminContainerResource"
+          },
+          "cluster": {
+            "$ref": "#/components/schemas/AdminClusterResource"
+          }
+        }
+      },
       "AdminGetVersionResponse": {
         "type": "object",
         "properties": {
@@ -12164,6 +12717,69 @@
           }
         }
       },
+      "HistoricalInstance": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalInstancesFields"
+            }
+          },
+          "instance_count": {
+            "type": "integer"
+          }
+        }
+      },
+      "HistoricalInstancesFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "environment_id": {
+            "type": "integer"
+          },
+          "flavor": {
+            "type": "string"
+          },
+          "flavor_id": {
+            "type": "integer"
+          },
+          "openstack_id": {
+            "type": "string"
+          },
+          "floating_ip": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "CompliancePayload": {
         "required": [
           "base_value",
@@ -12175,46 +12791,6 @@
         ],
         "type": "object",
         "properties": {
-          "gpu_model": {
-            "type": "string"
-          },
-          "resource_type": {
-            "type": "string"
-          },
-          "base_value": {
-            "type": "integer"
-          },
-          "variation_min": {
-            "type": "integer"
-          },
-          "variation_max": {
-            "type": "integer"
-          },
-          "variation_unit": {
-            "type": "integer"
-          }
-        }
-      },
-      "CreateUpdateComplianceResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "compliance": {
-            "$ref": "#/components/schemas/ComplianceModelFields"
-          }
-        }
-      },
-      "ComplianceModelFields": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
           "gpu_model": {
             "type": "string"
           },
@@ -12275,6 +12851,46 @@
           }
         }
       },
+      "CreateUpdateComplianceResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "compliance": {
+            "$ref": "#/components/schemas/ComplianceModelFields"
+          }
+        }
+      },
+      "ComplianceModelFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "gpu_model": {
+            "type": "string"
+          },
+          "resource_type": {
+            "type": "string"
+          },
+          "base_value": {
+            "type": "integer"
+          },
+          "variation_min": {
+            "type": "integer"
+          },
+          "variation_max": {
+            "type": "integer"
+          },
+          "variation_unit": {
+            "type": "integer"
+          }
+        }
+      },
       "CreateFirewallPayload": {
         "required": [
           "environment_id",
@@ -12293,58 +12909,6 @@
           }
         }
       },
-      "FirewallResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "firewall": {
-            "$ref": "#/components/schemas/FirewallFields"
-          }
-        }
-      },
-      "FirewallFields": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "environment": {
-            "$ref": "#/components/schemas/FirewallEnvironmentFields"
-          },
-          "status": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "FirewallEnvironmentFields": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "region": {
-            "type": "string"
-          }
-        }
-      },
       "FirewallsListResponse": {
         "type": "object",
         "properties": {
@@ -12353,6 +12917,15 @@
           },
           "message": {
             "type": "string"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
           },
           "firewalls": {
             "type": "array",
@@ -12398,6 +12971,20 @@
           }
         }
       },
+      "FirewallEnvironmentFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
       "FirewallAttachmentModel": {
         "type": "object",
         "properties": {
@@ -12430,6 +13017,44 @@
           },
           "environment": {
             "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FirewallResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "firewall": {
+            "$ref": "#/components/schemas/FirewallFields"
+          }
+        }
+      },
+      "FirewallFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/FirewallEnvironmentFields"
           },
           "status": {
             "type": "string"
@@ -12654,6 +13279,68 @@
           }
         }
       },
+      "AdminImageListAdminResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminImageAdminFields"
+            }
+          }
+        }
+      },
+      "AdminImageAdminFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "openstack_id": {
+            "type": "string"
+          },
+          "region_id": {
+            "type": "integer"
+          },
+          "region_name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "is_public": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LableResonse"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "AdminImageAdminResponse": {
         "type": "object",
         "properties": {
@@ -12722,68 +13409,6 @@
           }
         }
       },
-      "AdminImageListAdminResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AdminImageAdminFields"
-            }
-          }
-        }
-      },
-      "AdminImageAdminFields": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "openstack_id": {
-            "type": "string"
-          },
-          "region_id": {
-            "type": "integer"
-          },
-          "region_name": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          },
-          "is_public": {
-            "type": "boolean"
-          },
-          "description": {
-            "type": "string"
-          },
-          "labels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LableResonse"
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
       "AddUpdateFlavorOrganizationPayload": {
         "required": [
           "cpu",
@@ -12836,6 +13461,23 @@
             "type": "array",
             "items": {
               "type": "integer"
+            }
+          }
+        }
+      },
+      "AdminFlavorResourcesList": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "flavors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminFlavorResource"
             }
           }
         }
@@ -12929,23 +13571,6 @@
           "created_at": {
             "type": "string",
             "format": "date-time"
-          }
-        }
-      },
-      "AdminFlavorResourcesList": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "flavors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AdminFlavorResource"
-            }
           }
         }
       },
@@ -13516,6 +14141,10 @@
             "items": {
               "$ref": "#/components/schemas/OrganizationObjectResponse"
             }
+          },
+          "calculation_time": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -13550,6 +14179,9 @@
           },
           "host": {
             "type": "string"
+          },
+          "contract_id": {
+            "type": "integer"
           },
           "resources": {
             "type": "array",
@@ -13615,6 +14247,89 @@
           }
         }
       },
+      "ResourceBillingResponseForCustomer": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "calculated_resource_bills": {
+            "$ref": "#/components/schemas/ResourceObjectResponseForCustomer"
+          }
+        }
+      },
+      "ResourceObjectResponseForCustomer": {
+        "type": "object",
+        "properties": {
+          "org_id": {
+            "type": "integer"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/InfrahubResourceObjectResponseForCustomer"
+          }
+        }
+      },
+      "InfrahubResourceObjectResponseForCustomer": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "infrahub_id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricebookResourceObjectResponseForCustomer"
+            }
+          },
+          "price": {
+            "type": "number"
+          },
+          "actual_price": {
+            "type": "number"
+          }
+        }
+      },
+      "PricebookResourceObjectResponseForCustomer": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "discounted_rate": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "actual_price": {
+            "type": "number"
+          }
+        }
+      },
       "GetVersionResponse": {
         "type": "object",
         "properties": {
@@ -13626,6 +14341,52 @@
           },
           "version": {
             "type": "string"
+          }
+        }
+      },
+      "GetAllContractsResponseModel": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "contracts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAllContractFields"
+            }
+          }
+        }
+      },
+      "GetAllContractFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "org_id": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiration_policy": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -13739,11 +14500,11 @@
             "type": "string"
           },
           "contract": {
-            "$ref": "#/components/schemas/CreateContarctFields"
+            "$ref": "#/components/schemas/CreateContractFields"
           }
         }
       },
-      "CreateContarctFields": {
+      "CreateContractFields": {
         "type": "object",
         "properties": {
           "id": {
@@ -13986,7 +14747,8 @@
         "type": "object",
         "properties": {
           "organization_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The ID of the organization."
           }
         }
       },
@@ -13994,7 +14756,12 @@
         "type": "object",
         "properties": {
           "credit": {
-            "type": "number"
+            "type": "number",
+            "description": "The credit value in dollars."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for the recharge."
           }
         }
       },
@@ -14030,7 +14797,8 @@
         "type": "object",
         "properties": {
           "threshold": {
-            "type": "number"
+            "type": "number",
+            "description": "The minimum credit balance required to maintain access to resources."
           }
         }
       },
@@ -14140,24 +14908,12 @@
         "type": "object",
         "properties": {
           "resource_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The ID of the resource which is being excluded from billing."
           },
           "exclude": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Excludebillingpostresponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/Excludebillingpostpayload"
+            "type": "boolean",
+            "description": "`true` excludes the resource from billing while `false` does not."
           }
         }
       },
@@ -14192,6 +14948,20 @@
           }
         }
       },
+      "Excludebillingpostresponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Excludebillingpostpayload"
+          }
+        }
+      },
       "Adminpaymenthistoryresponse": {
         "type": "object",
         "properties": {
@@ -14201,7 +14971,7 @@
           "status": {
             "type": "boolean"
           },
-          "payments": {
+          "data": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Adminpaymenthistoryfields"
@@ -14214,9 +14984,6 @@
         "properties": {
           "amount": {
             "type": "number"
-          },
-          "medium": {
-            "type": "string"
           },
           "status": {
             "type": "string"
@@ -14290,6 +15057,44 @@
             "type": "string"
           },
           "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Creditrequestresponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Creditrequests"
+            }
+          }
+        }
+      },
+      "Creditrequests": {
+        "type": "object",
+        "properties": {
+          "admin_user_id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "updated_at": {
             "type": "string",
             "format": "date-time"
           }

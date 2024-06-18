@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Description** | **string** |  | 
+**Name** | **string** | Name of the RBAC role. | 
+**Description** | **string** | Description of the role. | 
 **Policies** | Pointer to **[]int32** |  | [optional] 
 **Permissions** | Pointer to **[]int32** |  | [optional] 
 

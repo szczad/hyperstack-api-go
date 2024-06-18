@@ -372,6 +372,26 @@ func (a *KeypairAPIService) ImportKeyPairExecute(r ApiImportKeyPairRequest) (*Im
 type ApiListKeyPairsRequest struct {
 	ctx context.Context
 	ApiService *KeypairAPIService
+	page *interface{}
+	pageSize *interface{}
+	search *string
+}
+
+// Page Number
+func (r ApiListKeyPairsRequest) Page(page interface{}) ApiListKeyPairsRequest {
+	r.page = &page
+	return r
+}
+
+// Data Per Page
+func (r ApiListKeyPairsRequest) PageSize(pageSize interface{}) ApiListKeyPairsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListKeyPairsRequest) Search(search string) ApiListKeyPairsRequest {
+	r.search = &search
+	return r
 }
 
 func (r ApiListKeyPairsRequest) Execute() (*Keypairs, *http.Response, error) {
@@ -414,6 +434,15 @@ func (a *KeypairAPIService) ListKeyPairsExecute(r ApiListKeyPairsRequest) (*Keyp
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Host** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Flavor** | Pointer to [**AdminFlavorResource**](AdminFlavorResource.md) |  | [optional] 
+**Locked** | Pointer to **bool** |  | [optional] 
 **ImageId** | Pointer to **int32** |  | [optional] 
 **VolumeId** | Pointer to **int32** |  | [optional] 
 **KeypairName** | Pointer to **string** |  | [optional] 
@@ -187,6 +188,31 @@ SetFlavor sets Flavor field to given value.
 `func (o *AdminInstanceResources) HasFlavor() bool`
 
 HasFlavor returns a boolean if a field has been set.
+
+### GetLocked
+
+`func (o *AdminInstanceResources) GetLocked() bool`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *AdminInstanceResources) GetLockedOk() (*bool, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocked
+
+`func (o *AdminInstanceResources) SetLocked(v bool)`
+
+SetLocked sets Locked field to given value.
+
+### HasLocked
+
+`func (o *AdminInstanceResources) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
 
 ### GetImageId
 

@@ -4,15 +4,17 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveDefaultFlavorsAndImagesForUser**](UserDetailChoiceAPI.md#RetrieveDefaultFlavorsAndImagesForUser) | **Get** /core/user/resources/defaults | Retrieve default flavors and images for user
+[**RetrieveDefaultFlavorsAndImages**](UserDetailChoiceAPI.md#RetrieveDefaultFlavorsAndImages) | **Get** /core/user/resources/defaults | Retrieve Default Flavors and Images
 
 
 
-## RetrieveDefaultFlavorsAndImagesForUser
+## RetrieveDefaultFlavorsAndImages
 
-> UserDefaultChoicesForUserResponse RetrieveDefaultFlavorsAndImagesForUser(ctx).Execute()
+> UserDefaultChoicesForUserResponse RetrieveDefaultFlavorsAndImages(ctx).Execute()
 
-Retrieve default flavors and images for user
+Retrieve Default Flavors and Images
+
+
 
 ### Example
 
@@ -30,13 +32,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImagesForUser(context.Background()).Execute()
+	resp, r, err := apiClient.UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImages(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImagesForUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDefaultFlavorsAndImagesForUser`: UserDefaultChoicesForUserResponse
-	fmt.Fprintf(os.Stdout, "Response from `UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImagesForUser`: %v\n", resp)
+	// response from `RetrieveDefaultFlavorsAndImages`: UserDefaultChoicesForUserResponse
+	fmt.Fprintf(os.Stdout, "Response from `UserDetailChoiceAPI.RetrieveDefaultFlavorsAndImages`: %v\n", resp)
 }
 ```
 
@@ -46,7 +48,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetrieveDefaultFlavorsAndImagesForUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRetrieveDefaultFlavorsAndImagesRequest struct via the builder pattern
 
 
 ### Return type

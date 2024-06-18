@@ -21,7 +21,9 @@ var _ MappedNullable = &Excludebillingpostpayload{}
 
 // Excludebillingpostpayload struct for Excludebillingpostpayload
 type Excludebillingpostpayload struct {
+	// The ID of the resource which is being excluded from billing.
 	ResourceId int32 `json:"resource_id"`
+	// `true` excludes the resource from billing while `false` does not.
 	Exclude bool `json:"exclude"`
 }
 

@@ -23,23 +23,25 @@ import (
 // UserPermissionAPIService UserPermissionAPI service
 type UserPermissionAPIService service
 
-type ApiListCurrentUserPermissionsRequest struct {
+type ApiListMyUserPermissionsRequest struct {
 	ctx context.Context
 	ApiService *UserPermissionAPIService
 }
 
-func (r ApiListCurrentUserPermissionsRequest) Execute() (*GetUserPermissionsResponseModel, *http.Response, error) {
-	return r.ApiService.ListCurrentUserPermissionsExecute(r)
+func (r ApiListMyUserPermissionsRequest) Execute() (*GetUserPermissionsResponseModel, *http.Response, error) {
+	return r.ApiService.ListMyUserPermissionsExecute(r)
 }
 
 /*
-ListCurrentUserPermissions List Current User Permissions
+ListMyUserPermissions List My User Permissions
+
+Retrieves a list of permissions granted to your account. For additional information on your permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-my-permissions).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListCurrentUserPermissionsRequest
+ @return ApiListMyUserPermissionsRequest
 */
-func (a *UserPermissionAPIService) ListCurrentUserPermissions(ctx context.Context) ApiListCurrentUserPermissionsRequest {
-	return ApiListCurrentUserPermissionsRequest{
+func (a *UserPermissionAPIService) ListMyUserPermissions(ctx context.Context) ApiListMyUserPermissionsRequest {
+	return ApiListMyUserPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -47,7 +49,7 @@ func (a *UserPermissionAPIService) ListCurrentUserPermissions(ctx context.Contex
 
 // Execute executes the request
 //  @return GetUserPermissionsResponseModel
-func (a *UserPermissionAPIService) ListCurrentUserPermissionsExecute(r ApiListCurrentUserPermissionsRequest) (*GetUserPermissionsResponseModel, *http.Response, error) {
+func (a *UserPermissionAPIService) ListMyUserPermissionsExecute(r ApiListMyUserPermissionsRequest) (*GetUserPermissionsResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -55,7 +57,7 @@ func (a *UserPermissionAPIService) ListCurrentUserPermissionsExecute(r ApiListCu
 		localVarReturnValue  *GetUserPermissionsResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserPermissionAPIService.ListCurrentUserPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserPermissionAPIService.ListMyUserPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -182,6 +184,8 @@ func (r ApiListUserPermissionsRequest) Execute() (*GetUserPermissionsResponseMod
 
 /*
 ListUserPermissions List User Permissions
+
+Retrieves a list of permissions granted to a specific user within your organization. Provide the ID of the user in the path. For additional information on user permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/list-user-permissions).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

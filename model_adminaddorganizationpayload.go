@@ -21,6 +21,7 @@ var _ MappedNullable = &Adminaddorganizationpayload{}
 
 // Adminaddorganizationpayload struct for Adminaddorganizationpayload
 type Adminaddorganizationpayload struct {
+	// The ID of the organization.
 	OrganizationId int32 `json:"organization_id"`
 }
 

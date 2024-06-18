@@ -34,6 +34,8 @@ func (r ApiListPermissionsRequest) Execute() (*GetPermissionsResponseModel, *htt
 /*
 ListPermissions List Permissions
 
+Retrieves a list of permissions that users can be granted to access a particular resource action. For additional information on permissions, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/permission/permissions).
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListPermissionsRequest
 */

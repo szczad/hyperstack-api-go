@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Message** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **bool** |  | [optional] 
-**Payments** | Pointer to [**[]Adminpaymenthistoryfields**](Adminpaymenthistoryfields.md) |  | [optional] 
+**Data** | Pointer to [**[]Adminpaymenthistoryfields**](Adminpaymenthistoryfields.md) |  | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### GetPayments
+### GetData
 
-`func (o *Adminpaymenthistoryresponse) GetPayments() []Adminpaymenthistoryfields`
+`func (o *Adminpaymenthistoryresponse) GetData() []Adminpaymenthistoryfields`
 
-GetPayments returns the Payments field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetPaymentsOk
+### GetDataOk
 
-`func (o *Adminpaymenthistoryresponse) GetPaymentsOk() (*[]Adminpaymenthistoryfields, bool)`
+`func (o *Adminpaymenthistoryresponse) GetDataOk() (*[]Adminpaymenthistoryfields, bool)`
 
-GetPaymentsOk returns a tuple with the Payments field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayments
+### SetData
 
-`func (o *Adminpaymenthistoryresponse) SetPayments(v []Adminpaymenthistoryfields)`
+`func (o *Adminpaymenthistoryresponse) SetData(v []Adminpaymenthistoryfields)`
 
-SetPayments sets Payments field to given value.
+SetData sets Data field to given value.
 
-### HasPayments
+### HasData
 
-`func (o *Adminpaymenthistoryresponse) HasPayments() bool`
+`func (o *Adminpaymenthistoryresponse) HasData() bool`
 
-HasPayments returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

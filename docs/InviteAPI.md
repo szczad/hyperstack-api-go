@@ -5,7 +5,7 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteInvite**](InviteAPI.md#DeleteInvite) | **Delete** /auth/invites/{id} | Delete Invite
-[**InviteAnUserToOrganization**](InviteAPI.md#InviteAnUserToOrganization) | **Post** /auth/invites | Invite an user to organization
+[**InviteUserToOrganization**](InviteAPI.md#InviteUserToOrganization) | **Post** /auth/invites | Invite User to Organization
 [**ListInvites**](InviteAPI.md#ListInvites) | **Get** /auth/invites | List Invites
 
 
@@ -15,6 +15,8 @@ Method | HTTP request | Description
 > CommonResponseModel DeleteInvite(ctx, id).Execute()
 
 Delete Invite
+
+
 
 ### Example
 
@@ -78,11 +80,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InviteAnUserToOrganization
+## InviteUserToOrganization
 
-> InviteUserResponseModel InviteAnUserToOrganization(ctx).Payload(payload).Execute()
+> InviteUserResponseModel InviteUserToOrganization(ctx).Payload(payload).Execute()
 
-Invite an user to organization
+Invite User to Organization
+
+
 
 ### Example
 
@@ -101,13 +105,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InviteAPI.InviteAnUserToOrganization(context.Background()).Payload(payload).Execute()
+	resp, r, err := apiClient.InviteAPI.InviteUserToOrganization(context.Background()).Payload(payload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `InviteAPI.InviteAnUserToOrganization``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `InviteAPI.InviteUserToOrganization``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InviteAnUserToOrganization`: InviteUserResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `InviteAPI.InviteAnUserToOrganization`: %v\n", resp)
+	// response from `InviteUserToOrganization`: InviteUserResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `InviteAPI.InviteUserToOrganization`: %v\n", resp)
 }
 ```
 
@@ -117,7 +121,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInviteAnUserToOrganizationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInviteUserToOrganizationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -147,6 +151,8 @@ Name | Type | Description  | Notes
 > GetInvitesResponseModel ListInvites(ctx).Execute()
 
 List Invites
+
+
 
 ### Example
 

@@ -59,6 +59,8 @@ type APIClient struct {
 
 	BillingAPI *BillingAPIService
 
+	CalculateAPI *CalculateAPIService
+
 	CallbacksAPI *CallbacksAPIService
 
 	ComplianceAPI *ComplianceAPIService
@@ -149,6 +151,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AssigningMemberRoleAPI = (*AssigningMemberRoleAPIService)(&c.common)
 	c.AuthAPI = (*AuthAPIService)(&c.common)
 	c.BillingAPI = (*BillingAPIService)(&c.common)
+	c.CalculateAPI = (*CalculateAPIService)(&c.common)
 	c.CallbacksAPI = (*CallbacksAPIService)(&c.common)
 	c.ComplianceAPI = (*ComplianceAPIService)(&c.common)
 	c.CreditAPI = (*CreditAPIService)(&c.common)

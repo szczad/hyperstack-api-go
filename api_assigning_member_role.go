@@ -23,31 +23,33 @@ import (
 // AssigningMemberRoleAPIService AssigningMemberRoleAPI service
 type AssigningMemberRoleAPIService service
 
-type ApiAssignRBACRolesRequest struct {
+type ApiAssignRBACRoleToUserRequest struct {
 	ctx context.Context
 	ApiService *AssigningMemberRoleAPIService
 	userId int32
 	payload *AssignRbacRolePayload
 }
 
-func (r ApiAssignRBACRolesRequest) Payload(payload AssignRbacRolePayload) ApiAssignRBACRolesRequest {
+func (r ApiAssignRBACRoleToUserRequest) Payload(payload AssignRbacRolePayload) ApiAssignRBACRoleToUserRequest {
 	r.payload = &payload
 	return r
 }
 
-func (r ApiAssignRBACRolesRequest) Execute() (*RbacRoleDetailResponseModel, *http.Response, error) {
-	return r.ApiService.AssignRBACRolesExecute(r)
+func (r ApiAssignRBACRoleToUserRequest) Execute() (*RbacRoleDetailResponseModel, *http.Response, error) {
+	return r.ApiService.AssignRBACRoleToUserExecute(r)
 }
 
 /*
-AssignRBACRoles Assign RBAC Roles
+AssignRBACRoleToUser Assign RBAC Role
+
+Assigns a specific RBAC role to a user within your organization, granting them access to the resource actions permitted by the role. Provide the user ID in the path and the role ID in the request body. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/assign-rbac-role).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId
- @return ApiAssignRBACRolesRequest
+ @return ApiAssignRBACRoleToUserRequest
 */
-func (a *AssigningMemberRoleAPIService) AssignRBACRoles(ctx context.Context, userId int32) ApiAssignRBACRolesRequest {
-	return ApiAssignRBACRolesRequest{
+func (a *AssigningMemberRoleAPIService) AssignRBACRoleToUser(ctx context.Context, userId int32) ApiAssignRBACRoleToUserRequest {
+	return ApiAssignRBACRoleToUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		userId: userId,
@@ -56,7 +58,7 @@ func (a *AssigningMemberRoleAPIService) AssignRBACRoles(ctx context.Context, use
 
 // Execute executes the request
 //  @return RbacRoleDetailResponseModel
-func (a *AssigningMemberRoleAPIService) AssignRBACRolesExecute(r ApiAssignRBACRolesRequest) (*RbacRoleDetailResponseModel, *http.Response, error) {
+func (a *AssigningMemberRoleAPIService) AssignRBACRoleToUserExecute(r ApiAssignRBACRoleToUserRequest) (*RbacRoleDetailResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -64,7 +66,7 @@ func (a *AssigningMemberRoleAPIService) AssignRBACRolesExecute(r ApiAssignRBACRo
 		localVarReturnValue  *RbacRoleDetailResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssigningMemberRoleAPIService.AssignRBACRoles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssigningMemberRoleAPIService.AssignRBACRoleToUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -196,25 +198,27 @@ func (a *AssigningMemberRoleAPIService) AssignRBACRolesExecute(r ApiAssignRBACRo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRemoveRoleFromAUserRequest struct {
+type ApiRemoveRBACRoleFromUserRequest struct {
 	ctx context.Context
 	ApiService *AssigningMemberRoleAPIService
 	userId int32
 }
 
-func (r ApiRemoveRoleFromAUserRequest) Execute() (*CommonResponseModel, *http.Response, error) {
-	return r.ApiService.RemoveRoleFromAUserExecute(r)
+func (r ApiRemoveRBACRoleFromUserRequest) Execute() (*CommonResponseModel, *http.Response, error) {
+	return r.ApiService.RemoveRBACRoleFromUserExecute(r)
 }
 
 /*
-RemoveRoleFromAUser Remove role from a user
+RemoveRBACRoleFromUser Remove RBAC Role From User
+
+Removes an RBAC role from a user within your organization, revoking the resource permissions they had access to. Provide the user ID in the path. For additional information, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/rbac/manage-member-roles/revoke-rbac-role).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userId
- @return ApiRemoveRoleFromAUserRequest
+ @return ApiRemoveRBACRoleFromUserRequest
 */
-func (a *AssigningMemberRoleAPIService) RemoveRoleFromAUser(ctx context.Context, userId int32) ApiRemoveRoleFromAUserRequest {
-	return ApiRemoveRoleFromAUserRequest{
+func (a *AssigningMemberRoleAPIService) RemoveRBACRoleFromUser(ctx context.Context, userId int32) ApiRemoveRBACRoleFromUserRequest {
+	return ApiRemoveRBACRoleFromUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		userId: userId,
@@ -223,7 +227,7 @@ func (a *AssigningMemberRoleAPIService) RemoveRoleFromAUser(ctx context.Context,
 
 // Execute executes the request
 //  @return CommonResponseModel
-func (a *AssigningMemberRoleAPIService) RemoveRoleFromAUserExecute(r ApiRemoveRoleFromAUserRequest) (*CommonResponseModel, *http.Response, error) {
+func (a *AssigningMemberRoleAPIService) RemoveRBACRoleFromUserExecute(r ApiRemoveRBACRoleFromUserRequest) (*CommonResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -231,7 +235,7 @@ func (a *AssigningMemberRoleAPIService) RemoveRoleFromAUserExecute(r ApiRemoveRo
 		localVarReturnValue  *CommonResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssigningMemberRoleAPIService.RemoveRoleFromAUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssigningMemberRoleAPIService.RemoveRBACRoleFromUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

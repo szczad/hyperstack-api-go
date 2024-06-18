@@ -6,6 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **bool** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
+**Page** | Pointer to **int32** |  | [optional] 
+**PageSize** | Pointer to **int32** |  | [optional] 
+**Count** | Pointer to **int32** |  | [optional] 
 **Instances** | Pointer to [**[]InstanceFields**](InstanceFields.md) |  | [optional] 
 
 ## Methods
@@ -76,6 +79,81 @@ SetMessage sets Message field to given value.
 `func (o *Instances) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
+
+### GetPage
+
+`func (o *Instances) GetPage() int32`
+
+GetPage returns the Page field if non-nil, zero value otherwise.
+
+### GetPageOk
+
+`func (o *Instances) GetPageOk() (*int32, bool)`
+
+GetPageOk returns a tuple with the Page field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPage
+
+`func (o *Instances) SetPage(v int32)`
+
+SetPage sets Page field to given value.
+
+### HasPage
+
+`func (o *Instances) HasPage() bool`
+
+HasPage returns a boolean if a field has been set.
+
+### GetPageSize
+
+`func (o *Instances) GetPageSize() int32`
+
+GetPageSize returns the PageSize field if non-nil, zero value otherwise.
+
+### GetPageSizeOk
+
+`func (o *Instances) GetPageSizeOk() (*int32, bool)`
+
+GetPageSizeOk returns a tuple with the PageSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPageSize
+
+`func (o *Instances) SetPageSize(v int32)`
+
+SetPageSize sets PageSize field to given value.
+
+### HasPageSize
+
+`func (o *Instances) HasPageSize() bool`
+
+HasPageSize returns a boolean if a field has been set.
+
+### GetCount
+
+`func (o *Instances) GetCount() int32`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *Instances) GetCountOk() (*int32, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *Instances) SetCount(v int32)`
+
+SetCount sets Count field to given value.
+
+### HasCount
+
+`func (o *Instances) HasCount() bool`
+
+HasCount returns a boolean if a field has been set.
 
 ### GetInstances
 

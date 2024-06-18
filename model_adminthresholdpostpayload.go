@@ -19,6 +19,7 @@ var _ MappedNullable = &Adminthresholdpostpayload{}
 
 // Adminthresholdpostpayload struct for Adminthresholdpostpayload
 type Adminthresholdpostpayload struct {
+	// The minimum credit balance required to maintain access to resources.
 	Threshold *float32 `json:"threshold,omitempty"`
 }
 

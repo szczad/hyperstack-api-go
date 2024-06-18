@@ -21,7 +21,6 @@ var _ MappedNullable = &Adminpaymenthistoryfields{}
 // Adminpaymenthistoryfields struct for Adminpaymenthistoryfields
 type Adminpaymenthistoryfields struct {
 	Amount *float32 `json:"amount,omitempty"`
-	Medium *string `json:"medium,omitempty"`
 	Status *string `json:"status,omitempty"`
 	TransactionId *string `json:"transaction_id,omitempty"`
 	PaymentId *string `json:"payment_id,omitempty"`
@@ -75,38 +74,6 @@ func (o *Adminpaymenthistoryfields) HasAmount() bool {
 // SetAmount gets a reference to the given float32 and assigns it to the Amount field.
 func (o *Adminpaymenthistoryfields) SetAmount(v float32) {
 	o.Amount = &v
-}
-
-// GetMedium returns the Medium field value if set, zero value otherwise.
-func (o *Adminpaymenthistoryfields) GetMedium() string {
-	if o == nil || IsNil(o.Medium) {
-		var ret string
-		return ret
-	}
-	return *o.Medium
-}
-
-// GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Adminpaymenthistoryfields) GetMediumOk() (*string, bool) {
-	if o == nil || IsNil(o.Medium) {
-		return nil, false
-	}
-	return o.Medium, true
-}
-
-// HasMedium returns a boolean if a field has been set.
-func (o *Adminpaymenthistoryfields) HasMedium() bool {
-	if o != nil && !IsNil(o.Medium) {
-		return true
-	}
-
-	return false
-}
-
-// SetMedium gets a reference to the given string and assigns it to the Medium field.
-func (o *Adminpaymenthistoryfields) SetMedium(v string) {
-	o.Medium = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -249,9 +216,6 @@ func (o Adminpaymenthistoryfields) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
-	}
-	if !IsNil(o.Medium) {
-		toSerialize["medium"] = o.Medium
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

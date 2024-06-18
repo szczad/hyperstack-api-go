@@ -4,16 +4,18 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListCurrentUserPermissions**](UserPermissionAPI.md#ListCurrentUserPermissions) | **Get** /auth/users/me/permissions | List Current User Permissions
+[**ListMyUserPermissions**](UserPermissionAPI.md#ListMyUserPermissions) | **Get** /auth/users/me/permissions | List My User Permissions
 [**ListUserPermissions**](UserPermissionAPI.md#ListUserPermissions) | **Get** /auth/users/{id}/permissions | List User Permissions
 
 
 
-## ListCurrentUserPermissions
+## ListMyUserPermissions
 
-> GetUserPermissionsResponseModel ListCurrentUserPermissions(ctx).Execute()
+> GetUserPermissionsResponseModel ListMyUserPermissions(ctx).Execute()
 
-List Current User Permissions
+List My User Permissions
+
+
 
 ### Example
 
@@ -31,13 +33,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserPermissionAPI.ListCurrentUserPermissions(context.Background()).Execute()
+	resp, r, err := apiClient.UserPermissionAPI.ListMyUserPermissions(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UserPermissionAPI.ListCurrentUserPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UserPermissionAPI.ListMyUserPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListCurrentUserPermissions`: GetUserPermissionsResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `UserPermissionAPI.ListCurrentUserPermissions`: %v\n", resp)
+	// response from `ListMyUserPermissions`: GetUserPermissionsResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `UserPermissionAPI.ListMyUserPermissions`: %v\n", resp)
 }
 ```
 
@@ -47,7 +49,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCurrentUserPermissionsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListMyUserPermissionsRequest struct via the builder pattern
 
 
 ### Return type
@@ -73,6 +75,8 @@ Other parameters are passed through a pointer to a apiListCurrentUserPermissions
 > GetUserPermissionsResponseModel ListUserPermissions(ctx, id).Execute()
 
 List User Permissions
+
+
 
 ### Example
 

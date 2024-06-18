@@ -21,7 +21,7 @@ var _ MappedNullable = &AdminCreateContractResponseModel{}
 type AdminCreateContractResponseModel struct {
 	Status *bool `json:"status,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Contract *CreateContarctFields `json:"contract,omitempty"`
+	Contract *CreateContractFields `json:"contract,omitempty"`
 }
 
 // NewAdminCreateContractResponseModel instantiates a new AdminCreateContractResponseModel object
@@ -106,9 +106,9 @@ func (o *AdminCreateContractResponseModel) SetMessage(v string) {
 }
 
 // GetContract returns the Contract field value if set, zero value otherwise.
-func (o *AdminCreateContractResponseModel) GetContract() CreateContarctFields {
+func (o *AdminCreateContractResponseModel) GetContract() CreateContractFields {
 	if o == nil || IsNil(o.Contract) {
-		var ret CreateContarctFields
+		var ret CreateContractFields
 		return ret
 	}
 	return *o.Contract
@@ -116,7 +116,7 @@ func (o *AdminCreateContractResponseModel) GetContract() CreateContarctFields {
 
 // GetContractOk returns a tuple with the Contract field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminCreateContractResponseModel) GetContractOk() (*CreateContarctFields, bool) {
+func (o *AdminCreateContractResponseModel) GetContractOk() (*CreateContractFields, bool) {
 	if o == nil || IsNil(o.Contract) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *AdminCreateContractResponseModel) HasContract() bool {
 	return false
 }
 
-// SetContract gets a reference to the given CreateContarctFields and assigns it to the Contract field.
-func (o *AdminCreateContractResponseModel) SetContract(v CreateContarctFields) {
+// SetContract gets a reference to the given CreateContractFields and assigns it to the Contract field.
+func (o *AdminCreateContractResponseModel) SetContract(v CreateContractFields) {
 	o.Contract = &v
 }
 

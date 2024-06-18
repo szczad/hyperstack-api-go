@@ -24,6 +24,7 @@ type InfrahubResourceObjectResponse struct {
 	InfrahubId *int32 `json:"infrahub_id,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Host *string `json:"host,omitempty"`
+	ContractId *int32 `json:"contract_id,omitempty"`
 	Resources []PricebookResourceObjectResponse `json:"resources,omitempty"`
 	Price *float32 `json:"price,omitempty"`
 	ActualPrice *float32 `json:"actual_price,omitempty"`
@@ -208,6 +209,38 @@ func (o *InfrahubResourceObjectResponse) HasHost() bool {
 // SetHost gets a reference to the given string and assigns it to the Host field.
 func (o *InfrahubResourceObjectResponse) SetHost(v string) {
 	o.Host = &v
+}
+
+// GetContractId returns the ContractId field value if set, zero value otherwise.
+func (o *InfrahubResourceObjectResponse) GetContractId() int32 {
+	if o == nil || IsNil(o.ContractId) {
+		var ret int32
+		return ret
+	}
+	return *o.ContractId
+}
+
+// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InfrahubResourceObjectResponse) GetContractIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.ContractId) {
+		return nil, false
+	}
+	return o.ContractId, true
+}
+
+// HasContractId returns a boolean if a field has been set.
+func (o *InfrahubResourceObjectResponse) HasContractId() bool {
+	if o != nil && !IsNil(o.ContractId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractId gets a reference to the given int32 and assigns it to the ContractId field.
+func (o *InfrahubResourceObjectResponse) SetContractId(v int32) {
+	o.ContractId = &v
 }
 
 // GetResources returns the Resources field value if set, zero value otherwise.
@@ -458,6 +491,9 @@ func (o InfrahubResourceObjectResponse) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.Host) {
 		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.ContractId) {
+		toSerialize["contract_id"] = o.ContractId
 	}
 	if !IsNil(o.Resources) {
 		toSerialize["resources"] = o.Resources

@@ -19,7 +19,10 @@ var _ MappedNullable = &Admincreditpostpayload{}
 
 // Admincreditpostpayload struct for Admincreditpostpayload
 type Admincreditpostpayload struct {
+	// The credit value in dollars.
 	Credit *float32 `json:"credit,omitempty"`
+	// Reason for the recharge.
+	Reason *string `json:"reason,omitempty"`
 }
 
 // NewAdmincreditpostpayload instantiates a new Admincreditpostpayload object
@@ -71,6 +74,38 @@ func (o *Admincreditpostpayload) SetCredit(v float32) {
 	o.Credit = &v
 }
 
+// GetReason returns the Reason field value if set, zero value otherwise.
+func (o *Admincreditpostpayload) GetReason() string {
+	if o == nil || IsNil(o.Reason) {
+		var ret string
+		return ret
+	}
+	return *o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Admincreditpostpayload) GetReasonOk() (*string, bool) {
+	if o == nil || IsNil(o.Reason) {
+		return nil, false
+	}
+	return o.Reason, true
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *Admincreditpostpayload) HasReason() bool {
+	if o != nil && !IsNil(o.Reason) {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given string and assigns it to the Reason field.
+func (o *Admincreditpostpayload) SetReason(v string) {
+	o.Reason = &v
+}
+
 func (o Admincreditpostpayload) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -83,6 +118,9 @@ func (o Admincreditpostpayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Credit) {
 		toSerialize["credit"] = o.Credit
+	}
+	if !IsNil(o.Reason) {
+		toSerialize["reason"] = o.Reason
 	}
 	return toSerialize, nil
 }

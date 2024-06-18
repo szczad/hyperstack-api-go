@@ -22,23 +22,25 @@ import (
 // AuthAPIService AuthAPI service
 type AuthAPIService service
 
-type ApiAuthUserInformationRequest struct {
+type ApiRetrieveAuthenticatedUserDetailsRequest struct {
 	ctx context.Context
 	ApiService *AuthAPIService
 }
 
-func (r ApiAuthUserInformationRequest) Execute() (*AuthUserInfoResponseModel, *http.Response, error) {
-	return r.ApiService.AuthUserInformationExecute(r)
+func (r ApiRetrieveAuthenticatedUserDetailsRequest) Execute() (*AuthUserInfoResponseModel, *http.Response, error) {
+	return r.ApiService.RetrieveAuthenticatedUserDetailsExecute(r)
 }
 
 /*
-AuthUserInformation Get me information
+RetrieveAuthenticatedUserDetails Retrieve Authenticated User Details
+
+Retrieves detailed information about the currently authenticated user. For additional information, [**click here**](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/auth).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAuthUserInformationRequest
+ @return ApiRetrieveAuthenticatedUserDetailsRequest
 */
-func (a *AuthAPIService) AuthUserInformation(ctx context.Context) ApiAuthUserInformationRequest {
-	return ApiAuthUserInformationRequest{
+func (a *AuthAPIService) RetrieveAuthenticatedUserDetails(ctx context.Context) ApiRetrieveAuthenticatedUserDetailsRequest {
+	return ApiRetrieveAuthenticatedUserDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -46,7 +48,7 @@ func (a *AuthAPIService) AuthUserInformation(ctx context.Context) ApiAuthUserInf
 
 // Execute executes the request
 //  @return AuthUserInfoResponseModel
-func (a *AuthAPIService) AuthUserInformationExecute(r ApiAuthUserInformationRequest) (*AuthUserInfoResponseModel, *http.Response, error) {
+func (a *AuthAPIService) RetrieveAuthenticatedUserDetailsExecute(r ApiRetrieveAuthenticatedUserDetailsRequest) (*AuthUserInfoResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -54,7 +56,7 @@ func (a *AuthAPIService) AuthUserInformationExecute(r ApiAuthUserInformationRequ
 		localVarReturnValue  *AuthUserInfoResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthAPIService.AuthUserInformation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthAPIService.RetrieveAuthenticatedUserDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -21,7 +21,10 @@ var _ MappedNullable = &Keypairs{}
 type Keypairs struct {
 	Status *bool `json:"status,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Keypairs []KeypairFields `json:"Keypairs,omitempty"`
+	Keypairs []KeypairFields `json:"keypairs,omitempty"`
+	Page *int32 `json:"page,omitempty"`
+	PageSize *int32 `json:"page_size,omitempty"`
+	Count *int32 `json:"count,omitempty"`
 }
 
 // NewKeypairs instantiates a new Keypairs object
@@ -137,6 +140,102 @@ func (o *Keypairs) SetKeypairs(v []KeypairFields) {
 	o.Keypairs = v
 }
 
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *Keypairs) GetPage() int32 {
+	if o == nil || IsNil(o.Page) {
+		var ret int32
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Keypairs) GetPageOk() (*int32, bool) {
+	if o == nil || IsNil(o.Page) {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *Keypairs) HasPage() bool {
+	if o != nil && !IsNil(o.Page) {
+		return true
+	}
+
+	return false
+}
+
+// SetPage gets a reference to the given int32 and assigns it to the Page field.
+func (o *Keypairs) SetPage(v int32) {
+	o.Page = &v
+}
+
+// GetPageSize returns the PageSize field value if set, zero value otherwise.
+func (o *Keypairs) GetPageSize() int32 {
+	if o == nil || IsNil(o.PageSize) {
+		var ret int32
+		return ret
+	}
+	return *o.PageSize
+}
+
+// GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Keypairs) GetPageSizeOk() (*int32, bool) {
+	if o == nil || IsNil(o.PageSize) {
+		return nil, false
+	}
+	return o.PageSize, true
+}
+
+// HasPageSize returns a boolean if a field has been set.
+func (o *Keypairs) HasPageSize() bool {
+	if o != nil && !IsNil(o.PageSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetPageSize gets a reference to the given int32 and assigns it to the PageSize field.
+func (o *Keypairs) SetPageSize(v int32) {
+	o.PageSize = &v
+}
+
+// GetCount returns the Count field value if set, zero value otherwise.
+func (o *Keypairs) GetCount() int32 {
+	if o == nil || IsNil(o.Count) {
+		var ret int32
+		return ret
+	}
+	return *o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Keypairs) GetCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.Count) {
+		return nil, false
+	}
+	return o.Count, true
+}
+
+// HasCount returns a boolean if a field has been set.
+func (o *Keypairs) HasCount() bool {
+	if o != nil && !IsNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
+func (o *Keypairs) SetCount(v int32) {
+	o.Count = &v
+}
+
 func (o Keypairs) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,7 +253,16 @@ func (o Keypairs) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	if !IsNil(o.Keypairs) {
-		toSerialize["Keypairs"] = o.Keypairs
+		toSerialize["keypairs"] = o.Keypairs
+	}
+	if !IsNil(o.Page) {
+		toSerialize["page"] = o.Page
+	}
+	if !IsNil(o.PageSize) {
+		toSerialize["page_size"] = o.PageSize
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
 	}
 	return toSerialize, nil
 }

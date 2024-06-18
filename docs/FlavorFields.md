@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **RegionName** | Pointer to **string** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
 **Ram** | Pointer to **float32** |  | [optional] 
@@ -84,6 +85,31 @@ SetName sets Name field to given value.
 `func (o *FlavorFields) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetDisplayName
+
+`func (o *FlavorFields) GetDisplayName() string`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *FlavorFields) GetDisplayNameOk() (*string, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *FlavorFields) SetDisplayName(v string)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *FlavorFields) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetRegionName
 

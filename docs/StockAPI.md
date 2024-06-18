@@ -4,7 +4,7 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveGPUStocks**](StockAPI.md#RetrieveGPUStocks) | **Get** /core/stocks | 
+[**RetrieveGPUStocks**](StockAPI.md#RetrieveGPUStocks) | **Get** /core/stocks | Retrieve GPU stocks
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > NewStockRetriveResponse RetrieveGPUStocks(ctx).Execute()
 
-
+Retrieve GPU stocks
 
 
 

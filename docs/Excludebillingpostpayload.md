@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ResourceId** | **int32** |  | 
-**Exclude** | **bool** |  | 
+**ResourceId** | **int32** | The ID of the resource which is being excluded from billing. | 
+**Exclude** | **bool** | &#x60;true&#x60; excludes the resource from billing while &#x60;false&#x60; does not. | 
 
 ## Methods
 

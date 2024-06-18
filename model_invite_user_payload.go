@@ -21,6 +21,7 @@ var _ MappedNullable = &InviteUserPayload{}
 
 // InviteUserPayload struct for InviteUserPayload
 type InviteUserPayload struct {
+	// The email for sending invitation.
 	Email string `json:"email"`
 }
 

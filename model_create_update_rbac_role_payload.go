@@ -21,7 +21,9 @@ var _ MappedNullable = &CreateUpdateRbacRolePayload{}
 
 // CreateUpdateRbacRolePayload struct for CreateUpdateRbacRolePayload
 type CreateUpdateRbacRolePayload struct {
+	// Name of the RBAC role.
 	Name string `json:"name"`
+	// Description of the role.
 	Description string `json:"description"`
 	Policies []int32 `json:"policies,omitempty"`
 	Permissions []int32 `json:"permissions,omitempty"`

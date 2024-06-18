@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | Pointer to **string** |  | [optional] 
+**ApiKey** | **string** | The direction of traffic that the firewall rule applies to. | 
 
 ## Methods
 
 ### NewVerifyApiKeyPayload
 
-`func NewVerifyApiKeyPayload() *VerifyApiKeyPayload`
+`func NewVerifyApiKeyPayload(apiKey string, ) *VerifyApiKeyPayload`
 
 NewVerifyApiKeyPayload instantiates a new VerifyApiKeyPayload object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetApiKey sets ApiKey field to given value.
 
-### HasApiKey
-
-`func (o *VerifyApiKeyPayload) HasApiKey() bool`
-
-HasApiKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

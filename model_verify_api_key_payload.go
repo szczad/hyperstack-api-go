@@ -12,6 +12,8 @@ package hyperstack
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the VerifyApiKeyPayload type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,19 @@ var _ MappedNullable = &VerifyApiKeyPayload{}
 
 // VerifyApiKeyPayload struct for VerifyApiKeyPayload
 type VerifyApiKeyPayload struct {
-	ApiKey *string `json:"api_key,omitempty"`
+	// The direction of traffic that the firewall rule applies to.
+	ApiKey string `json:"api_key"`
 }
+
+type _VerifyApiKeyPayload VerifyApiKeyPayload
 
 // NewVerifyApiKeyPayload instantiates a new VerifyApiKeyPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVerifyApiKeyPayload() *VerifyApiKeyPayload {
+func NewVerifyApiKeyPayload(apiKey string) *VerifyApiKeyPayload {
 	this := VerifyApiKeyPayload{}
+	this.ApiKey = apiKey
 	return &this
 }
 
@@ -39,36 +45,28 @@ func NewVerifyApiKeyPayloadWithDefaults() *VerifyApiKeyPayload {
 	return &this
 }
 
-// GetApiKey returns the ApiKey field value if set, zero value otherwise.
+// GetApiKey returns the ApiKey field value
 func (o *VerifyApiKeyPayload) GetApiKey() string {
-	if o == nil || IsNil(o.ApiKey) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ApiKey
+
+	return o.ApiKey
 }
 
-// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
+// GetApiKeyOk returns a tuple with the ApiKey field value
 // and a boolean to check if the value has been set.
 func (o *VerifyApiKeyPayload) GetApiKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiKey) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ApiKey, true
+	return &o.ApiKey, true
 }
 
-// HasApiKey returns a boolean if a field has been set.
-func (o *VerifyApiKeyPayload) HasApiKey() bool {
-	if o != nil && !IsNil(o.ApiKey) {
-		return true
-	}
-
-	return false
-}
-
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
+// SetApiKey sets field value
 func (o *VerifyApiKeyPayload) SetApiKey(v string) {
-	o.ApiKey = &v
+	o.ApiKey = v
 }
 
 func (o VerifyApiKeyPayload) MarshalJSON() ([]byte, error) {
@@ -81,10 +79,45 @@ func (o VerifyApiKeyPayload) MarshalJSON() ([]byte, error) {
 
 func (o VerifyApiKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ApiKey) {
-		toSerialize["api_key"] = o.ApiKey
-	}
+	toSerialize["api_key"] = o.ApiKey
 	return toSerialize, nil
+}
+
+func (o *VerifyApiKeyPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"api_key",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVerifyApiKeyPayload := _VerifyApiKeyPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVerifyApiKeyPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VerifyApiKeyPayload(varVerifyApiKeyPayload)
+
+	return err
 }
 
 type NullableVerifyApiKeyPayload struct {

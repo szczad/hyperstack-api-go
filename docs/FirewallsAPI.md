@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**DeleteFirewall**](FirewallsAPI.md#DeleteFirewall) | **Delete** /core/firewalls/{id} | Delete Firewall
 [**DeleteFirewallRulesFromFirewall**](FirewallsAPI.md#DeleteFirewallRulesFromFirewall) | **Delete** /core/firewalls/{firewall_id}/firewall-rules/{firewall_rule_id} | Delete Firewall Rules from Firewall
 [**DetailsOfFirewallByID**](FirewallsAPI.md#DetailsOfFirewallByID) | **Get** /core/firewalls/{id} | Details of Firewall by ID
-[**RetrieveFirewalls**](FirewallsAPI.md#RetrieveFirewalls) | **Get** /core/firewalls | Retrieve Firewalls
+[**RetrieveFirewalls**](FirewallsAPI.md#RetrieveFirewalls) | **Get** /core/firewalls | List firewalls
 
 
 
@@ -356,9 +356,9 @@ Name | Type | Description  | Notes
 
 ## RetrieveFirewalls
 
-> FirewallsListResponse RetrieveFirewalls(ctx).Execute()
+> FirewallsListResponse RetrieveFirewalls(ctx).Page(page).PageSize(pageSize).Search(search).Execute()
 
-Retrieve Firewalls
+List firewalls
 
 ### Example
 
@@ -373,10 +373,13 @@ import (
 )
 
 func main() {
+	page := int32(56) // int32 |  (optional)
+	pageSize := int32(56) // int32 |  (optional)
+	search := "search_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.RetrieveFirewalls(context.Background()).Execute()
+	resp, r, err := apiClient.FirewallsAPI.RetrieveFirewalls(context.Background()).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.RetrieveFirewalls``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,12 +391,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiRetrieveFirewallsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int32** |  | 
+ **pageSize** | **int32** |  | 
+ **search** | **string** |  | 
 
 ### Return type
 

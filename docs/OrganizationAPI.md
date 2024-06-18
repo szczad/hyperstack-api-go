@@ -4,76 +4,19 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrganizationInfo**](OrganizationAPI.md#GetOrganizationInfo) | **Get** /auth/organizations | Organization Info
-[**RemoveAMemberFromOrganization**](OrganizationAPI.md#RemoveAMemberFromOrganization) | **Post** /auth/organizations/remove-member | Remove a member from organization
-[**UpdateOrganizationInfo**](OrganizationAPI.md#UpdateOrganizationInfo) | **Put** /auth/organizations/update | Update organization info
+[**RemoveOrganizationMember**](OrganizationAPI.md#RemoveOrganizationMember) | **Post** /auth/organizations/remove-member | Remove Organization Member
+[**RetrieveOrganizationInformation**](OrganizationAPI.md#RetrieveOrganizationInformation) | **Get** /auth/organizations | Retrieve Organization Information
+[**UpdateOrganizationInformation**](OrganizationAPI.md#UpdateOrganizationInformation) | **Put** /auth/organizations/update | Update Organization Information
 
 
 
-## GetOrganizationInfo
+## RemoveOrganizationMember
 
-> GetOrganizationResponseModel GetOrganizationInfo(ctx).Execute()
+> RemoveMemberFromOrganizationResponseModel RemoveOrganizationMember(ctx).Payload(payload).Execute()
 
-Organization Info
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/szczad/hyperstack-api-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.GetOrganizationInfo(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetOrganizationInfo``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetOrganizationInfo`: GetOrganizationResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetOrganizationInfo`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetOrganizationInfoRequest struct via the builder pattern
+Remove Organization Member
 
 
-### Return type
-
-[**GetOrganizationResponseModel**](GetOrganizationResponseModel.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [accessToken](../README.md#accessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RemoveAMemberFromOrganization
-
-> RemoveMemberFromOrganizationResponseModel RemoveAMemberFromOrganization(ctx).Payload(payload).Execute()
-
-Remove a member from organization
 
 ### Example
 
@@ -92,13 +35,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.RemoveAMemberFromOrganization(context.Background()).Payload(payload).Execute()
+	resp, r, err := apiClient.OrganizationAPI.RemoveOrganizationMember(context.Background()).Payload(payload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveAMemberFromOrganization``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveOrganizationMember``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemoveAMemberFromOrganization`: RemoveMemberFromOrganizationResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.RemoveAMemberFromOrganization`: %v\n", resp)
+	// response from `RemoveOrganizationMember`: RemoveMemberFromOrganizationResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.RemoveOrganizationMember`: %v\n", resp)
 }
 ```
 
@@ -108,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveAMemberFromOrganizationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRemoveOrganizationMemberRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -133,11 +76,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateOrganizationInfo
+## RetrieveOrganizationInformation
 
-> UpdateOrganizationResponseModel UpdateOrganizationInfo(ctx).Payload(payload).Execute()
+> GetOrganizationResponseModel RetrieveOrganizationInformation(ctx).Execute()
 
-Update organization info
+Retrieve Organization Information
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/szczad/hyperstack-api-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.RetrieveOrganizationInformation(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RetrieveOrganizationInformation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RetrieveOrganizationInformation`: GetOrganizationResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.RetrieveOrganizationInformation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveOrganizationInformationRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetOrganizationResponseModel**](GetOrganizationResponseModel.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [accessToken](../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateOrganizationInformation
+
+> UpdateOrganizationResponseModel UpdateOrganizationInformation(ctx).Payload(payload).Execute()
+
+Update Organization Information
+
+
 
 ### Example
 
@@ -156,13 +162,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.UpdateOrganizationInfo(context.Background()).Payload(payload).Execute()
+	resp, r, err := apiClient.OrganizationAPI.UpdateOrganizationInformation(context.Background()).Payload(payload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateOrganizationInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateOrganizationInformation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateOrganizationInfo`: UpdateOrganizationResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateOrganizationInfo`: %v\n", resp)
+	// response from `UpdateOrganizationInformation`: UpdateOrganizationResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateOrganizationInformation`: %v\n", resp)
 }
 ```
 
@@ -172,7 +178,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateOrganizationInfoRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateOrganizationInformationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

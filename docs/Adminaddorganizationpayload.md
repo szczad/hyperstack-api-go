@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OrganizationId** | **int32** |  | 
+**OrganizationId** | **int32** | The ID of the organization. | 
 
 ## Methods
 

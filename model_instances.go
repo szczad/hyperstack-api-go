@@ -21,6 +21,9 @@ var _ MappedNullable = &Instances{}
 type Instances struct {
 	Status *bool `json:"status,omitempty"`
 	Message *string `json:"message,omitempty"`
+	Page *int32 `json:"page,omitempty"`
+	PageSize *int32 `json:"page_size,omitempty"`
+	Count *int32 `json:"count,omitempty"`
 	Instances []InstanceFields `json:"instances,omitempty"`
 }
 
@@ -105,6 +108,102 @@ func (o *Instances) SetMessage(v string) {
 	o.Message = &v
 }
 
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *Instances) GetPage() int32 {
+	if o == nil || IsNil(o.Page) {
+		var ret int32
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instances) GetPageOk() (*int32, bool) {
+	if o == nil || IsNil(o.Page) {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *Instances) HasPage() bool {
+	if o != nil && !IsNil(o.Page) {
+		return true
+	}
+
+	return false
+}
+
+// SetPage gets a reference to the given int32 and assigns it to the Page field.
+func (o *Instances) SetPage(v int32) {
+	o.Page = &v
+}
+
+// GetPageSize returns the PageSize field value if set, zero value otherwise.
+func (o *Instances) GetPageSize() int32 {
+	if o == nil || IsNil(o.PageSize) {
+		var ret int32
+		return ret
+	}
+	return *o.PageSize
+}
+
+// GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instances) GetPageSizeOk() (*int32, bool) {
+	if o == nil || IsNil(o.PageSize) {
+		return nil, false
+	}
+	return o.PageSize, true
+}
+
+// HasPageSize returns a boolean if a field has been set.
+func (o *Instances) HasPageSize() bool {
+	if o != nil && !IsNil(o.PageSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetPageSize gets a reference to the given int32 and assigns it to the PageSize field.
+func (o *Instances) SetPageSize(v int32) {
+	o.PageSize = &v
+}
+
+// GetCount returns the Count field value if set, zero value otherwise.
+func (o *Instances) GetCount() int32 {
+	if o == nil || IsNil(o.Count) {
+		var ret int32
+		return ret
+	}
+	return *o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instances) GetCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.Count) {
+		return nil, false
+	}
+	return o.Count, true
+}
+
+// HasCount returns a boolean if a field has been set.
+func (o *Instances) HasCount() bool {
+	if o != nil && !IsNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
+func (o *Instances) SetCount(v int32) {
+	o.Count = &v
+}
+
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *Instances) GetInstances() []InstanceFields {
 	if o == nil || IsNil(o.Instances) {
@@ -152,6 +251,15 @@ func (o Instances) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Page) {
+		toSerialize["page"] = o.Page
+	}
+	if !IsNil(o.PageSize) {
+		toSerialize["page_size"] = o.PageSize
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
 	}
 	if !IsNil(o.Instances) {
 		toSerialize["instances"] = o.Instances

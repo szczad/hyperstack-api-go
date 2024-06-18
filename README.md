@@ -79,13 +79,16 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AliveAPI* | [**GetAlive**](docs/AliveAPI.md#getalive) | **Get** /billing/alive | GET: Alive
+*ApiKeyAPI* | [**DeleteAPIKey**](docs/ApiKeyAPI.md#deleteapikey) | **Delete** /api-key/{api_key_id} | Delete API Key
 *ApiKeyAPI* | [**GenerateAPIKey**](docs/ApiKeyAPI.md#generateapikey) | **Post** /api-key/generate | Generate API Key
-*ApiKeyAPI* | [**GetAPIKey**](docs/ApiKeyAPI.md#getapikey) | **Get** /api-key | Get API Key
-*AssigningMemberRoleAPI* | [**AssignRBACRoles**](docs/AssigningMemberRoleAPI.md#assignrbacroles) | **Put** /auth/users/{user_id}/assign-roles | Assign RBAC Roles
-*AssigningMemberRoleAPI* | [**RemoveRoleFromAUser**](docs/AssigningMemberRoleAPI.md#removerolefromauser) | **Delete** /auth/users/{user_id}/roles | Remove role from a user
-*AuthAPI* | [**AuthUserInformation**](docs/AuthAPI.md#authuserinformation) | **Get** /auth/me | Get me information
+*ApiKeyAPI* | [**RetrieveAPIKey**](docs/ApiKeyAPI.md#retrieveapikey) | **Get** /api-key | Retrieve API Keys
+*ApiKeyAPI* | [**UpdateAPIKey**](docs/ApiKeyAPI.md#updateapikey) | **Put** /api-key/{api_key_id} | Update API Key
+*AssigningMemberRoleAPI* | [**AssignRBACRoleToUser**](docs/AssigningMemberRoleAPI.md#assignrbacroletouser) | **Put** /auth/users/{user_id}/assign-roles | Assign RBAC Role
+*AssigningMemberRoleAPI* | [**RemoveRBACRoleFromUser**](docs/AssigningMemberRoleAPI.md#removerbacrolefromuser) | **Delete** /auth/users/{user_id}/roles | Remove RBAC Role From User
+*AuthAPI* | [**RetrieveAuthenticatedUserDetails**](docs/AuthAPI.md#retrieveauthenticateduserdetails) | **Get** /auth/me | Retrieve Authenticated User Details
 *BillingAPI* | [**GetLastDayCost**](docs/BillingAPI.md#getlastdaycost) | **Get** /billing/billing/last-day-cost | GET: Last Day Cost
 *BillingAPI* | [**GetUsage**](docs/BillingAPI.md#getusage) | **Get** /billing/billing/usage | GET: Billing usage
+*CalculateAPI* | [**GetCalculate**](docs/CalculateAPI.md#getcalculate) | **Get** /pricebook/calculate/resource/{resource_type}/{id} | Retrieve Billing Rate for Resource
 *CallbacksAPI* | [**AttachCallbackToVirtualMachine**](docs/CallbacksAPI.md#attachcallbacktovirtualmachine) | **Post** /core/virtual-machines/{id}/attach-callback | Attach callback to virtual machine
 *CallbacksAPI* | [**AttachCallbackToVolume**](docs/CallbacksAPI.md#attachcallbacktovolume) | **Post** /core/volumes/{id}/attach-callback | Attach callback to volume
 *CallbacksAPI* | [**DeleteVirtualMachineCallback**](docs/CallbacksAPI.md#deletevirtualmachinecallback) | **Delete** /core/virtual-machines/{id}/delete-callback | Delete virtual machine callback
@@ -97,8 +100,8 @@ Class | Method | HTTP request | Description
 *ComplianceAPI* | [**RetrieveCompliance**](docs/ComplianceAPI.md#retrievecompliance) | **Get** /core/compliance | Retrieve GPU compliance
 *ComplianceAPI* | [**UpdateACompliance**](docs/ComplianceAPI.md#updateacompliance) | **Put** /core/compliance | Update a compliance
 *CreditAPI* | [**CheckBalanceAsAnOrganization**](docs/CreditAPI.md#checkbalanceasanorganization) | **Get** /billing/user-credit/credit | GET: View credit and threshold
-*CustomerContractAPI* | [**DetailsOfContractByIDForCustomer**](docs/CustomerContractAPI.md#detailsofcontractbyidforcustomer) | **Get** /pricebook/contracts/{contract_id} | Details of Contract by ID for Customer
-*CustomerContractAPI* | [**ListContractsForCustomer**](docs/CustomerContractAPI.md#listcontractsforcustomer) | **Get** /pricebook/contracts | List Contracts for Customer
+*CustomerContractAPI* | [**DetailsOfContractByIDForCustomer**](docs/CustomerContractAPI.md#detailsofcontractbyidforcustomer) | **Get** /pricebook/contracts/{contract_id} | Retrieve Contract Details
+*CustomerContractAPI* | [**GetCustomerContract**](docs/CustomerContractAPI.md#getcustomercontract) | **Get** /pricebook/contracts | List Contracts
 *DashboardAPI* | [**RetrieveDashboard**](docs/DashboardAPI.md#retrievedashboard) | **Get** /core/dashboard | Retrieve Dashboard
 *DeploymentAPI* | [**DeleteDeployment**](docs/DeploymentAPI.md#deletedeployment) | **Delete** /core/marketplace/deployments/{id} | Delete Deployment
 *DeploymentAPI* | [**DetailsOfDeploymentByID**](docs/DeploymentAPI.md#detailsofdeploymentbyid) | **Get** /core/marketplace/deployments/{id} | Details of Deployment by ID
@@ -115,22 +118,22 @@ Class | Method | HTTP request | Description
 *FirewallsAPI* | [**DeleteFirewall**](docs/FirewallsAPI.md#deletefirewall) | **Delete** /core/firewalls/{id} | Delete Firewall
 *FirewallsAPI* | [**DeleteFirewallRulesFromFirewall**](docs/FirewallsAPI.md#deletefirewallrulesfromfirewall) | **Delete** /core/firewalls/{firewall_id}/firewall-rules/{firewall_rule_id} | Delete Firewall Rules from Firewall
 *FirewallsAPI* | [**DetailsOfFirewallByID**](docs/FirewallsAPI.md#detailsoffirewallbyid) | **Get** /core/firewalls/{id} | Details of Firewall by ID
-*FirewallsAPI* | [**RetrieveFirewalls**](docs/FirewallsAPI.md#retrievefirewalls) | **Get** /core/firewalls | Retrieve Firewalls
+*FirewallsAPI* | [**RetrieveFirewalls**](docs/FirewallsAPI.md#retrievefirewalls) | **Get** /core/firewalls | List firewalls
 *FlavorAPI* | [**ListFlavors**](docs/FlavorAPI.md#listflavors) | **Get** /core/flavors | List flavors
 *FloatingIpAPI* | [**AttachPublicIPToVirtualMachine**](docs/FloatingIpAPI.md#attachpubliciptovirtualmachine) | **Post** /core/virtual-machines/{id}/attach-floatingip | Attach public IP to virtual machine
 *FloatingIpAPI* | [**DetachPublicIPFromVirtualMachine**](docs/FloatingIpAPI.md#detachpublicipfromvirtualmachine) | **Post** /core/virtual-machines/{id}/detach-floatingip | Detach public IP from virtual machine
 *GpuAPI* | [**ListGPUs**](docs/GpuAPI.md#listgpus) | **Get** /core/gpus | List GPUs
 *ImageAPI* | [**ListImages**](docs/ImageAPI.md#listimages) | **Get** /core/images | List images
 *InviteAPI* | [**DeleteInvite**](docs/InviteAPI.md#deleteinvite) | **Delete** /auth/invites/{id} | Delete Invite
-*InviteAPI* | [**InviteAnUserToOrganization**](docs/InviteAPI.md#inviteanusertoorganization) | **Post** /auth/invites | Invite an user to organization
+*InviteAPI* | [**InviteUserToOrganization**](docs/InviteAPI.md#inviteusertoorganization) | **Post** /auth/invites | Invite User to Organization
 *InviteAPI* | [**ListInvites**](docs/InviteAPI.md#listinvites) | **Get** /auth/invites | List Invites
 *KeypairAPI* | [**DeleteKeyPair**](docs/KeypairAPI.md#deletekeypair) | **Delete** /core/keypair/{id} | Delete key pair
 *KeypairAPI* | [**ImportKeyPair**](docs/KeypairAPI.md#importkeypair) | **Post** /core/keypairs | Import key pair
 *KeypairAPI* | [**ListKeyPairs**](docs/KeypairAPI.md#listkeypairs) | **Get** /core/keypairs | List key pairs
 *KeypairAPI* | [**UpdateKeyPairName**](docs/KeypairAPI.md#updatekeypairname) | **Put** /core/keypair/{id} | Update key pair name
-*OrganizationAPI* | [**GetOrganizationInfo**](docs/OrganizationAPI.md#getorganizationinfo) | **Get** /auth/organizations | Organization Info
-*OrganizationAPI* | [**RemoveAMemberFromOrganization**](docs/OrganizationAPI.md#removeamemberfromorganization) | **Post** /auth/organizations/remove-member | Remove a member from organization
-*OrganizationAPI* | [**UpdateOrganizationInfo**](docs/OrganizationAPI.md#updateorganizationinfo) | **Put** /auth/organizations/update | Update organization info
+*OrganizationAPI* | [**RemoveOrganizationMember**](docs/OrganizationAPI.md#removeorganizationmember) | **Post** /auth/organizations/remove-member | Remove Organization Member
+*OrganizationAPI* | [**RetrieveOrganizationInformation**](docs/OrganizationAPI.md#retrieveorganizationinformation) | **Get** /auth/organizations | Retrieve Organization Information
+*OrganizationAPI* | [**UpdateOrganizationInformation**](docs/OrganizationAPI.md#updateorganizationinformation) | **Put** /auth/organizations/update | Update Organization Information
 *PaymentAPI* | [**GetDetails**](docs/PaymentAPI.md#getdetails) | **Get** /billing/payment/payment-details | GET: View payment details
 *PaymentAPI* | [**PostPayment**](docs/PaymentAPI.md#postpayment) | **Post** /billing/payment/payment-initiate | POST: Initiate payment
 *PermissionAPI* | [**ListPermissions**](docs/PermissionAPI.md#listpermissions) | **Get** /auth/permissions | List Permissions
@@ -141,13 +144,13 @@ Class | Method | HTTP request | Description
 *ProfileAPI* | [**ListProfiles**](docs/ProfileAPI.md#listprofiles) | **Get** /core/profiles | List profiles
 *ProfileAPI* | [**RetrieveProfileDetails**](docs/ProfileAPI.md#retrieveprofiledetails) | **Get** /core/profiles/{id} | Retrieve profile details
 *RbacRoleAPI* | [**CreateRBACRole**](docs/RbacRoleAPI.md#createrbacrole) | **Post** /auth/roles | Create RBAC Role
-*RbacRoleAPI* | [**DeleteARBACRole**](docs/RbacRoleAPI.md#deletearbacrole) | **Delete** /auth/roles/{id} | Delete a RBAC Role
-*RbacRoleAPI* | [**GetARBACRoleDetail**](docs/RbacRoleAPI.md#getarbacroledetail) | **Get** /auth/roles/{id} | Get a RBAC Role Detail
+*RbacRoleAPI* | [**DeleteRBACRole**](docs/RbacRoleAPI.md#deleterbacrole) | **Delete** /auth/roles/{id} | Delete RBAC Role
 *RbacRoleAPI* | [**ListRBACRoles**](docs/RbacRoleAPI.md#listrbacroles) | **Get** /auth/roles | List RBAC Roles
-*RbacRoleAPI* | [**UpdateARBACRole**](docs/RbacRoleAPI.md#updatearbacrole) | **Put** /auth/roles/{id} | Update a RBAC Role
+*RbacRoleAPI* | [**RetrieveRBACRoleDetails**](docs/RbacRoleAPI.md#retrieverbacroledetails) | **Get** /auth/roles/{id} | Retrieve RBAC Role Details
+*RbacRoleAPI* | [**UpdateRBACRole**](docs/RbacRoleAPI.md#updaterbacrole) | **Put** /auth/roles/{id} | Update RBAC Role
 *RegionAPI* | [**ListRegions**](docs/RegionAPI.md#listregions) | **Get** /core/regions | List regions
 *SecurityRulesAPI* | [**ListFirewallRuleProtocols**](docs/SecurityRulesAPI.md#listfirewallruleprotocols) | **Get** /core/sg-rules-protocols | List firewall rule protocols
-*StockAPI* | [**RetrieveGPUStocks**](docs/StockAPI.md#retrievegpustocks) | **Get** /core/stocks | 
+*StockAPI* | [**RetrieveGPUStocks**](docs/StockAPI.md#retrievegpustocks) | **Get** /core/stocks | Retrieve GPU stocks
 *TemplateAPI* | [**CreateTemplate**](docs/TemplateAPI.md#createtemplate) | **Post** /core/marketplace/templates | Create template
 *TemplateAPI* | [**DeleteTemplate**](docs/TemplateAPI.md#deletetemplate) | **Delete** /core/marketplace/templates/{id} | Delete template
 *TemplateAPI* | [**ListTemplates**](docs/TemplateAPI.md#listtemplates) | **Get** /core/marketplace/templates | List templates
@@ -156,8 +159,8 @@ Class | Method | HTTP request | Description
 *UserAPI* | [**GetUser**](docs/UserAPI.md#getuser) | **Get** /billing/user/info | GET: Fetch User Info
 *UserAPI* | [**PostUser**](docs/UserAPI.md#postuser) | **Post** /billing/user/info | POST: Insert user info
 *UserAPI* | [**UpdateUserInfo**](docs/UserAPI.md#updateuserinfo) | **Put** /billing/user/info | PUT: Update user info
-*UserDetailChoiceAPI* | [**RetrieveDefaultFlavorsAndImagesForUser**](docs/UserDetailChoiceAPI.md#retrievedefaultflavorsandimagesforuser) | **Get** /core/user/resources/defaults | Retrieve default flavors and images for user
-*UserPermissionAPI* | [**ListCurrentUserPermissions**](docs/UserPermissionAPI.md#listcurrentuserpermissions) | **Get** /auth/users/me/permissions | List Current User Permissions
+*UserDetailChoiceAPI* | [**RetrieveDefaultFlavorsAndImages**](docs/UserDetailChoiceAPI.md#retrievedefaultflavorsandimages) | **Get** /core/user/resources/defaults | Retrieve Default Flavors and Images
+*UserPermissionAPI* | [**ListMyUserPermissions**](docs/UserPermissionAPI.md#listmyuserpermissions) | **Get** /auth/users/me/permissions | List My User Permissions
 *UserPermissionAPI* | [**ListUserPermissions**](docs/UserPermissionAPI.md#listuserpermissions) | **Get** /auth/users/{id}/permissions | List User Permissions
 *VirtualMachineAPI* | [**AddFirewallRuleToVirtualMachine**](docs/VirtualMachineAPI.md#addfirewallruletovirtualmachine) | **Post** /core/virtual-machines/{id}/sg-rules | Add firewall rule to virtual machine
 *VirtualMachineAPI* | [**AttachFirewallsToAVM**](docs/VirtualMachineAPI.md#attachfirewallstoavm) | **Post** /core/virtual-machines/{vm_id}/attach-firewalls | Attach Firewalls to a VM
@@ -167,7 +170,7 @@ Class | Method | HTTP request | Description
 *VirtualMachineAPI* | [**EditLabelsOfAnExistingVM**](docs/VirtualMachineAPI.md#editlabelsofanexistingvm) | **Put** /core/virtual-machines/{virtual_machine_id}/label | Edit labels of an existing VM
 *VirtualMachineAPI* | [**HardRebootVirtualMachine**](docs/VirtualMachineAPI.md#hardrebootvirtualmachine) | **Get** /core/virtual-machines/{id}/hard-reboot | Hard reboot virtual machine
 *VirtualMachineAPI* | [**HibernateVirtualMachine**](docs/VirtualMachineAPI.md#hibernatevirtualmachine) | **Get** /core/virtual-machines/{virtual_machine_id}/hibernate | Hibernate virtual machine
-*VirtualMachineAPI* | [**ListVirtualMachines**](docs/VirtualMachineAPI.md#listvirtualmachines) | **Get** /core/virtual-machines | List all virtual machines
+*VirtualMachineAPI* | [**ListVirtualMachines**](docs/VirtualMachineAPI.md#listvirtualmachines) | **Get** /core/virtual-machines | List virtual machines
 *VirtualMachineAPI* | [**ResizeVirtualMachine**](docs/VirtualMachineAPI.md#resizevirtualmachine) | **Post** /core/virtual-machines/{virtual_machine_id}/resize | Resize virtual machine
 *VirtualMachineAPI* | [**RestoreVirtualMachineFromHibernation**](docs/VirtualMachineAPI.md#restorevirtualmachinefromhibernation) | **Get** /core/virtual-machines/{virtual_machine_id}/hibernate-restore | Restore virtual machine from hibernation
 *VirtualMachineAPI* | [**RetrieveVirtualMachineDetails**](docs/VirtualMachineAPI.md#retrievevirtualmachinedetails) | **Get** /core/virtual-machines/{id} | Retrieve virtual machine details
@@ -220,6 +223,8 @@ Class | Method | HTTP request | Description
  - [AdminOrganizationSummaryFields](docs/AdminOrganizationSummaryFields.md)
  - [AdminOrganizationsResponseModel](docs/AdminOrganizationsResponseModel.md)
  - [AdminOrganizationsSummaryResponseModel](docs/AdminOrganizationsSummaryResponseModel.md)
+ - [AdminResource](docs/AdminResource.md)
+ - [AdminResourceResponseFromResourceID](docs/AdminResourceResponseFromResourceID.md)
  - [AdminUserFields](docs/AdminUserFields.md)
  - [AdminUserResponseModel](docs/AdminUserResponseModel.md)
  - [AdminUsersResponseModel](docs/AdminUsersResponseModel.md)
@@ -260,7 +265,7 @@ Class | Method | HTTP request | Description
  - [ContainerOverviewFields](docs/ContainerOverviewFields.md)
  - [ContractInstanceFields](docs/ContractInstanceFields.md)
  - [ContractInstancesResponse](docs/ContractInstancesResponse.md)
- - [CreateContarctFields](docs/CreateContarctFields.md)
+ - [CreateContractFields](docs/CreateContractFields.md)
  - [CreateContractPayload](docs/CreateContractPayload.md)
  - [CreateDiscountResponse](docs/CreateDiscountResponse.md)
  - [CreateDiscountsPayload](docs/CreateDiscountsPayload.md)
@@ -269,6 +274,7 @@ Class | Method | HTTP request | Description
  - [CreateFirewallRulePayload](docs/CreateFirewallRulePayload.md)
  - [CreateGPU](docs/CreateGPU.md)
  - [CreateInstancesPayload](docs/CreateInstancesPayload.md)
+ - [CreateInstancesResponse](docs/CreateInstancesResponse.md)
  - [CreateProfilePayload](docs/CreateProfilePayload.md)
  - [CreateProfileResponse](docs/CreateProfileResponse.md)
  - [CreateSecurityRulePayload](docs/CreateSecurityRulePayload.md)
@@ -279,6 +285,8 @@ Class | Method | HTTP request | Description
  - [CreateUpdatePolicyResponseModel](docs/CreateUpdatePolicyResponseModel.md)
  - [CreateUpdateRbacRolePayload](docs/CreateUpdateRbacRolePayload.md)
  - [CreateVolumePayload](docs/CreateVolumePayload.md)
+ - [Creditrequestresponse](docs/Creditrequestresponse.md)
+ - [Creditrequests](docs/Creditrequests.md)
  - [CustomerContractDetailResponseModel](docs/CustomerContractDetailResponseModel.md)
  - [CustomerContractFields](docs/CustomerContractFields.md)
  - [CustomerFields](docs/CustomerFields.md)
@@ -330,10 +338,13 @@ Class | Method | HTTP request | Description
  - [GPUFields](docs/GPUFields.md)
  - [GPUList](docs/GPUList.md)
  - [GPURegionFields](docs/GPURegionFields.md)
- - [GenerateApiKeyResponseModel](docs/GenerateApiKeyResponseModel.md)
+ - [GenerateUpdateApiKeyPayload](docs/GenerateUpdateApiKeyPayload.md)
+ - [GenerateUpdateApiKeyResponseModel](docs/GenerateUpdateApiKeyResponseModel.md)
+ - [GetAllContractFields](docs/GetAllContractFields.md)
+ - [GetAllContractsResponseModel](docs/GetAllContractsResponseModel.md)
  - [GetAllDiscountForAllOrganizationResponse](docs/GetAllDiscountForAllOrganizationResponse.md)
  - [GetAllDiscountsFields](docs/GetAllDiscountsFields.md)
- - [GetApiKeyResponseModel](docs/GetApiKeyResponseModel.md)
+ - [GetApiKeysResponseModel](docs/GetApiKeysResponseModel.md)
  - [GetContractDetailResponseModel](docs/GetContractDetailResponseModel.md)
  - [GetContractEventsResponseModel](docs/GetContractEventsResponseModel.md)
  - [GetContractsListResponseModel](docs/GetContractsListResponseModel.md)
@@ -351,6 +362,8 @@ Class | Method | HTTP request | Description
  - [GetVersionResponse](docs/GetVersionResponse.md)
  - [Getcreditandthresholdinfo](docs/Getcreditandthresholdinfo.md)
  - [Getcreditandthresholdinfoinresponse](docs/Getcreditandthresholdinfoinresponse.md)
+ - [HistoricalInstance](docs/HistoricalInstance.md)
+ - [HistoricalInstancesFields](docs/HistoricalInstancesFields.md)
  - [ImageFields](docs/ImageFields.md)
  - [ImageGetResponse](docs/ImageGetResponse.md)
  - [ImageLogos](docs/ImageLogos.md)
@@ -358,6 +371,7 @@ Class | Method | HTTP request | Description
  - [ImportKeypairPayload](docs/ImportKeypairPayload.md)
  - [ImportKeypairResponse](docs/ImportKeypairResponse.md)
  - [InfrahubResourceObjectResponse](docs/InfrahubResourceObjectResponse.md)
+ - [InfrahubResourceObjectResponseForCustomer](docs/InfrahubResourceObjectResponseForCustomer.md)
  - [InsertDiscountPlanFields](docs/InsertDiscountPlanFields.md)
  - [Instance](docs/Instance.md)
  - [InstanceAdmin](docs/InstanceAdmin.md)
@@ -424,6 +438,7 @@ Class | Method | HTTP request | Description
  - [PowerUsageModel](docs/PowerUsageModel.md)
  - [PricebookModel](docs/PricebookModel.md)
  - [PricebookResourceObjectResponse](docs/PricebookResourceObjectResponse.md)
+ - [PricebookResourceObjectResponseForCustomer](docs/PricebookResourceObjectResponseForCustomer.md)
  - [ProfileFields](docs/ProfileFields.md)
  - [ProfileListResponse](docs/ProfileListResponse.md)
  - [ProfileObjectFields](docs/ProfileObjectFields.md)
@@ -438,6 +453,8 @@ Class | Method | HTTP request | Description
  - [RemoveMemberFromOrganizationResponseModel](docs/RemoveMemberFromOrganizationResponseModel.md)
  - [RemoveMemberPayload](docs/RemoveMemberPayload.md)
  - [RequestConsole](docs/RequestConsole.md)
+ - [ResourceBillingResponseForCustomer](docs/ResourceBillingResponseForCustomer.md)
+ - [ResourceObjectResponseForCustomer](docs/ResourceObjectResponseForCustomer.md)
  - [ResourcePayload](docs/ResourcePayload.md)
  - [ResponseModel](docs/ResponseModel.md)
  - [RolePermissionFields](docs/RolePermissionFields.md)

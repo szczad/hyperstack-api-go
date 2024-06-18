@@ -532,6 +532,24 @@ func (a *VolumeAPIService) ListVolumeTypesExecute(r ApiListVolumeTypesRequest) (
 type ApiListVolumesRequest struct {
 	ctx context.Context
 	ApiService *VolumeAPIService
+	page *int32
+	pageSize *int32
+	search *string
+}
+
+func (r ApiListVolumesRequest) Page(page int32) ApiListVolumesRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiListVolumesRequest) PageSize(pageSize int32) ApiListVolumesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListVolumesRequest) Search(search string) ApiListVolumesRequest {
+	r.search = &search
+	return r
 }
 
 func (r ApiListVolumesRequest) Execute() (*Volumes, *http.Response, error) {
@@ -574,6 +592,15 @@ func (a *VolumeAPIService) ListVolumesExecute(r ApiListVolumesRequest) (*Volumes
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

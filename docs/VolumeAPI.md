@@ -210,7 +210,7 @@ Other parameters are passed through a pointer to a apiListVolumeTypesRequest str
 
 ## ListVolumes
 
-> Volumes ListVolumes(ctx).Execute()
+> Volumes ListVolumes(ctx).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List volumes
 
@@ -229,10 +229,13 @@ import (
 )
 
 func main() {
+	page := int32(56) // int32 |  (optional)
+	pageSize := int32(56) // int32 |  (optional)
+	search := "search_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VolumeAPI.ListVolumes(context.Background()).Execute()
+	resp, r, err := apiClient.VolumeAPI.ListVolumes(context.Background()).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VolumeAPI.ListVolumes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -244,12 +247,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListVolumesRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int32** |  | 
+ **pageSize** | **int32** |  | 
+ **search** | **string** |  | 
 
 ### Return type
 

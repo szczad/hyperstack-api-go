@@ -70,9 +70,11 @@ Other parameters are passed through a pointer to a apiGetLastDayCostRequest stru
 
 ## GetUsage
 
-> Billingmetricesresponse GetUsage(ctx).Execute()
+> Billingmetricesresponse GetUsage(ctx).Deleted(deleted).Execute()
 
 GET: Billing usage
+
+
 
 ### Example
 
@@ -87,10 +89,11 @@ import (
 )
 
 func main() {
+	deleted := TODO // interface{} | `true` will return inactive resources and `false` will return active resources. By defualt(`deleted=false`) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingAPI.GetUsage(context.Background()).Execute()
+	resp, r, err := apiClient.BillingAPI.GetUsage(context.Background()).Deleted(deleted).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BillingAPI.GetUsage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,12 +105,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetUsageRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deleted** | [**interface{}**](interface{}.md) | &#x60;true&#x60; will return inactive resources and &#x60;false&#x60; will return active resources. By defualt(&#x60;deleted&#x3D;false&#x60;) | 
 
 ### Return type
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **VolumeType** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasVolumeType returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *InternalVolumeFields) GetSize() string`
+`func (o *InternalVolumeFields) GetSize() int32`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *InternalVolumeFields) GetSizeOk() (*string, bool)`
+`func (o *InternalVolumeFields) GetSizeOk() (*int32, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *InternalVolumeFields) SetSize(v string)`
+`func (o *InternalVolumeFields) SetSize(v int32)`
 
 SetSize sets Size field to given value.
 

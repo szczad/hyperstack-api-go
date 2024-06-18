@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **bool** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
-**Contract** | Pointer to [**CreateContarctFields**](CreateContarctFields.md) |  | [optional] 
+**Contract** | Pointer to [**CreateContractFields**](CreateContractFields.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetContract
 
-`func (o *AdminCreateContractResponseModel) GetContract() CreateContarctFields`
+`func (o *AdminCreateContractResponseModel) GetContract() CreateContractFields`
 
 GetContract returns the Contract field if non-nil, zero value otherwise.
 
 ### GetContractOk
 
-`func (o *AdminCreateContractResponseModel) GetContractOk() (*CreateContarctFields, bool)`
+`func (o *AdminCreateContractResponseModel) GetContractOk() (*CreateContractFields, bool)`
 
 GetContractOk returns a tuple with the Contract field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContract
 
-`func (o *AdminCreateContractResponseModel) SetContract(v CreateContarctFields)`
+`func (o *AdminCreateContractResponseModel) SetContract(v CreateContractFields)`
 
 SetContract sets Contract field to given value.
 

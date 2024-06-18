@@ -34,7 +34,7 @@ func (r ApiDetailsOfContractByIDForCustomerRequest) Execute() (*CustomerContract
 }
 
 /*
-DetailsOfContractByIDForCustomer Details of Contract by ID for Customer
+DetailsOfContractByIDForCustomer Retrieve Contract Details
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param contractId
@@ -196,35 +196,37 @@ func (a *CustomerContractAPIService) DetailsOfContractByIDForCustomerExecute(r A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListContractsForCustomerRequest struct {
+type ApiGetCustomerContractRequest struct {
 	ctx context.Context
 	ApiService *CustomerContractAPIService
 	page *int32
 	perPage *int32
 }
 
-func (r ApiListContractsForCustomerRequest) Page(page int32) ApiListContractsForCustomerRequest {
+func (r ApiGetCustomerContractRequest) Page(page int32) ApiGetCustomerContractRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiListContractsForCustomerRequest) PerPage(perPage int32) ApiListContractsForCustomerRequest {
+func (r ApiGetCustomerContractRequest) PerPage(perPage int32) ApiGetCustomerContractRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiListContractsForCustomerRequest) Execute() (*GetCustomerContractsListResponseModel, *http.Response, error) {
-	return r.ApiService.ListContractsForCustomerExecute(r)
+func (r ApiGetCustomerContractRequest) Execute() (*GetCustomerContractsListResponseModel, *http.Response, error) {
+	return r.ApiService.GetCustomerContractExecute(r)
 }
 
 /*
-ListContractsForCustomer List Contracts for Customer
+GetCustomerContract List Contracts
+
+Retrieves a list of contracts and their details, including the terms of each contract and the discounts applied to all resources under each contract. Pagination can be controlled using the `page` and `per_page` query parameters. For additional information about contracts, click [**here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/contracts).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListContractsForCustomerRequest
+ @return ApiGetCustomerContractRequest
 */
-func (a *CustomerContractAPIService) ListContractsForCustomer(ctx context.Context) ApiListContractsForCustomerRequest {
-	return ApiListContractsForCustomerRequest{
+func (a *CustomerContractAPIService) GetCustomerContract(ctx context.Context) ApiGetCustomerContractRequest {
+	return ApiGetCustomerContractRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -232,7 +234,7 @@ func (a *CustomerContractAPIService) ListContractsForCustomer(ctx context.Contex
 
 // Execute executes the request
 //  @return GetCustomerContractsListResponseModel
-func (a *CustomerContractAPIService) ListContractsForCustomerExecute(r ApiListContractsForCustomerRequest) (*GetCustomerContractsListResponseModel, *http.Response, error) {
+func (a *CustomerContractAPIService) GetCustomerContractExecute(r ApiGetCustomerContractRequest) (*GetCustomerContractsListResponseModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -240,7 +242,7 @@ func (a *CustomerContractAPIService) ListContractsForCustomerExecute(r ApiListCo
 		localVarReturnValue  *GetCustomerContractsListResponseModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomerContractAPIService.ListContractsForCustomer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomerContractAPIService.GetCustomerContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

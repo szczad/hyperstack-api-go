@@ -21,7 +21,7 @@ var _ MappedNullable = &Adminpaymenthistoryresponse{}
 type Adminpaymenthistoryresponse struct {
 	Message *string `json:"message,omitempty"`
 	Status *bool `json:"status,omitempty"`
-	Payments []Adminpaymenthistoryfields `json:"payments,omitempty"`
+	Data []Adminpaymenthistoryfields `json:"data,omitempty"`
 }
 
 // NewAdminpaymenthistoryresponse instantiates a new Adminpaymenthistoryresponse object
@@ -105,36 +105,36 @@ func (o *Adminpaymenthistoryresponse) SetStatus(v bool) {
 	o.Status = &v
 }
 
-// GetPayments returns the Payments field value if set, zero value otherwise.
-func (o *Adminpaymenthistoryresponse) GetPayments() []Adminpaymenthistoryfields {
-	if o == nil || IsNil(o.Payments) {
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *Adminpaymenthistoryresponse) GetData() []Adminpaymenthistoryfields {
+	if o == nil || IsNil(o.Data) {
 		var ret []Adminpaymenthistoryfields
 		return ret
 	}
-	return o.Payments
+	return o.Data
 }
 
-// GetPaymentsOk returns a tuple with the Payments field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Adminpaymenthistoryresponse) GetPaymentsOk() ([]Adminpaymenthistoryfields, bool) {
-	if o == nil || IsNil(o.Payments) {
+func (o *Adminpaymenthistoryresponse) GetDataOk() ([]Adminpaymenthistoryfields, bool) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
-	return o.Payments, true
+	return o.Data, true
 }
 
-// HasPayments returns a boolean if a field has been set.
-func (o *Adminpaymenthistoryresponse) HasPayments() bool {
-	if o != nil && !IsNil(o.Payments) {
+// HasData returns a boolean if a field has been set.
+func (o *Adminpaymenthistoryresponse) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
 	return false
 }
 
-// SetPayments gets a reference to the given []Adminpaymenthistoryfields and assigns it to the Payments field.
-func (o *Adminpaymenthistoryresponse) SetPayments(v []Adminpaymenthistoryfields) {
-	o.Payments = v
+// SetData gets a reference to the given []Adminpaymenthistoryfields and assigns it to the Data field.
+func (o *Adminpaymenthistoryresponse) SetData(v []Adminpaymenthistoryfields) {
+	o.Data = v
 }
 
 func (o Adminpaymenthistoryresponse) MarshalJSON() ([]byte, error) {
@@ -153,8 +153,8 @@ func (o Adminpaymenthistoryresponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !IsNil(o.Payments) {
-		toSerialize["payments"] = o.Payments
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

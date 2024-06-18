@@ -935,6 +935,24 @@ func (a *FirewallsAPIService) DetailsOfFirewallByIDExecute(r ApiDetailsOfFirewal
 type ApiRetrieveFirewallsRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
+	page *int32
+	pageSize *int32
+	search *string
+}
+
+func (r ApiRetrieveFirewallsRequest) Page(page int32) ApiRetrieveFirewallsRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiRetrieveFirewallsRequest) PageSize(pageSize int32) ApiRetrieveFirewallsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiRetrieveFirewallsRequest) Search(search string) ApiRetrieveFirewallsRequest {
+	r.search = &search
+	return r
 }
 
 func (r ApiRetrieveFirewallsRequest) Execute() (*FirewallsListResponse, *http.Response, error) {
@@ -942,7 +960,7 @@ func (r ApiRetrieveFirewallsRequest) Execute() (*FirewallsListResponse, *http.Re
 }
 
 /*
-RetrieveFirewalls Retrieve Firewalls
+RetrieveFirewalls List firewalls
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRetrieveFirewallsRequest
@@ -975,6 +993,15 @@ func (a *FirewallsAPIService) RetrieveFirewallsExecute(r ApiRetrieveFirewallsReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

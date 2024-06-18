@@ -34,6 +34,8 @@ func (r ApiListPoliciesRequest) Execute() (*GetPoliciesResponseModel, *http.Resp
 /*
 ListPolicies List Policies
 
+Retrieves a list of policies available for addition to RBAC roles. For additional information on policies, [click here](https://infrahub-doc.nexgencloud.com/docs/api-reference/auth-resources/policies).
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListPoliciesRequest
 */

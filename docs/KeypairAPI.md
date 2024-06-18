@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListKeyPairs
 
-> Keypairs ListKeyPairs(ctx).Execute()
+> Keypairs ListKeyPairs(ctx).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List key pairs
 
@@ -168,10 +168,13 @@ import (
 )
 
 func main() {
+	page := TODO // interface{} | Page Number (optional)
+	pageSize := TODO // interface{} | Data Per Page (optional)
+	search := "search_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeypairAPI.ListKeyPairs(context.Background()).Execute()
+	resp, r, err := apiClient.KeypairAPI.ListKeyPairs(context.Background()).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeypairAPI.ListKeyPairs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -183,12 +186,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListKeyPairsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | [**interface{}**](interface{}.md) | Page Number | 
+ **pageSize** | [**interface{}**](interface{}.md) | Data Per Page | 
+ **search** | **string** |  | 
 
 ### Return type
 

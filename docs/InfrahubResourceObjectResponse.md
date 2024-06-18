@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **InfrahubId** | Pointer to **int32** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
+**ContractId** | Pointer to **int32** |  | [optional] 
 **Resources** | Pointer to [**[]PricebookResourceObjectResponse**](PricebookResourceObjectResponse.md) |  | [optional] 
 **Price** | Pointer to **float32** |  | [optional] 
 **ActualPrice** | Pointer to **float32** |  | [optional] 
@@ -160,6 +161,31 @@ SetHost sets Host field to given value.
 `func (o *InfrahubResourceObjectResponse) HasHost() bool`
 
 HasHost returns a boolean if a field has been set.
+
+### GetContractId
+
+`func (o *InfrahubResourceObjectResponse) GetContractId() int32`
+
+GetContractId returns the ContractId field if non-nil, zero value otherwise.
+
+### GetContractIdOk
+
+`func (o *InfrahubResourceObjectResponse) GetContractIdOk() (*int32, bool)`
+
+GetContractIdOk returns a tuple with the ContractId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractId
+
+`func (o *InfrahubResourceObjectResponse) SetContractId(v int32)`
+
+SetContractId sets ContractId field to given value.
+
+### HasContractId
+
+`func (o *InfrahubResourceObjectResponse) HasContractId() bool`
+
+HasContractId returns a boolean if a field has been set.
 
 ### GetResources
 

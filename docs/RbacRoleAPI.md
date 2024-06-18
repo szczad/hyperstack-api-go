@@ -5,10 +5,10 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateRBACRole**](RbacRoleAPI.md#CreateRBACRole) | **Post** /auth/roles | Create RBAC Role
-[**DeleteARBACRole**](RbacRoleAPI.md#DeleteARBACRole) | **Delete** /auth/roles/{id} | Delete a RBAC Role
-[**GetARBACRoleDetail**](RbacRoleAPI.md#GetARBACRoleDetail) | **Get** /auth/roles/{id} | Get a RBAC Role Detail
+[**DeleteRBACRole**](RbacRoleAPI.md#DeleteRBACRole) | **Delete** /auth/roles/{id} | Delete RBAC Role
 [**ListRBACRoles**](RbacRoleAPI.md#ListRBACRoles) | **Get** /auth/roles | List RBAC Roles
-[**UpdateARBACRole**](RbacRoleAPI.md#UpdateARBACRole) | **Put** /auth/roles/{id} | Update a RBAC Role
+[**RetrieveRBACRoleDetails**](RbacRoleAPI.md#RetrieveRBACRoleDetails) | **Get** /auth/roles/{id} | Retrieve RBAC Role Details
+[**UpdateRBACRole**](RbacRoleAPI.md#UpdateRBACRole) | **Put** /auth/roles/{id} | Update RBAC Role
 
 
 
@@ -17,6 +17,8 @@ Method | HTTP request | Description
 > RbacRoleDetailResponseModel CreateRBACRole(ctx).Payload(payload).Execute()
 
 Create RBAC Role
+
+
 
 ### Example
 
@@ -76,11 +78,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteARBACRole
+## DeleteRBACRole
 
-> CommonResponseModel DeleteARBACRole(ctx, id).Execute()
+> CommonResponseModel DeleteRBACRole(ctx, id).Execute()
 
-Delete a RBAC Role
+Delete RBAC Role
+
+
 
 ### Example
 
@@ -99,13 +103,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RbacRoleAPI.DeleteARBACRole(context.Background(), id).Execute()
+	resp, r, err := apiClient.RbacRoleAPI.DeleteRBACRole(context.Background(), id).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.DeleteARBACRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.DeleteRBACRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteARBACRole`: CommonResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.DeleteARBACRole`: %v\n", resp)
+	// response from `DeleteRBACRole`: CommonResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.DeleteRBACRole`: %v\n", resp)
 }
 ```
 
@@ -119,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteARBACRoleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRBACRoleRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -144,79 +148,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetARBACRoleDetail
-
-> RbacRoleDetailResponseModel GetARBACRoleDetail(ctx, id).Execute()
-
-Get a RBAC Role Detail
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/szczad/hyperstack-api-go"
-)
-
-func main() {
-	id := int32(56) // int32 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RbacRoleAPI.GetARBACRoleDetail(context.Background(), id).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.GetARBACRoleDetail``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetARBACRoleDetail`: RbacRoleDetailResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.GetARBACRoleDetail`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetARBACRoleDetailRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**RbacRoleDetailResponseModel**](RbacRoleDetailResponseModel.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [accessToken](../README.md#accessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ListRBACRoles
 
 > GetRbacRolesResponseModel ListRBACRoles(ctx).Execute()
 
 List RBAC Roles
+
+
 
 ### Example
 
@@ -271,11 +209,83 @@ Other parameters are passed through a pointer to a apiListRBACRolesRequest struc
 [[Back to README]](../README.md)
 
 
-## UpdateARBACRole
+## RetrieveRBACRoleDetails
 
-> RbacRoleDetailResponseModel UpdateARBACRole(ctx, id).Payload(payload).Execute()
+> RbacRoleDetailResponseModel RetrieveRBACRoleDetails(ctx, id).Execute()
 
-Update a RBAC Role
+Retrieve RBAC Role Details
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/szczad/hyperstack-api-go"
+)
+
+func main() {
+	id := int32(56) // int32 | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RbacRoleAPI.RetrieveRBACRoleDetails(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.RetrieveRBACRoleDetails``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RetrieveRBACRoleDetails`: RbacRoleDetailResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.RetrieveRBACRoleDetails`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveRBACRoleDetailsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**RbacRoleDetailResponseModel**](RbacRoleDetailResponseModel.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [accessToken](../README.md#accessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateRBACRole
+
+> RbacRoleDetailResponseModel UpdateRBACRole(ctx, id).Payload(payload).Execute()
+
+Update RBAC Role
+
+
 
 ### Example
 
@@ -295,13 +305,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RbacRoleAPI.UpdateARBACRole(context.Background(), id).Payload(payload).Execute()
+	resp, r, err := apiClient.RbacRoleAPI.UpdateRBACRole(context.Background(), id).Payload(payload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.UpdateARBACRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RbacRoleAPI.UpdateRBACRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateARBACRole`: RbacRoleDetailResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.UpdateARBACRole`: %v\n", resp)
+	// response from `UpdateRBACRole`: RbacRoleDetailResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `RbacRoleAPI.UpdateRBACRole`: %v\n", resp)
 }
 ```
 
@@ -315,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateARBACRoleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRBACRoleRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

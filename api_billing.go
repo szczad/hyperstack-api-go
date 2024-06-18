@@ -194,6 +194,13 @@ func (a *BillingAPIService) GetLastDayCostExecute(r ApiGetLastDayCostRequest) (*
 type ApiGetUsageRequest struct {
 	ctx context.Context
 	ApiService *BillingAPIService
+	deleted *interface{}
+}
+
+// &#x60;true&#x60; will return inactive resources and &#x60;false&#x60; will return active resources. By defualt(&#x60;deleted&#x3D;false&#x60;)
+func (r ApiGetUsageRequest) Deleted(deleted interface{}) ApiGetUsageRequest {
+	r.deleted = &deleted
+	return r
 }
 
 func (r ApiGetUsageRequest) Execute() (*Billingmetricesresponse, *http.Response, error) {
@@ -202,6 +209,8 @@ func (r ApiGetUsageRequest) Execute() (*Billingmetricesresponse, *http.Response,
 
 /*
 GetUsage GET: Billing usage
+
+Retrieve active billing metrics for the organization's resources, including pricing, uptime, and total cost. Returns usage details for each active resource by defualt(`deleted=false` will return active resources). Additionally, adding `deleted=true` in query parameter will return inactive resources. For additional information on view usage costs for all resources, [**click here**](https://infrahub-doc.nexgencloud.com/docs/billing-and-payment/billing-features#view-usage-costs-for-all-resources)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetUsageRequest
@@ -234,6 +243,9 @@ func (a *BillingAPIService) GetUsageExecute(r ApiGetUsageRequest) (*Billingmetri
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.deleted != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deleted", r.deleted, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

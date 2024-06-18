@@ -23,7 +23,7 @@ type InternalVolumeFields struct {
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	VolumeType *string `json:"volume_type,omitempty"`
-	Size *string `json:"size,omitempty"`
+	Size *int32 `json:"size,omitempty"`
 }
 
 // NewInternalVolumeFields instantiates a new InternalVolumeFields object
@@ -172,9 +172,9 @@ func (o *InternalVolumeFields) SetVolumeType(v string) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *InternalVolumeFields) GetSize() string {
+func (o *InternalVolumeFields) GetSize() int32 {
 	if o == nil || IsNil(o.Size) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.Size
@@ -182,7 +182,7 @@ func (o *InternalVolumeFields) GetSize() string {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InternalVolumeFields) GetSizeOk() (*string, bool) {
+func (o *InternalVolumeFields) GetSizeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *InternalVolumeFields) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given string and assigns it to the Size field.
-func (o *InternalVolumeFields) SetSize(v string) {
+// SetSize gets a reference to the given int32 and assigns it to the Size field.
+func (o *InternalVolumeFields) SetSize(v int32) {
 	o.Size = &v
 }
 

@@ -22,6 +22,7 @@ var _ MappedNullable = &FlavorFields{}
 type FlavorFields struct {
 	Id *int32 `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
 	RegionName *string `json:"region_name,omitempty"`
 	Cpu *int32 `json:"cpu,omitempty"`
 	Ram *float32 `json:"ram,omitempty"`
@@ -112,6 +113,38 @@ func (o *FlavorFields) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *FlavorFields) SetName(v string) {
 	o.Name = &v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *FlavorFields) GetDisplayName() string {
+	if o == nil || IsNil(o.DisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlavorFields) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *FlavorFields) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *FlavorFields) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetRegionName returns the RegionName field value if set, zero value otherwise.
@@ -417,6 +450,9 @@ func (o FlavorFields) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["display_name"] = o.DisplayName
 	}
 	if !IsNil(o.RegionName) {
 		toSerialize["region_name"] = o.RegionName

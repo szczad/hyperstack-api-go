@@ -21,6 +21,7 @@ var _ MappedNullable = &UpdateOrganizationPayload{}
 
 // UpdateOrganizationPayload struct for UpdateOrganizationPayload
 type UpdateOrganizationPayload struct {
+	// The new name for the organition
 	Name string `json:"name"`
 }
 

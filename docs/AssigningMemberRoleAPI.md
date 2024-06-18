@@ -4,16 +4,18 @@ All URIs are relative to *https://infrahub-api.nexgencloud.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AssignRBACRoles**](AssigningMemberRoleAPI.md#AssignRBACRoles) | **Put** /auth/users/{user_id}/assign-roles | Assign RBAC Roles
-[**RemoveRoleFromAUser**](AssigningMemberRoleAPI.md#RemoveRoleFromAUser) | **Delete** /auth/users/{user_id}/roles | Remove role from a user
+[**AssignRBACRoleToUser**](AssigningMemberRoleAPI.md#AssignRBACRoleToUser) | **Put** /auth/users/{user_id}/assign-roles | Assign RBAC Role
+[**RemoveRBACRoleFromUser**](AssigningMemberRoleAPI.md#RemoveRBACRoleFromUser) | **Delete** /auth/users/{user_id}/roles | Remove RBAC Role From User
 
 
 
-## AssignRBACRoles
+## AssignRBACRoleToUser
 
-> RbacRoleDetailResponseModel AssignRBACRoles(ctx, userId).Payload(payload).Execute()
+> RbacRoleDetailResponseModel AssignRBACRoleToUser(ctx, userId).Payload(payload).Execute()
 
-Assign RBAC Roles
+Assign RBAC Role
+
+
 
 ### Example
 
@@ -33,13 +35,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssigningMemberRoleAPI.AssignRBACRoles(context.Background(), userId).Payload(payload).Execute()
+	resp, r, err := apiClient.AssigningMemberRoleAPI.AssignRBACRoleToUser(context.Background(), userId).Payload(payload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssigningMemberRoleAPI.AssignRBACRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AssigningMemberRoleAPI.AssignRBACRoleToUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssignRBACRoles`: RbacRoleDetailResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `AssigningMemberRoleAPI.AssignRBACRoles`: %v\n", resp)
+	// response from `AssignRBACRoleToUser`: RbacRoleDetailResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `AssigningMemberRoleAPI.AssignRBACRoleToUser`: %v\n", resp)
 }
 ```
 
@@ -53,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAssignRBACRolesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAssignRBACRoleToUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -79,11 +81,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveRoleFromAUser
+## RemoveRBACRoleFromUser
 
-> CommonResponseModel RemoveRoleFromAUser(ctx, userId).Execute()
+> CommonResponseModel RemoveRBACRoleFromUser(ctx, userId).Execute()
 
-Remove role from a user
+Remove RBAC Role From User
+
+
 
 ### Example
 
@@ -102,13 +106,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssigningMemberRoleAPI.RemoveRoleFromAUser(context.Background(), userId).Execute()
+	resp, r, err := apiClient.AssigningMemberRoleAPI.RemoveRBACRoleFromUser(context.Background(), userId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssigningMemberRoleAPI.RemoveRoleFromAUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AssigningMemberRoleAPI.RemoveRBACRoleFromUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemoveRoleFromAUser`: CommonResponseModel
-	fmt.Fprintf(os.Stdout, "Response from `AssigningMemberRoleAPI.RemoveRoleFromAUser`: %v\n", resp)
+	// response from `RemoveRBACRoleFromUser`: CommonResponseModel
+	fmt.Fprintf(os.Stdout, "Response from `AssigningMemberRoleAPI.RemoveRBACRoleFromUser`: %v\n", resp)
 }
 ```
 
@@ -122,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveRoleFromAUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRemoveRBACRoleFromUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

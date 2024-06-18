@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **float32** |  | [optional] 
-**Medium** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **TransactionId** | Pointer to **string** |  | [optional] 
 **PaymentId** | Pointer to **string** |  | [optional] 
@@ -54,31 +53,6 @@ SetAmount sets Amount field to given value.
 `func (o *Adminpaymenthistoryfields) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
-
-### GetMedium
-
-`func (o *Adminpaymenthistoryfields) GetMedium() string`
-
-GetMedium returns the Medium field if non-nil, zero value otherwise.
-
-### GetMediumOk
-
-`func (o *Adminpaymenthistoryfields) GetMediumOk() (*string, bool)`
-
-GetMediumOk returns a tuple with the Medium field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMedium
-
-`func (o *Adminpaymenthistoryfields) SetMedium(v string)`
-
-SetMedium sets Medium field to given value.
-
-### HasMedium
-
-`func (o *Adminpaymenthistoryfields) HasMedium() bool`
-
-HasMedium returns a boolean if a field has been set.
 
 ### GetStatus
 

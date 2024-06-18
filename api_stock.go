@@ -32,7 +32,7 @@ func (r ApiRetrieveGPUStocksRequest) Execute() (*NewStockRetriveResponse, *http.
 }
 
 /*
-RetrieveGPUStocks Method for RetrieveGPUStocks
+RetrieveGPUStocks Retrieve GPU stocks
 
 Returns information on current and upcoming GPU availability, organized by region and GPU model. For additional information on GPU stocks, [**click here**](https://infrahub-doc.nexgencloud.com/docs/hardware/gpu-stock-information).
 

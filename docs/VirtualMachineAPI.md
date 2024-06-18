@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**EditLabelsOfAnExistingVM**](VirtualMachineAPI.md#EditLabelsOfAnExistingVM) | **Put** /core/virtual-machines/{virtual_machine_id}/label | Edit labels of an existing VM
 [**HardRebootVirtualMachine**](VirtualMachineAPI.md#HardRebootVirtualMachine) | **Get** /core/virtual-machines/{id}/hard-reboot | Hard reboot virtual machine
 [**HibernateVirtualMachine**](VirtualMachineAPI.md#HibernateVirtualMachine) | **Get** /core/virtual-machines/{virtual_machine_id}/hibernate | Hibernate virtual machine
-[**ListVirtualMachines**](VirtualMachineAPI.md#ListVirtualMachines) | **Get** /core/virtual-machines | List all virtual machines
+[**ListVirtualMachines**](VirtualMachineAPI.md#ListVirtualMachines) | **Get** /core/virtual-machines | List virtual machines
 [**ResizeVirtualMachine**](VirtualMachineAPI.md#ResizeVirtualMachine) | **Post** /core/virtual-machines/{virtual_machine_id}/resize | Resize virtual machine
 [**RestoreVirtualMachineFromHibernation**](VirtualMachineAPI.md#RestoreVirtualMachineFromHibernation) | **Get** /core/virtual-machines/{virtual_machine_id}/hibernate-restore | Restore virtual machine from hibernation
 [**RetrieveVirtualMachineDetails**](VirtualMachineAPI.md#RetrieveVirtualMachineDetails) | **Get** /core/virtual-machines/{id} | Retrieve virtual machine details
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## CreateVirtualMachine
 
-> Instances CreateVirtualMachine(ctx).Payload(payload).Execute()
+> CreateInstancesResponse CreateVirtualMachine(ctx).Payload(payload).Execute()
 
 Create virtual machine
 
@@ -197,7 +197,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VirtualMachineAPI.CreateVirtualMachine``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateVirtualMachine`: Instances
+	// response from `CreateVirtualMachine`: CreateInstancesResponse
 	fmt.Fprintf(os.Stdout, "Response from `VirtualMachineAPI.CreateVirtualMachine`: %v\n", resp)
 }
 ```
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Instances**](Instances.md)
+[**CreateInstancesResponse**](CreateInstancesResponse.md)
 
 ### Authorization
 
@@ -588,9 +588,9 @@ Name | Type | Description  | Notes
 
 ## ListVirtualMachines
 
-> Instances ListVirtualMachines(ctx).Execute()
+> Instances ListVirtualMachines(ctx).Page(page).PageSize(pageSize).Search(search).Execute()
 
-List all virtual machines
+List virtual machines
 
 
 
@@ -607,10 +607,13 @@ import (
 )
 
 func main() {
+	page := TODO // interface{} | Page Number (optional)
+	pageSize := TODO // interface{} | Data Per Page (optional)
+	search := "search_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VirtualMachineAPI.ListVirtualMachines(context.Background()).Execute()
+	resp, r, err := apiClient.VirtualMachineAPI.ListVirtualMachines(context.Background()).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VirtualMachineAPI.ListVirtualMachines``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -622,12 +625,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListVirtualMachinesRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | [**interface{}**](interface{}.md) | Page Number | 
+ **pageSize** | [**interface{}**](interface{}.md) | Data Per Page | 
+ **search** | **string** |  | 
 
 ### Return type
 

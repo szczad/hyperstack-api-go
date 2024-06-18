@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **string** |  | 
+**Email** | **string** | The email of the user to be removed. | 
 
 ## Methods
 

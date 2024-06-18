@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 List Permissions
 
+
+
 ### Example
 
 ```go

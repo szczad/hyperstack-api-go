@@ -21,6 +21,7 @@ var _ MappedNullable = &RemoveMemberPayload{}
 
 // RemoveMemberPayload struct for RemoveMemberPayload
 type RemoveMemberPayload struct {
+	// The email of the user to be removed.
 	Email string `json:"email"`
 }
 
